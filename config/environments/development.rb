@@ -59,10 +59,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.smtp_settings = {
-    address: ENV['AWS_SES_SERVER_NAME'],
+    address: Rails.development[:AWS_SES_SERVER_NAME],
     port: 587,
-    user_name: ENV['AWS_SES_SMTP_USERNAME'],
-    password: ENV['AWS_SES_SMTP_PASSWORD'],
+    user_name: Rails.development[:AWS_SES_SMTP_USERNAME],
+    password: Rails.development[:AWS_SES_SMTP_PASSWORD],
     authentication: :login,
     enable_starttls_auto: true
   }

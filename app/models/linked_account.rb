@@ -2,7 +2,8 @@ class LinkedAccount < ApplicationRecord
   belongs_to :user
 
   def self.create_with_omniauth(auth, current_user)
-    linked_account = find_or_create_by(uid: auth['uid'], provider:  auth['provider'])
+    linked_account = find_or_initialize_by(uid: auth['uid'], provider:  auth['provider'])
+
     auth_info = extract_info(auth)
 
     linked_account.link = auth_info[:link] unless linked_account.link
@@ -10,8 +11,9 @@ class LinkedAccount < ApplicationRecord
     
     if current_user
       # link account to user if logged in
-      linked_account.user = user
+      linked_account.user = current_user
       linked_account.save
+      linked_account.user
     else
       if user = linked_account.user
         # return user if already present
@@ -31,7 +33,7 @@ class LinkedAccount < ApplicationRecord
       if auth['provider'] == "facebook"
         facebook_details(auth)
       elsif auth['provider'] == "twitter"
-        facebook_details(auth)
+        twitter_details(auth)
       else
         raise "not implemented"
       end

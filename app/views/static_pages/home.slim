@@ -8,6 +8,7 @@
         - else
           = link_to button_tag('Request Help', class: 'btn btn-primary'), new_request_path
   .col-md-9 
+    h3 Subsidy requests
     - @requests.each do |request|
       = link_to request, class: 'no-style' do
         .request-card

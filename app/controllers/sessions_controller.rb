@@ -2,15 +2,22 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :check_logged_in, only: :new
   def new
+    store_location
   end
 
   def create
     if request.env['omniauth.auth']
-      user = LinkedAccount.create_with_omniauth(request.env['omniauth.auth'], current_user)
+      begin
+        user = LinkedAccount.create_with_omniauth(request.env['omniauth.auth'], current_user)
+      rescue LinkedAccount::UserOverwrittenError
+        flash[:danger] = 'Failed to link account. The account was used to login before and is linked to another user'
+        redirect_back_or(new_request_path) and return
+      end
       session[:user_id] = user.id
 
       # Change to last path
-      redirect_to new_request_path
+      flash["success"] = "Signed in as #{user.name}"
+      redirect_back_or(new_request_path)
     end
   end
 
@@ -23,7 +30,7 @@ class SessionsController < ApplicationController
   private
     def check_logged_in
       if user_logged_in?
-        flash[:danger] = 'Already logged in'
+      flash[:danger] = 'Already logged in'
         redirect_to root_path 
       end
     end

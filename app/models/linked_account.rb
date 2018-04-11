@@ -1,5 +1,8 @@
 class LinkedAccount < ApplicationRecord
   belongs_to :user
+ 
+  class UserOverwrittenError < StandardError
+  end
 
   def self.create_with_omniauth(auth, current_user)
     linked_account = find_or_initialize_by(uid: auth['uid'], provider:  auth['provider'])
@@ -8,24 +11,32 @@ class LinkedAccount < ApplicationRecord
 
     linked_account.link = auth_info[:link] unless linked_account.link
     linked_account.profile_pic = auth_info[:profile_pic] unless linked_account.profile_pic
-    
-    if current_user
-      # link account to user if logged in
-      linked_account.user = current_user
+
+    if linked_account.user
+      # if there's already a user to this account(previously persisted)
+      if current_user && current_user != linked_account.user
+        # if it's not, it means that linked account is tied to another user, throw erro
+        raise UserOverwrittenError
+      else
+        # if there's no current user, log in linked account user
+        linked_account.save
+        linked_account.user
+      end
+    else
+      # new linked account
+      if current_user
+        # assign current user
+        linked_account.user = current_user
+        
+      else
+        # if there's no current user, Create a user
+        linked_account.user = User.create(name: auth_info[:name], profile_pic: auth_info[:profile_pic])        
+      end
+
       linked_account.save
       linked_account.user
-    else
-      if user = linked_account.user
-        # return user if already present
-        user
-      else
-        # create and return user if new linked account
-        user = User.create(name: auth_info[:name], profile_pic: auth_info[:profile_pic])
-        linked_account.user = user
-        linked_account.save
-        user
-      end
     end
+
   end
 
   private

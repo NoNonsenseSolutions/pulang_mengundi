@@ -21,9 +21,11 @@ class RequestsController < ApplicationController
   end
 
   def show
+    store_location
     @request = Request.find(params[:id])
     @requester = @request.requester
     @pledge = Pledge.new
+
   end
 
   private

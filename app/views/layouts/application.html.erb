@@ -24,15 +24,18 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <!-- <ul class="nav navbar-nav">
-            <li class="active">
-              <%= link_to 'Ask for Help!', new_request_path %>
-            </li>
-          </ul> -->
+          <ul class="nav navbar-nav">
+            <% if user_logged_in? %>
+              
+            <% end %>
+          </ul>
 
           <% if user_logged_in? %>
             <ul class="nav navbar-nav navbar-right">
-              <li class="nav-item active">
+              <li class="nav-item">
+                <%= link_to 'Profile', profile_path %>
+              </li>
+              <li class="nav-item">
                 <%= link_to 'Log out', sessions_path, method: :delete %>
               </li>
               

@@ -1,6 +1,9 @@
 .row
   .col-md-9
     .text-center
+      - if policy(@request).edit?
+        p
+          = link_to 'Edit Request', [:edit, @request]
       = image_tag @request.display_pic
       h1 = @requester.name
       h3 Requesting for #{number_to_currency @request.target_amount, unit: 'RM '}
@@ -21,21 +24,32 @@
       / Progress
       .progress
         .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
-          span.sr-only #{@request.successful_pledges_percentage}% Complete (success)
+          span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
+        .progress-bar.progress-bar-warning style=("width: #{@request.pending_pledges_percentage}%") 
+          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)
+
+      .progress
         .progress-bar.progress-bar-danger style=("width: #{@request.disputed_pledges_percentage}%") 
-          span.sr-only #{@request.disputed_pledges_percentage}% Complete (danger)
+          span.sr-only #{@request.disputed_pledges_percentage}% Disputed (danger)
+        
 
   .col-md-3
     .panel.panel-default
       .panel-body.text-center
-        h4 I want to pledge RM
-        - if user_logged_in?
+        - if current_user == @requester
+          // Don't show
+        - elsif user_logged_in?
+          h4 I want to pledge RM
           = simple_form_for [@request, @pledge] do |f|
             = f.input :amount, label: false, input_html: { min: "10", max: "10000"}
             = f.submit 'Pledge', class: 'btn btn-primary'
         - else
           p Want to help?
           = link_to 'Sign in', new_sessions_path
+        div.mb-3
+          h5 Remaining subsidy needed
+          p #{number_to_currency @request.remaining_amount, unit: 'RM '}
+
 
 hr
 
@@ -47,13 +61,15 @@ div
         .panel.panel-default
           .panel-body.text-center
             h5 = number_to_currency pledge.amount, unit: "RM "
-            span.label.label-warning = pledge.donor_status
-            span.label.label-warning.ml-3 = pledge.requester_status
+            span.label.label-warning = pledge.status
             - if policy(pledge).requester_status_update?
-              - unless pledge.requester_received?
+              - if pledge.pending?
                 div.mt-3
                   = link_to button_tag("I've received the subsidy!", class: 'btn btn-sm btn-primary'), pledge_requester_status_path(pledge, requester_status: "requester_received"), method: :patch
-                - if pledge.donor_transferred?
-                  div.mt-3
-                    = link_to button_tag("I did not receive this amount!", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "requester_disputed"), method: :patch
+              - if pledge.donor_transferred?
+                div.mt-3
+                  = link_to button_tag("I did not receive this amount!", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "requester_disputed"), method: :patch
+              - if pledge.pending? && pledge.past_expiry?
+                div.mt-3
+                  = link_to button_tag("Expire", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "expired"), method: :patch
 

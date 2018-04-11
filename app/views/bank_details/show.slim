@@ -27,7 +27,7 @@
               .panel.panel-default
                 .panel-body.text-center
                   h5 = number_to_currency pledge.amount, unit: "RM "
-                  span.label.label-warning = pledge.donor_status
-                  - if pledge.waiting_for_donor_response?
+                  span.label.label-warning = pledge.status
+                  - if pledge.waiting_for_transfer?
                     div.mt-3
                       = link_to button_tag("I've transferred!", class: 'btn btn-sm btn-primary'), pledge_donor_status_path(pledge), method: :patch

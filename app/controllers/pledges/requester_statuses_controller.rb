@@ -8,9 +8,8 @@ class Pledges::RequesterStatusesController < ApplicationController
       @pledge.requester_disputed!
     elsif params[:requester_status] == "requester_received"
       @pledge.requester_received!
-      if @pledge.pending_donor?
-        @pledge.donor_transferred!
-      end
+    elsif params[:requester_status] == "expired"
+      @pledge.expired!
     else
       raise "Status received #{params[:requester_status]}"
     end

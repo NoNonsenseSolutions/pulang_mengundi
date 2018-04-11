@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
       flash[:success] = 'Request created'
       redirect_to @request
     else
-      flash[:danger] = 'Request Failed'
+      flash[:danger] = @request.errors.full_messages.join("; ")
       render :new
     end
   end
@@ -25,7 +25,25 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @requester = @request.requester
     @pledge = Pledge.new
+  end
 
+  def edit
+    @request = Request.find(params[:id])
+    authorize @request
+
+  end
+
+  def update
+    @request = Request.find(params[:id])
+    authorize @request
+
+    if @request.update(request_params)
+      flash[:success] = 'Request updated'
+      redirect_to @request
+    else
+      flash[:danger] = @request.errors.full_messages.join("; ")
+      render :new
+    end
   end
 
   private

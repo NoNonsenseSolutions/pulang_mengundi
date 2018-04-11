@@ -7,9 +7,7 @@ class PledgesController < ApplicationController
       redirect_to [@request, :bank_details]
     else
       flash[:danger] = @pledge.errors.full_messages.join("; ")
-      @request.reload
-      @referred = @request.referrer
-      render '/requests/show'
+      redirect_to @request
     end
   end
 

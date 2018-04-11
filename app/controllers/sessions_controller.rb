@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :check_logged_in, only: :new
   def new
-    store_location
   end
 
   def create
@@ -30,7 +29,7 @@ class SessionsController < ApplicationController
   private
     def check_logged_in
       if user_logged_in?
-      flash[:danger] = 'Already logged in'
+        flash[:danger] = 'Already logged in'
         redirect_to root_path 
       end
     end

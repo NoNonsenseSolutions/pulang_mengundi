@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   end
 
   resource :sessions, only: [:new, :destroy]
+
+  resource :profile, only: [:show, :edit, :update]
   
 end

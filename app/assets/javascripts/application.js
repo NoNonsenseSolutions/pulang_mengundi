@@ -13,6 +13,16 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery3
-//= require popper
+//= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-select
+//= require requests
+
+
+document.addEventListener("turbolinks:load", function(){
+  $('.selectpicker').selectpicker('render');
+})
+
+document.addEventListener("turbolinks:before-cache", function(){
+  $('.selectpicker').selectpicker('destroy').addClass('selectpicker')
+})

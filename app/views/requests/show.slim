@@ -1,0 +1,59 @@
+.row
+  .col-md-9
+    .text-center
+      = image_tag @request.display_pic
+      h1 = @requester.name
+      h3 Requesting for #{number_to_currency @request.target_amount, unit: 'RM '}
+      
+      - if @requester.facebook_link
+        p
+          = link_to "Facebook Profile", @requester.facebook_link
+      - elsif @requester == current_user
+        = link_to 'Link my facebook', '/auth/facebook'
+
+      - if @requester.twitter_link
+        p
+          = link_to "Twitter Profile", @requester.twitter_link
+      - elsif @requester == current_user
+        = link_to 'Link my twitter', '/auth/twitter'
+      
+
+      / Progress
+      .progress
+        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
+          span.sr-only #{@request.successful_pledges_percentage}% Complete (success)
+        .progress-bar.progress-bar-danger style=("width: #{@request.disputed_pledges_percentage}%") 
+          span.sr-only #{@request.disputed_pledges_percentage}% Complete (danger)
+
+  .col-md-3
+    .panel.panel-default
+      .panel-body.text-center
+        h4 I want to pledge RM
+        - if user_logged_in?
+          = simple_form_for [@request, @pledge] do |f|
+            = f.input :amount, label: false, input_html: { min: "10", max: "10000"}
+            = f.submit 'Pledge', class: 'btn btn-primary'
+        - else
+          p Want to help?
+          = link_to 'Sign in', new_sessions_path
+
+hr
+
+div
+  h3 Pledges
+  .row
+    - @request.pledges.each do |pledge|
+      .col-sm-6.col-md-4.col-lg-3
+        .panel.panel-default
+          .panel-body.text-center
+            h5 = number_to_currency pledge.amount, unit: "RM "
+            span.label.label-warning = pledge.donor_status
+            span.label.label-warning.ml-3 = pledge.requester_status
+            - if policy(pledge).requester_status_update?
+              - unless pledge.requester_received?
+                div.mt-3
+                  = link_to button_tag("I've received the subsidy!", class: 'btn btn-sm btn-primary'), pledge_requester_status_path(pledge, requester_status: "requester_received"), method: :patch
+                - if pledge.donor_transferred?
+                  div.mt-3
+                    = link_to button_tag("I did not receive this amount!", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "requester_disputed"), method: :patch
+

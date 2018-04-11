@@ -1,1 +1,21 @@
-h1 Test
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-body.text-center
+        h4 Helping Malaysians Vote
+        - if current_user&.request&.present?
+          = link_to button_tag('Check my request', class: 'btn btn-primary'), current_user.request
+        - else
+          = link_to button_tag('Request Help', class: 'btn btn-primary'), new_request_path
+  .col-md-9 
+    - @requests.each do |request|
+      = link_to request, class: 'no-style' do
+        .request-card
+          .request-card-body
+            = image_tag request.display_pic, class: 'img-responsive'
+            div.ml-3
+              small Requested by #{request.requester.name}
+              br
+              span.label.label-warning
+                = request.to_city
+              p.mt-1 = request.description

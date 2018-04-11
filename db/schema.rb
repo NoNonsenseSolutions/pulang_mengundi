@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_10_173720) do
+ActiveRecord::Schema.define(version: 2018_04_11_054236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,18 +39,53 @@ ActiveRecord::Schema.define(version: 2018_04_10_173720) do
   create_table "linked_accounts", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
+    t.string "link"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_pic"
     t.index ["user_id"], name: "index_linked_accounts_on_user_id"
+  end
+
+  create_table "pledges", force: :cascade do |t|
+    t.decimal "amount", precision: 8, scale: 2
+    t.bigint "donor_id"
+    t.integer "donor_status", default: 0
+    t.integer "requester_status", default: 0
+    t.bigint "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["donor_id"], name: "index_pledges_on_donor_id"
+    t.index ["request_id"], name: "index_pledges_on_request_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "bank_name"
+    t.string "account_number"
+    t.string "account_name"
+    t.text "description"
+    t.string "transport_type"
+    t.string "from_city"
+    t.string "from_state"
+    t.string "to_city"
+    t.string "to_state"
+    t.decimal "travelling_fees", precision: 8, scale: 2, default: "0.0"
+    t.decimal "target_amount", precision: 8, scale: 2, default: "0.0"
+    t.bigint "requester_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requester_id"], name: "index_requests_on_requester_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "hashed_phone"
     t.datetime "phone_verified_at"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_pic"
   end
 
   add_foreign_key "linked_accounts", "users"
+  add_foreign_key "pledges", "requests"
 end

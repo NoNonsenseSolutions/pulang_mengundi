@@ -11,7 +11,7 @@
 
       .panel.panel-default
         .panel-heading
-          h3.panel-title Travelling details
+          h3.panel-title Travel details
         .panel-body
           = f.input :transport_type, collection: Request::TRANSPORT_TYPES, input_html: { class: 'selectpicker' }, include_blank: false
           .row
@@ -20,13 +20,13 @@
             .col-xs-6 data-constituency-list=ElectoralDistrict::PARLIAMENTARY_CONSTITUENCIES.to_json
               = f.input :to_city, label: "Constituency", collection: []
           = f.input :description
-          = f.input :travelling_fees
+          = f.input :travelling_fees, label: 'Total ticket price / Travelling Fees'
 
       .panel.panel-default
         .panel-heading
-          h3.panel-title Funding details
+          h3.panel-title Request for funding
         .panel-body
-          = f.input :target_amount
+          = f.input :target_amount, label: 'Amount to raise'
       .text-center
         p.text-danger Please make sure all your details, especially bank details are correct, as they cannot be changed once a pledge has been made
         = f.button :submit, class: 'btn btn-primary'

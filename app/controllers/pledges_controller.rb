@@ -8,6 +8,7 @@ class PledgesController < ApplicationController
     else
       flash[:danger] = @pledge.errors.full_messages.join("; ")
       @request.reload
+      @referred = @request.referrer
       render '/requests/show'
     end
   end

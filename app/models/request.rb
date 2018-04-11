@@ -2,7 +2,7 @@ class Request < ApplicationRecord
   belongs_to :requester, class_name: 'User'
   has_many :pledges, dependent: :destroy
 
-  validates :target_amount, inclusion: 10..10000
+  validates :target_amount, inclusion: 30..10000
 
 
   TRANSPORT_TYPES = ["FLIGHT", "BUS", "TRAIN"]

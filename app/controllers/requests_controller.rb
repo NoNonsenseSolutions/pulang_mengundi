@@ -35,7 +35,6 @@ class RequestsController < ApplicationController
   def edit
     @request = Request.find(params[:id])
     authorize @request
-
   end
 
   def update
@@ -54,6 +53,6 @@ class RequestsController < ApplicationController
   private
     def request_params
       params.require(:request).permit(:bank_name, :account_number, :account_name, 
-        :transport_type, :to_state, :to_city, :description, :travelling_fees, :target_amount)
+        :transport_type, :to_state, :to_city, :description, :travelling_fees, :target_amount, :itinerary, :travel_company)
     end
 end

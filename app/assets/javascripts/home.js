@@ -5,7 +5,7 @@ $(document).on('click', '.switch-items', function(){
 })
 
 document.addEventListener('turbolinks:load', function(){
-  if($(".requests.index").length > 0){
+  if($(".requests.index .static_pages.home").length > 0){
     var total = parseInt($("#number-voter-request").data('total'))
     var numAnim = new countUp("number-voter-request", 0, total);
     numAnim.start()

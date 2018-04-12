@@ -21,7 +21,7 @@ class PledgePolicy
   end
 
   def new?
-    true
+    pledge.request.requester != user
   end
 
   def create?

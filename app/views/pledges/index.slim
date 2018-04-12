@@ -1,22 +1,28 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
     h2.text-center Manage my sponsorships
-    - @pledges.each do |pledge|
-      - presenter = PledgePresenter.new(pledge)
-      = link_to pledge, class: 'no-style' do
-        .pledge-card.mt-3
-          .pledge-card-body
-            div.space-out-column.ml-3
-              div 
-                big #{presenter.requester_name}
-              div.mt-3
-                div.font-size-tiny.font-weight-lighter SEAT: #{presenter.request_seat}
-                div.font-size-tiny.font-weight-lighter STATE: #{presenter.request_state}
-            div.space-out-column.ml-3
-              div.text-right
-                small #{presenter.created_at}
-              div.text-right
-                big #{number_to_currency presenter.amount, unit: 'RM '}
-        div
-          small class="#{presenter.status_klass}"
-            = presenter.humanize_status
+    - if @pledges.present?
+      - @pledges.each do |pledge|
+        - presenter = PledgePresenter.new(pledge)
+        = link_to pledge, class: 'no-style' do
+          .pledge-card.mt-3
+            .pledge-card-body
+              div.space-out-column.ml-3
+                div 
+                  big #{presenter.requester_name}
+                div.mt-3
+                  div.font-size-tiny.font-weight-lighter SEAT: #{presenter.request_seat}
+                  div.font-size-tiny.font-weight-lighter STATE: #{presenter.request_state}
+              div.space-out-column.ml-3
+                div.text-right
+                  small #{presenter.request_created_at}
+                div.text-right
+                  big #{number_to_currency presenter.request_target_amount, unit: 'RM '}
+          div
+            small.font-weight-semibold class="#{presenter.status_klass}"
+              = presenter.humanize_status
+    - else
+      h4.text-center No pledges yet!
+      = link_to requests_path do
+          = button_tag class: 'btn btn-primary p-4 btn-responsive  mt-3' do
+            strong VIEW VOTER LIST

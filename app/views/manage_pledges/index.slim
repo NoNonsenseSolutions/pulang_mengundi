@@ -1,0 +1,28 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    h2.text-center Manage my request
+    - if @pledges.present?
+      div.mt-5
+        = "#{pluralize(@pledges.count, 'Pledge')}"
+        - @pledges.each do |pledge|
+          - presenter = PledgePresenter.new(pledge)
+          = link_to manage_pledge_path(pledge), class: 'no-style' do
+            .pledge-card.mt-3
+              .pledge-card-body
+                div.space-out-column.ml-3
+                  div 
+                    big #{presenter.donor_name}
+                div.space-out-column.ml-3
+                  div.text-right
+                    small #{presenter.request_created_at}
+                  div.text-right.mt-3
+                    big #{number_to_currency presenter.amount, unit: 'RM '}
+            div
+              small.font-weight-semibold class="#{presenter.status_klass}"
+                = presenter.humanize_status
+    - else
+      h4.text-center No pledges yet!
+
+    - if policy(@request).edit?
+      p.mt-5
+        = link_to button_tag('Edit Request', class: 'btn btn-primary btn-responsive p-4'), [:edit, @request]

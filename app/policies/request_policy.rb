@@ -13,4 +13,8 @@ class RequestPolicy
   def update?
     edit?
   end
+
+  def manage?
+    request.requester == user
+  end
 end

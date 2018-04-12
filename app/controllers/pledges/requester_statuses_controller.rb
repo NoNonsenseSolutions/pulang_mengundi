@@ -15,6 +15,6 @@ class Pledges::RequesterStatusesController < ApplicationController
     end
 
     flash[:success] = 'Pledge has been updated'
-    redirect_back(fallback_location: @pledge.request)
+    redirect_to(request_manage_pledges_path @pledge.request)
   end
 end

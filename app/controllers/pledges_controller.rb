@@ -7,6 +7,7 @@ class PledgesController < ApplicationController
   def new
     @request = Request.find(params[:request_id])
     @pledge = @request.pledges.new
+    authorize @pledge
   end
 
   def create

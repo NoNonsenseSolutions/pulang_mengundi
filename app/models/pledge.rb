@@ -16,7 +16,7 @@ class Pledge < ApplicationRecord
   end
 
   def past_expiry?
-    created_at < 2.minutes.ago
+    created_at < 2.hours.ago
   end
   private
     def donor_cannot_be_requester

@@ -34,13 +34,17 @@ class PledgePresenter
     when "requester_received"
       "text-success"
     when "requester_disputed"
-      "Disputed"
+      "text-danger"
     when "expired"
       "Expired"
     else
       raise InvalidStatusError, pledge.status
     end
     klass
+  end
+
+  def donor_name
+    @pledge.donor.name
   end
 
   def requester_name
@@ -55,11 +59,19 @@ class PledgePresenter
     pledge.request.to_state
   end
 
-  def created_at
+  def request_created_at
     pledge.request.created_at.strftime("%d/%m/%Y")
   end
 
-  def amount
+  def created_at
+    pledge.created_at.strftime("%d/%m/%Y")
+  end
+
+  def request_target_amount
     pledge.request.target_amount
+  end
+
+  def amount
+    pledge.amount
   end
 end

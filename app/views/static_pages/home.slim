@@ -18,10 +18,13 @@
       #need-sponsor.tab-pane role="tabpanel" 
         h2.mb-5.mt-5.text-center Need A Sponsor
         - if current_user&.request&.present? 
-          = link_to current_user.request do
+          = link_to request_manage_pledges_path(current_user.request) do
             = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
               strong MANAGE MY REQUEST
         - else
           = link_to new_request_path do
             = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
               strong SUBMIT MY REQUEST
+          = link_to new_sessions_path do
+            = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+              strong MANAGE MY REQUEST

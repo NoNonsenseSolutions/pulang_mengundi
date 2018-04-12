@@ -1,8 +1,5 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-    - if policy(@request).edit?
-      p
-        = link_to button_tag('Edit Request', class: 'btn btn-primary btn-sm'), [:edit, @request]
     section.user-details
       div
         = image_tag @request.display_pic, class: 'show-profile-pic'
@@ -89,33 +86,12 @@
           p
             = number_to_currency @request.target_amount, unit: 'RM '
 
-    = link_to new_request_pledge_path(@request) do
-      = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-        strong PROCEED
+    - if @request.requester == current_user
+      = link_to request_manage_pledges_path(current_user.request) do
+        = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+          strong MANAGE MY REQUEST
+    - else
+      = link_to new_request_pledge_path(@request) do
+        = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+          strong PROCEED
 
-
-    / hr
-
-    / div
-    /   h3 Current Pledges
-    /   - if @request.pledges.present?
-    /     .row
-    /       - @request.pledges.each do |pledge|
-    /         .col-sm-6.col-md-4.col-lg-3
-    /           .panel.panel-default
-    /             .panel-body.text-center
-    /               h5 = number_to_currency pledge.amount, unit: "RM "
-    /               span.label.label-warning = pledge.status
-    /               - if policy(pledge).requester_status_update?
-    /                 - if pledge.pending?
-    /                   div.mt-3
-    /                     = link_to button_tag("I've received the subsidy!", class: 'btn btn-sm btn-primary'), pledge_requester_status_path(pledge, requester_status: "requester_received"), method: :patch
-    /                 - if pledge.donor_transferred?
-    /                   div.mt-3
-    /                     = link_to button_tag("I did not receive this amount!", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "requester_disputed"), method: :patch
-    /                 - if pledge.pending? && pledge.past_expiry?
-    /                   div.mt-3
-    /                     = link_to button_tag("Expire", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "expired"), method: :patch
-
-    /   - else
-    /     p No pledges yet

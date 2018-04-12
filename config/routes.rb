@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :requests, only: [:index, :new, :create, :edit, :update, :show] do
     resources :pledges, only: [:new, :create]
     resource :thank_you_screens, only: :show
+    resources :manage_pledges, only: [:index]
   end
 
   resources :pledges, only: [:show, :index] do
@@ -19,5 +20,6 @@ Rails.application.routes.draw do
   end
 
   resource :sessions, only: [:new, :destroy]
+  resources :manage_pledges, only: :show
   
 end

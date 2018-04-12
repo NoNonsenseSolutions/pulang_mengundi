@@ -1,3 +1,4 @@
+@import 'variables';
 .p-0 { padding: 0 !important; }
 .p-1 { padding: .25rem !important; }
 .p-2 { padding: .5rem !important; }
@@ -77,3 +78,5 @@
 
 .font-weight-lighter { font-weight: 300;}
 .font-weight-semibold { font-weight: 600;}
+
+.text-success { color: $primary-green; }

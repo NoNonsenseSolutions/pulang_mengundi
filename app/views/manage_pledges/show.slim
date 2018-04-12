@@ -1,0 +1,26 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    h3.text-center Pledge
+    div.mt-5
+      p.font-weight-semibold Donor name
+      p
+        = @presenter.donor_name
+      p.font-weight-semibold Pledged at
+      p
+        = @presenter.created_at
+      p.font-weight-semibold Amount
+      p
+        = @presenter.amount
+
+
+    div
+      - if policy(@pledge).requester_status_update?
+        - if @pledge.pending?
+          div.mt-3
+            = link_to button_tag("CONFIRM BANK TRANSFER", class: 'btn btn-sm btn-responsive p-4 btn-primary'), pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch
+        - if @pledge.donor_transferred?
+          div.mt-3
+            = link_to button_tag("DISPUTE BANK TRANSFER", class: 'btn btn-sm btn-responsive p-4 btn-danger'), pledge_requester_status_path(@pledge, requester_status: "requester_disputed"), method: :patch
+        - if @pledge.waiting_for_transfer? && @pledge.past_expiry?
+          div.mt-3
+            = link_to button_tag("EXPIRE", class: 'btn btn-sm btn-responsive p-4 btn-danger'), pledge_requester_status_path(@pledge, requester_status: "expired"), method: :patch

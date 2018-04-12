@@ -22,4 +22,4 @@
               div.text-right
                 small #{request.successful_pledges_percentage}% funded
                 br
-                big #{number_to_currency request.remaining_balance, unit: 'RM '}
+                p.font-weight-bold.m-0 #{number_to_currency request.remaining_balance, unit: 'RM '}

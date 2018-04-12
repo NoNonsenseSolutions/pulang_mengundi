@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   root "static_pages#home"
 
-  get 'contact', to: "static_pages#contact", as: :contact_path
-  get 'faq', to: "static_pages#faq", as: :faq_path
+  get 'contact', to: "static_pages#contact", as: :contact
+  get 'faq', to: "static_pages#faq", as: :faq
 
   get 'auth/facebook/callback', to: 'sessions#create'
   get 'auth/twitter/callback', to: 'sessions#create'

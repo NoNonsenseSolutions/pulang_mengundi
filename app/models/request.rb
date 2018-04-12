@@ -30,7 +30,7 @@ class Request < ApplicationRecord
   end
 
   def pending_pledges_amount
-    pledges.requester_received.sum(:amount)
+    pledges.pending.sum(:amount)
   end
 
   def successful_pledges_percentage

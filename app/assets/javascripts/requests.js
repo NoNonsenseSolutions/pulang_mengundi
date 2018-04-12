@@ -30,6 +30,10 @@ document.addEventListener("turbolinks:load", function(){
   if($('#request_to_state').length > 0){
     updateConstituencyList()
   }
+
+  if($('.requests.new').length > 0){
+    $('#one-request-modal').modal('show')
+  }
 })
 
 $(document).on('change', '#custom-file-input', function(){

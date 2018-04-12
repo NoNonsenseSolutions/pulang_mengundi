@@ -13,3 +13,10 @@ a.no-style {
   color: inherit !important;
   text-decoration:none;
 }
+
+.social-media-box {
+  display: flex;
+  div {
+    flex-grow: 1;
+  }
+}

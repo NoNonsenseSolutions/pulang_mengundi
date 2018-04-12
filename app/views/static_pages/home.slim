@@ -16,7 +16,7 @@
       = link_to "Sponsor Others", requests_path, class: "switch-items"
       = link_to "Need A Sponsor", root_path, class: "switch-items active"
 
-    h2.mb-5.mt-5.text-center Need A Sponsor
+    h3.mb-5.mt-5.text-center Need A Sponsor
     - if current_user
       - if current_user.request 
         = link_to request_manage_pledges_path(current_user.request) do

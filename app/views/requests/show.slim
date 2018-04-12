@@ -54,7 +54,7 @@
       .progress
         .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
           span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
-        .progress-bar.progress-bar-warning style=("width: #{@request.pending_pledges_percentage}%") 
+        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%") 
           span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
 
       .mt-3.text-center

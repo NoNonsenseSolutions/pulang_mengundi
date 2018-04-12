@@ -5,7 +5,6 @@ class Request < ApplicationRecord
 
   has_many_attached :supporting_documents
 
-  
   validates :bank_name, presence: true, inclusion: { in: Bank::NAMES, message: 'must be in the list of banks' }
   validates :account_number, 
     presence: true, uniqueness: { scope: :bank_name }, 
@@ -23,8 +22,9 @@ class Request < ApplicationRecord
     pledges.select { |p| p.requester_disputed? }.length
   end
 
-  def remaining_amount
-    target_amount - pledges.active.sum(:amount) 
+
+  def remaining_balance_percentage
+    (remaining_balance / self.target_amount.to_f * 100).to_i
   end
 
   def successful_pledges_amount
@@ -45,5 +45,10 @@ class Request < ApplicationRecord
 
   def pending_pledges_percentage
     (pledges.pending.sum(:amount) / self.target_amount.to_f * 100).to_i
+  end
+
+  def update_remaining_balance!
+    self.remaining_balance = target_amount - pledges.active.sum(:amount)
+    save!
   end
 end

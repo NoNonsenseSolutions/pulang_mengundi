@@ -1,11 +1,13 @@
 class Pledge < ApplicationRecord
   belongs_to :donor, class_name: 'User'
   belongs_to :request
+
+  after_save :update_request_balance
+
   validates :amount, presence: true, inclusion: {in: 0..5000, message: 'has to be between 10 to 5000'}
   validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }
   validate :donor_cannot_be_requester
-
-  validate :cannot_pledge_above_remaining_amount, on: :create
+  validate :cannot_pledge_above_remaining_balance, on: :create
 
   scope :active, -> { where(status: [0, 10, 20]) }
   scope :pending, -> { where(status: [0, 10]) }
@@ -25,9 +27,13 @@ class Pledge < ApplicationRecord
       end
     end
 
-    def cannot_pledge_above_remaining_amount
-      if amount && (request.remaining_amount < amount)
+    def cannot_pledge_above_remaining_balance
+      if amount && (request.remaining_balance < amount)
         errors.add(:amount, " RM #{amount} exceeds the remaining subsidy requested for. Choose a smaller amount, or wait for some pending pledges to be voided")
       end
+    end
+
+    def update_request_balance
+      request.update_remaining_balance!
     end
 end

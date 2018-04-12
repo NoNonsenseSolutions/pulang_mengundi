@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
 
   def index
-    @requests = Request.all.order(created_at: :asc)
+    @requests = Request.where('remaining_balance > ?', 0).order(created_at: :asc)
   end
 
   def new

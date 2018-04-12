@@ -17,7 +17,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require requests
-
+//= require home
 
 document.addEventListener("turbolinks:load", function(){
   $('.selectpicker').selectpicker('render');

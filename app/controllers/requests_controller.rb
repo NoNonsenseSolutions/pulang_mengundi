@@ -1,5 +1,10 @@
 class RequestsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :show
+  skip_before_action :authenticate_user!, only: [:show, :index]
+
+  def index
+    @requests = Request.all.order(created_at: :asc)
+  end
+
   def new
     if current_user.request.present?
       flash[:danger] = 'You can only create one request'
@@ -13,7 +18,7 @@ class RequestsController < ApplicationController
     @request = current_user.build_request(request_params)
     if @request.save
       flash[:success] = 'Request created'
-      redirect_to @request
+      redirect_to [@request, :thank_you_screens]
     else
       flash[:danger] = @request.errors.full_messages.join("; ")
       render :new

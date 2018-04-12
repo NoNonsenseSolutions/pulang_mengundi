@@ -1,0 +1,13 @@
+.login-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+
+  .social-media-icons {
+    img {
+      height: 50px;
+    }
+  }
+}
+

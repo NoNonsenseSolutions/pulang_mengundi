@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   get 'auth/twitter/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
 
-  resources :requests, only: [:new, :create, :edit, :update, :show] do
+  resources :requests, only: [:index, :new, :create, :edit, :update, :show] do
     resources :pledges, only: [:create]
+    resource :thank_you_screens, only: :show
     resource :bank_details, only: :show
   end
 

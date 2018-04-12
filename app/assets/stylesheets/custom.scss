@@ -1,0 +1,14 @@
+.btn-responsive {
+  width: 100%;
+}
+
+
+.vertical-center{
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: center;
+  div {
+    padding-bottom: 25px;
+  }
+}

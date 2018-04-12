@@ -4,6 +4,8 @@ class Request < ApplicationRecord
 
   validates :target_amount, inclusion: {in: 10..5000, message: 'has to be between 10 to 5000'}
 
+  validates :account_number, uniqueness: true
+
 
   TRANSPORT_TYPES = ["FLIGHT", "BUS", "TRAIN"]
 

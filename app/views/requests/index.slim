@@ -1,0 +1,20 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    h2.text-center Voter requests
+    - @requests.each do |request|
+      = link_to request, class: 'no-style' do
+        .request-card
+          .request-card-body
+            = image_tag request.display_pic, class: 'img-responsive'
+            div.ml-3
+              div 
+                big #{request.requester.name}
+              div
+                small.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
+              div
+                small.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}
+            div.date-price-column
+              div.text-right
+                small #{request.created_at.strftime("%d/%m/%Y")}
+              div.text-right
+                big #{number_to_currency request.target_amount, unit: 'RM '}

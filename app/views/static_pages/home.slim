@@ -1,22 +1,27 @@
 .row
-  .col-md-3
-    .panel.panel-default
-      .panel-body.text-center
-        h4 Helping Malaysians Vote
-        - if current_user&.request&.present?
-          = link_to button_tag('Check my request', class: 'btn btn-primary'), current_user.request
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    .switch
+      = link_to "Sponsor Others", "#sponsor-others", class: "switch-items active", data: { toggle: 'tab' }
+      = link_to "Need A Sponsor", "#need-sponsor", class: "switch-items", data: { toggle: 'tab' }
+
+    .tab-content
+      #sponsor-others.tab-pane.active role="tabpanel" 
+
+        h2.mb-5.mt-5.text-center Sponsor A Voter
+        = link_to requests_path do
+          = button_tag class: 'btn btn-primary p-4 btn-responsive  mt-3' do
+            strong VIEW VOTER LIST
+        = link_to '/' do
+          = button_tag class: 'btn btn-primary p-4 btn-responsive  mt-3' do
+            strong MANAGE MY SPONSORSHIPS
+
+      #need-sponsor.tab-pane role="tabpanel" 
+        h2.mb-5.mt-5.text-center Need A Sponsor
+        - if current_user&.request&.present? 
+          = link_to current_user.request do
+            = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+              strong MANAGE MY REQUEST
         - else
-          = link_to button_tag('Request Help', class: 'btn btn-primary'), new_request_path
-  .col-md-9 
-    h3 Subsidy requests
-    - @requests.each do |request|
-      = link_to request, class: 'no-style' do
-        .request-card
-          .request-card-body
-            = image_tag request.display_pic, class: 'img-responsive'
-            div.ml-3
-              small Requested by #{request.requester.name}
-              br
-              span.label.label-warning
-                = request.to_city
-              p.mt-1 = request.description
+          = link_to new_request_path do
+            = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+              strong SUBMIT MY REQUEST

@@ -1,0 +1,33 @@
+@import 'variables';
+.switch {
+  display: flex;
+  font-weight: bold;
+  flex-direction: row;
+  .switch-items {
+    flex-grow: 1;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid $brand-primary;
+    border-right: 0px;
+    color: $brand-primary;
+    text-decoration: none;
+  }
+  .switch-items:hover {
+    background-color: #eee;
+    color: $brand-primary;
+  }
+  .switch-items.active {
+    background-color: $brand-primary;
+    color: white;
+  }
+  .switch-items:first-child {
+    border-top-left-radius: $border-radius-base;
+    border-bottom-left-radius: $border-radius-base;
+  }
+  .switch-items:last-child {
+    border-right: 1px solid $brand-primary;
+    border-top-right-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+  }
+}
+

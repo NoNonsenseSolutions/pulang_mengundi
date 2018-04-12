@@ -1,6 +1,6 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-    h2.text-center Manage my sponsorships
+    h2.text-center Sponsorship History
     - if @pledges.present?
       - @pledges.each do |pledge|
         - presenter = PledgePresenter.new(pledge)

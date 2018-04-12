@@ -35,7 +35,8 @@
           p.font-weight-semibold Requested Amount
           p
             = number_to_currency @request.target_amount, unit: 'RM '
-    
+    hr
+
     section.progress-bars.mt-5
       .statuses
         div
@@ -58,6 +59,9 @@
           span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
         .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%") 
           span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
+
+    hr
+    h4.text-center Pledged amount - #{number_to_currency @pledge.amount, unit: 'RM '}
 
     - if @pledge.waiting_for_transfer?
       .mt-5

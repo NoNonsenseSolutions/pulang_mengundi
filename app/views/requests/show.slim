@@ -13,21 +13,25 @@
     section.social-media-details.mt-5.text-center
       - if @requester.facebook_link
         div
-          span
-            = image_tag 'icon_facebook.svg', style: 'height: 16px'
-            = link_to "#{@requester.name}'s facebook profile", @requester.facebook_link, class: 'ml-3'
+          = link_to @requester.facebook_link, target: '_blank' do
+            div.text-facebook-blue 
+              = image_tag 'icon_facebook.svg', style: 'height: 14px'
+              span.ml-3 #{@requester.name}'s facebook profile
+              = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
       - elsif @requester == current_user
         div
-          = link_to 'Click to verify your facebook account', '/auth/facebook'
+          = link_to 'Connect your facebook account', '/auth/facebook'
 
       - if @requester.twitter_link
         div
-          span
-            = image_tag 'icon_twitter.svg', style: 'height: 16px'
-            = link_to "#{@requester.name}'s twitter profile", @requester.twitter_link, class: 'ml-3'
+          = link_to @requester.twitter_link, target: '_blank' do
+            div.text-facebook-blue 
+              = image_tag 'icon_twitter.svg', style: 'height: 16px'
+              span.ml-3 #{@requester.name}'s twitter profile
+              = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
       - elsif @requester == current_user
         div
-          = link_to 'Click to verify your twitter account.', '/auth/twitter'
+          = link_to 'Connect your twitter account.', '/auth/twitter'
         
     
 
@@ -55,7 +59,7 @@
           span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
 
       .mt-3.text-center
-        = button_tag "Flags/Disputes: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm'
+        = button_tag "Disputes: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm'
 
     section.request-details.mt-5
       p.font-weight-semibold Why I am seeking a sponsor?

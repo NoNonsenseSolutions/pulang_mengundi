@@ -14,6 +14,8 @@ class Request < ApplicationRecord
   validates :target_amount, inclusion: {in: 10..5000, message: 'has to be between 10 to 5000'}
   validates :requester_id, uniqueness: true
 
+  validate :cap_target_amount
+
   def display_pic
     requester.profile_pic
   end
@@ -51,4 +53,11 @@ class Request < ApplicationRecord
     self.remaining_balance = target_amount - pledges.active.sum(:amount)
     save!
   end
+
+  private
+    def cap_target_amount
+      if target_amount > (0.9 * travelling_fees)
+        errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
+      end
+    end
 end

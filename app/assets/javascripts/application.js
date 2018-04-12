@@ -13,11 +13,13 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require countUp
 //= require jquery
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require requests
 //= require home
+
 
 document.addEventListener("turbolinks:load", function(){
   $('.selectpicker').selectpicker('render');

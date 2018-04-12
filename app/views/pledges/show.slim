@@ -36,6 +36,29 @@
           p
             = number_to_currency @request.target_amount, unit: 'RM '
     
+    section.progress-bars.mt-5
+      .statuses
+        div
+          | Received: 
+          br
+          = number_to_currency @request.successful_pledges_amount, unit: 'RM '
+
+        div.ml-3.text-center
+          | Awaiting:
+          br
+          = number_to_currency @request.pending_pledges_amount, unit: 'RM '
+        div.ml-3.text-right
+          | Balance:
+          br
+          = number_to_currency @request.remaining_balance, unit: 'RM '
+
+      / Progress
+      .progress
+        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
+          span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
+        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%") 
+          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
+
     - if @pledge.waiting_for_transfer?
       .mt-5
         = link_to button_tag("I've transferred!", class: 'btn btn-responsive btn-primary'), pledge_donor_status_path(@pledge), method: :patch

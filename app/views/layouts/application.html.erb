@@ -23,13 +23,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to root_path, class: 'navbar-brand' do %>
+          <%= link_to 'https://www.pulangmengundi.com', class: 'navbar-brand' do %>
             <strong>#PULANGMENGUNDI</strong>
           <% end %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="nav-item">
+              <%= link_to 'Carpool', 'https://carpool.pulangmengundi.com', class: 'font-weight-semibold' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Subsidy', root_path, class: 'font-weight-semibold' %>
+            </li>
+          </ul>
 
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">

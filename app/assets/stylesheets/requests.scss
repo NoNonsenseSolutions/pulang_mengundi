@@ -35,11 +35,14 @@
     flex-direction: row;
   }
 
-  .statuses {
-    display: flex;
-    div {
-      flex-grow: 1;
-      flex-basis: 33%;
-    }
+  
+}
+
+
+.statuses {
+  display: flex;
+  div {
+    flex-grow: 1;
+    flex-basis: 33%;
   }
 }

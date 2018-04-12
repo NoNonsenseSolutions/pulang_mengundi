@@ -39,13 +39,13 @@
           = number_to_currency @request.successful_pledges_amount, unit: 'RM '
 
         div.ml-3.text-center
-          | Pending:
+          | Awaiting:
           br
           = number_to_currency @request.pending_pledges_amount, unit: 'RM '
         div.ml-3.text-right
-          | Requested:
+          | Balance:
           br
-          = number_to_currency @request.target_amount, unit: 'RM '
+          = number_to_currency @request.remaining_balance, unit: 'RM '
 
       / Progress
       .progress
@@ -68,7 +68,7 @@
           p
             = @request.transport_type
         .col-xs-7
-          p.font-weight-semibold Transport Company/ Operator
+          p.font-weight-semibold Transport Company
           p
             = @request.travel_company
 

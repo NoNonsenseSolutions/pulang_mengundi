@@ -1,10 +1,10 @@
-$primary-yellow: #F5DB60;
+$primary-orange: #f0ad4e;
 $primary-black: #25252D;
 $primary-green: #2EBE94;
 
 $brand-primary: $primary-black;
 
-$body-bg: $primary-yellow;
+$body-bg: $primary-orange;
 
 
 //== Components
@@ -29,8 +29,8 @@ $font-family-sans-serif: 'Open Sans', sans-serif;
 
 // Basics of a navbar
 $navbar-default-color:             $primary-black;
-$navbar-default-bg:                $primary-yellow;
-$navbar-default-border:            $primary-yellow;
+$navbar-default-bg:                $primary-orange;
+$navbar-default-border:            $primary-orange;
 
 // Navbar links
 $navbar-default-link-color:                $primary-black !default;

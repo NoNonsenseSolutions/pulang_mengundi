@@ -36,14 +36,18 @@
             <% end %>
           </ul>
 
-          <% if user_logged_in? %>
-            <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_logged_in? %>
+              
               <li class="nav-item">
                 <%= link_to 'Log out', sessions_path, method: :delete, class: 'font-weight-semibold' %>
               </li>
-              
-            </ul>
-          <% end %>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Log in', new_sessions_path, class: 'font-weight-semibold' %>
+              </li>
+            <% end %>
+          </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>

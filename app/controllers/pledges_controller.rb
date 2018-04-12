@@ -1,7 +1,7 @@
 class PledgesController < ApplicationController
 
   def index
-    
+    @pledges = policy_scope(Pledge)
   end
 
   def new

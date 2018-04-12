@@ -1,4 +1,18 @@
 class PledgePolicy
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user  = user
+      @scope = scope
+    end
+
+    def resolve
+      scope.where(donor: user)
+    end
+  end
+
+
   attr_reader :user, :pledge
 
   def initialize(user, pledge)

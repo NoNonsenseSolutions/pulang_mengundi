@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   resources :requests, only: [:index, :new, :create, :edit, :update, :show] do
     resources :pledges, only: [:new, :create]
     resource :thank_you_screens, only: :show
-    resource :bank_details, only: :show
   end
 
-  resources :pledges do
+  resources :pledges, only: [:show, :index] do
     resource :donor_status, only: :update, controller: 'pledges/donor_statuses'
     resource :requester_status, only: :update, controller: 'pledges/requester_statuses'
   end

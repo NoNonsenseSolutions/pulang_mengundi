@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
 
   resources :requests, only: [:index, :new, :create, :edit, :update, :show] do
-    resources :pledges, only: [:create]
+    resources :pledges, only: [:new, :create]
     resource :thank_you_screens, only: :show
     resource :bank_details, only: :show
   end
@@ -20,7 +20,5 @@ Rails.application.routes.draw do
   end
 
   resource :sessions, only: [:new, :destroy]
-
-  resource :profile, only: [:show, :edit, :update]
   
 end

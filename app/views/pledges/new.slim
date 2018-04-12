@@ -1,0 +1,10 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    h4 Guideline/Infographic Disclaimer
+
+    div.mt-5
+      = simple_form_for [@request, @pledge] do |f|
+        = f.input :amount, label: 'Amount to pledge', input_html: { min: "10", max: "10000"}
+
+        = f.input :read_terms, label: "I've read and understood the Terms & Conditions. I know that i need to verify the voter myself."
+        = f.submit 'Pledge', class: 'btn btn-primary btn-responsive text-center'

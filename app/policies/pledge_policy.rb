@@ -6,6 +6,18 @@ class PledgePolicy
     @pledge = pledge
   end
 
+  def new?
+    true
+  end
+
+  def create?
+    new?
+  end
+
+  def show?
+    pledge.donor == user
+  end
+
   def donor_status_update?
     pledge.donor == user
   end

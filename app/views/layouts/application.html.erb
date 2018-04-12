@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,9 +35,6 @@
           <% if user_logged_in? %>
             <ul class="nav navbar-nav navbar-right">
               <li class="nav-item">
-                <%= link_to 'Profile', profile_path %>
-              </li>
-              <li class="nav-item">
                 <%= link_to 'Log out', sessions_path, method: :delete %>
               </li>
               
@@ -51,7 +48,7 @@
           <%= value %>
       </div>
     <% end %>
-    <div class="container">
+    <div class="container pb-5">
 
       <%= yield %>
     </div>

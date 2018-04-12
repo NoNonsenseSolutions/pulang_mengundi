@@ -1,7 +1,8 @@
 class Pledge < ApplicationRecord
   belongs_to :donor, class_name: 'User'
   belongs_to :request
-  validates :amount, inclusion: {in: 0..5000, message: 'has to be between 10 to 5000'}
+  validates :amount, presence: true, inclusion: {in: 0..5000, message: 'has to be between 10 to 5000'}
+  validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }
   validate :donor_cannot_be_requester
 
   validate :cannot_pledge_above_remaining_amount, on: :create
@@ -25,7 +26,7 @@ class Pledge < ApplicationRecord
     end
 
     def cannot_pledge_above_remaining_amount
-      if request.remaining_amount < amount
+      if amount && (request.remaining_amount < amount)
         errors.add(:amount, " RM #{amount} exceeds the remaining subsidy requested for. Choose a smaller amount, or wait for some pending pledges to be voided")
       end
     end

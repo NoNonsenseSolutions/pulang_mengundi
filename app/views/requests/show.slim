@@ -1,78 +1,121 @@
 .row
-  .col-md-9
-    .text-center
-      - if policy(@request).edit?
-        p
-          = link_to 'Edit Request', [:edit, @request]
-      = image_tag @request.display_pic
-      h1 = @requester.name
-      h3 Requesting for #{number_to_currency @request.target_amount, unit: 'RM '}
-      
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    - if policy(@request).edit?
+      p
+        = link_to button_tag('Edit Request', class: 'btn btn-primary btn-sm'), [:edit, @request]
+    section.user-details
+      div
+        = image_tag @request.display_pic, class: 'show-profile-pic'
+      div.ml-3
+        h3.m-0.p-0 = @requester.name
+        small SEAT: #{@request.to_city}
+        br
+        small STATE: #{@request.to_state}
+        br
+    
+    section.social-media-details.mt-5.text-center
       - if @requester.facebook_link
-        p
-          = link_to "Facebook Profile", @requester.facebook_link
+        div
+          span
+            = image_tag 'icon_facebook.svg', style: 'height: 16px'
+            = link_to "#{@requester.name}'s facebook profile", @requester.facebook_link, class: 'ml-3'
       - elsif @requester == current_user
-        = link_to 'Link my facebook', '/auth/facebook'
+        div
+          = link_to 'Click to verify your facebook account', '/auth/facebook'
 
       - if @requester.twitter_link
-        p
-          = link_to "Twitter Profile", @requester.twitter_link
+        div
+          span
+            = image_tag 'icon_twitter.svg', style: 'height: 16px'
+            = link_to "#{@requester.name}'s twitter profile", @requester.twitter_link, class: 'ml-3'
       - elsif @requester == current_user
-        = link_to 'Link my twitter', '/auth/twitter'
-      
+        div
+          = link_to 'Click to verify your twitter account.', '/auth/twitter'
+        
+    
+
+    section.progress-bars.mt-5
+      .statuses
+        div
+          | Received: 
+          br
+          = number_to_currency @request.successful_pledges_amount, unit: 'RM '
+
+        div.ml-3.text-center
+          | Pending:
+          br
+          = number_to_currency @request.pending_pledges_percentage, unit: 'RM '
+        div.ml-3.text-right
+          | Requested:
+          br
+          = number_to_currency @request.target_amount, unit: 'RM '
 
       / Progress
       .progress
         .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
           span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
         .progress-bar.progress-bar-warning style=("width: #{@request.pending_pledges_percentage}%") 
-          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)
+          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
 
-      .progress
-        .progress-bar.progress-bar-danger style=("width: #{@request.disputed_pledges_percentage}%") 
-          span.sr-only #{@request.disputed_pledges_percentage}% Disputed (danger)
-        
+      .mt-3.text-center
+        = button_tag "Flags/Disputes: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm'
 
-  .col-md-3
-    .panel.panel-default
-      .panel-body.text-center
-        - if current_user == @requester
-          // Don't show
-        - elsif user_logged_in?
-          h4 I want to pledge RM
-          = simple_form_for [@request, @pledge] do |f|
-            = f.input :amount, label: false, input_html: { min: "10", max: "10000"}
-            = f.submit 'Pledge', class: 'btn btn-primary'
-        - else
-          p Want to help?
-          = link_to 'Sign in', new_sessions_path
-        div.mb-3
-          h5 Remaining subsidy needed
-          p #{number_to_currency @request.remaining_amount, unit: 'RM '}
+    section.request-details.mt-5
+      p.font-weight-semibold Why I am seeking a sponsor?
+      p
+        = simple_format(@request.description)
+
+      .row
+        .col-xs-5
+          p.font-weight-semibold Mode of transport
+          p
+            = @request.transport_type
+        .col-xs-7
+          p.font-weight-semibold Transport Company/ Operator
+          p
+            = @request.travel_company
+
+      p.font-weight-semibold Itinerary / Receipt No.
+      p
+        = simple_format(@request.itinerary)
+
+      .row
+        .col-xs-6
+          p.font-weight-semibold Total Ticket Amount
+          p
+            = number_to_currency @request.travelling_fees, unit: 'RM '
+        .col-xs-6
+          p.font-weight-semibold Requested Amount
+          p
+            = number_to_currency @request.target_amount, unit: 'RM '
+
+    = link_to new_request_pledge_path(@request) do
+      = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+        strong PROCEED
 
 
-hr
+    / hr
 
-div
-  h3 Current Pledges
-  - if @request.pledges.present?
-    .row
-      - @request.pledges.each do |pledge|
-        .col-sm-6.col-md-4.col-lg-3
-          .panel.panel-default
-            .panel-body.text-center
-              h5 = number_to_currency pledge.amount, unit: "RM "
-              span.label.label-warning = pledge.status
-              - if policy(pledge).requester_status_update?
-                - if pledge.pending?
-                  div.mt-3
-                    = link_to button_tag("I've received the subsidy!", class: 'btn btn-sm btn-primary'), pledge_requester_status_path(pledge, requester_status: "requester_received"), method: :patch
-                - if pledge.donor_transferred?
-                  div.mt-3
-                    = link_to button_tag("I did not receive this amount!", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "requester_disputed"), method: :patch
-                - if pledge.pending? && pledge.past_expiry?
-                  div.mt-3
-                    = link_to button_tag("Expire", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "expired"), method: :patch
+    / div
+    /   h3 Current Pledges
+    /   - if @request.pledges.present?
+    /     .row
+    /       - @request.pledges.each do |pledge|
+    /         .col-sm-6.col-md-4.col-lg-3
+    /           .panel.panel-default
+    /             .panel-body.text-center
+    /               h5 = number_to_currency pledge.amount, unit: "RM "
+    /               span.label.label-warning = pledge.status
+    /               - if policy(pledge).requester_status_update?
+    /                 - if pledge.pending?
+    /                   div.mt-3
+    /                     = link_to button_tag("I've received the subsidy!", class: 'btn btn-sm btn-primary'), pledge_requester_status_path(pledge, requester_status: "requester_received"), method: :patch
+    /                 - if pledge.donor_transferred?
+    /                   div.mt-3
+    /                     = link_to button_tag("I did not receive this amount!", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "requester_disputed"), method: :patch
+    /                 - if pledge.pending? && pledge.past_expiry?
+    /                   div.mt-3
+    /                     = link_to button_tag("Expire", class: 'btn btn-sm btn-danger'), pledge_requester_status_path(pledge, requester_status: "expired"), method: :patch
 
-  - else
-    p No pledges yet
+    /   - else
+    /     p No pledges yet

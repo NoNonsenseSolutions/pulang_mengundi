@@ -23,3 +23,23 @@
     justify-content: space-between;
   }
 }
+
+.show-profile-pic {
+  width: 75px;
+}
+
+.requests.show {
+
+  .user-details{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .statuses {
+    display: flex;
+    div {
+      flex-grow: 1;
+      flex-basis: 33%;
+    }
+  }
+}

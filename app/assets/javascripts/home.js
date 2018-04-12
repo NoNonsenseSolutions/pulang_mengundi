@@ -12,6 +12,6 @@ document.addEventListener('turbolinks:load', function(){
 
     var total = parseInt($("#total-amount-pledged").data('total'))
     var numAnim2 = new countUp("total-amount-pledged", 0, total);
-    numAnim.start()
+    numAnim2.start()
   }
 })

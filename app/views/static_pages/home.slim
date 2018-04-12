@@ -1,35 +1,23 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
     .switch
-      = link_to "Sponsor Others", "#sponsor-others", class: "switch-items active", data: { toggle: 'tab' }
-      = link_to "Need A Sponsor", "#need-sponsor", class: "switch-items", data: { toggle: 'tab' }
+      = link_to "Sponsor Others", requests_path, class: "switch-items"
+      = link_to "Need A Sponsor", root_path, class: "switch-items active"
 
-    .tab-content
-      #sponsor-others.tab-pane.active role="tabpanel" 
-
-        h2.mb-5.mt-5.text-center Sponsor A Voter
-        = link_to requests_path do
-          = button_tag class: 'btn btn-primary p-4 btn-responsive  mt-3' do
-            strong VIEW VOTER LIST
-        = link_to pledges_path do
-          = button_tag class: 'btn btn-primary p-4 btn-responsive  mt-3' do
-            strong MANAGE MY SPONSORSHIPS
-
-      #need-sponsor.tab-pane role="tabpanel" 
-        h2.mb-5.mt-5.text-center Need A Sponsor
-        - if current_user
-          - if current_user.request 
-            = link_to request_manage_pledges_path(current_user.request) do
-              = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-                strong MANAGE MY REQUEST
-          - else
-            = link_to new_request_path do
-              = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-                strong SUBMIT MY REQUEST
-        - else
-          = link_to new_request_path do
-            = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-              strong SUBMIT MY REQUEST
-          = link_to new_sessions_path do
-            = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-              strong MANAGE MY REQUEST
+    h2.mb-5.mt-5.text-center Need A Sponsor
+    - if current_user
+      - if current_user.request 
+        = link_to request_manage_pledges_path(current_user.request) do
+          = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+            strong MANAGE MY REQUEST
+      - else
+        = link_to new_request_path do
+          = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+            strong SUBMIT MY REQUEST
+    - else
+      = link_to new_request_path do
+        = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+          strong SUBMIT MY REQUEST
+      = link_to new_sessions_path do
+        = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+          strong MANAGE MY REQUEST

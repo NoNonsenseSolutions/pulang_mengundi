@@ -3,6 +3,8 @@ class Request < ApplicationRecord
   belongs_to :requester, class_name: 'User'
   has_many :pledges, dependent: :destroy
 
+  has_many_attached :supporting_documents
+
   
   validates :bank_name, presence: true, inclusion: { in: Bank::NAMES, message: 'must be in the list of banks' }
   validates :account_number, 

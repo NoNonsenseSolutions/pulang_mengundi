@@ -5,15 +5,15 @@
       = link_to request, class: 'no-style' do
         .request-card
           .request-card-body
-            = image_tag request.display_pic, class: 'img-responsive'
-            div.ml-3
+            .space-out-column
+              = image_tag request.display_pic, class: 'img-responsive'
+            div.space-out-column.ml-3
               div 
                 big #{request.requester.name}
               div
-                small.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
-              div
-                small.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}
-            div.date-price-column
+                div.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
+                div.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}
+            div.space-out-column.ml-3
               div.text-right
                 small #{request.created_at.strftime("%d/%m/%Y")}
               div.text-right

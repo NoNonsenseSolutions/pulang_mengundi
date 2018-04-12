@@ -31,3 +31,7 @@ document.addEventListener("turbolinks:load", function(){
     updateConstituencyList()
   }
 })
+
+$(document).on('change', '#custom-file-input', function(){
+  $('#upload-file-info').html(this.files[0].name)
+})

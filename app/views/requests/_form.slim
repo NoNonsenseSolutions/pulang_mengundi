@@ -28,10 +28,18 @@
       = f.input :account_number
       = f.input :account_name
 
-      = f.file_field :supporting_documents
+
+        
+      label Supporting Documents
+      label.btn.btn-default.btn-responsive for="custom-file-input" 
+        = f.file_field :supporting_documents, id: 'custom-file-input', style: 'display: none', multiple: true
+        | Choose File
+      span#upload-file-info.label.label-info
+
+      
 
 
-      .text-center
+      .text-center.mt-5
         p.text-danger Please make sure all your details, especially bank details are correct, as they cannot be changed once a pledge has been made
         = f.button :submit, class: 'btn btn-primary'
 

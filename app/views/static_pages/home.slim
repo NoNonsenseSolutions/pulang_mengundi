@@ -7,12 +7,12 @@
             span
               | RM 
             span#total-amount-pledged data-total=@total_amount_pledged
-              | 0
+              
           small Total Amount Pledged
         .col-xs-6
           h3.m-0.font-weight-bold#number-voter-request data-total=@total_number_of_requests
           small No. of voter requests
-    .switch
+    .switch.mt-5
       = link_to "Sponsor Others", requests_path, class: "switch-items"
       = link_to "Need A Sponsor", root_path, class: "switch-items active"
 

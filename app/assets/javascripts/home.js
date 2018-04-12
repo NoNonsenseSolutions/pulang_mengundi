@@ -5,13 +5,13 @@ $(document).on('click', '.switch-items', function(){
 })
 
 document.addEventListener('turbolinks:load', function(){
-  if($(".requests.index .static_pages.home").length > 0){
+  if($(".requests.index, .static_pages.home").length > 0){
     var total = parseInt($("#number-voter-request").data('total'))
     var numAnim = new countUp("number-voter-request", 0, total);
     numAnim.start()
 
-    var total = parseInt($("#total-amount-pledgedt").data('total'))
-    var numAnim = new countUp("total-amount-pledgedt", 0, total);
+    var total = parseInt($("#total-amount-pledged").data('total'))
+    var numAnim2 = new countUp("total-amount-pledged", 0, total);
     numAnim.start()
   }
 })

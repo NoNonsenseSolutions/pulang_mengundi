@@ -44,7 +44,7 @@
         div.ml-3.text-center
           | Pending:
           br
-          = number_to_currency @request.pending_pledges_percentage, unit: 'RM '
+          = number_to_currency @request.pending_pledges_amount, unit: 'RM '
         div.ml-3.text-right
           | Requested:
           br

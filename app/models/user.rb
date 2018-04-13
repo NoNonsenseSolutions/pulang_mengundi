@@ -7,6 +7,10 @@ class User < ApplicationRecord
     request && request.pledges.donor_transferred.exists?
   end
 
+  def pending_confirmation_pledge
+    request&.pledges.donor_transferred.first
+  end
+
   def facebook_link
     linked_accounts.find_by(provider: 'facebook')&.link
   end

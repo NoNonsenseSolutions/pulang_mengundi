@@ -37,14 +37,15 @@
       #file-name-box
 
       
+      - if @request.persisted?
 
-      #current-documents.mt-5
-        label Uploaded Documents
-        - @request.supporting_documents.each do |sd|
-          p
-            = link_to sd.filename, rails_blob_path(sd, disposition: "attachment")
-            | |
-            = link_to 'Delete', document_path(sd), method: :delete, data: { confirm: 'Are you sure you want to delete this file?' }
+        #current-documents.mt-5
+          label Uploaded Documents
+          - @request.supporting_documents.each do |sd|
+            p
+              = link_to sd.filename, rails_blob_path(sd, disposition: "attachment")
+              | |
+              = link_to 'Delete', document_path(sd), method: :delete, data: { confirm: 'Are you sure you want to delete this file?' }
 
 
 

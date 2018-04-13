@@ -19,6 +19,8 @@ class Request < ApplicationRecord
 
   after_create :update_remaining_balance!
 
+  scope :without_disabled, -> { where(disabled_at: nil) }
+
   def disputes
     Dispute.where(pledge_id: self.pledges.pluck(:id))
   end 
@@ -59,6 +61,20 @@ class Request < ApplicationRecord
   def update_remaining_balance!
     self.remaining_balance = target_amount - pledges.active.sum(:amount)
     save!
+  end
+
+  def disable!
+    self.disabled_at = Time.zone.now
+    save
+  end
+
+  def enable!
+    self.disabled_at = nil
+    save
+  end
+
+  def disabled?
+    !self.disabled_at.nil?
   end
 
   private

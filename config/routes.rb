@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :pledges, only: [:new, :create]
     resource :thank_you_screens, only: :show
     resources :manage_pledges, only: [:index]
+    resource :enables, only: :create, controller: 'requests/enables'
+    resource :disables, only: :create, controller: 'requests/disables'
   end
 
   resources :pledges, only: [:show, :index] do

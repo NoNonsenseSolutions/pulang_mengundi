@@ -52,7 +52,6 @@ class LinkedAccount < ApplicationRecord
     end
 
     def self.facebook_details(auth)
-      byebug
       {
         link: auth.dig('extra', 'raw_info', 'link'),
         profile_pic: auth.dig('info', 'image'),

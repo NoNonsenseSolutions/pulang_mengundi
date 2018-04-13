@@ -1,7 +1,7 @@
 class Requests::DisablesController < ApplicationController
   def create
     @request = Request.find(params[:request_id])
-    
+    authorize(@request, :destroy?)
     if @request.disabled?
       flash[:danger] = "Request already disabled"
     else

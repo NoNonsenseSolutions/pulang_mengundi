@@ -3,7 +3,7 @@ class Pledges::UploadReceiptsController < ApplicationController
     @pledge = Pledge.find(params[:pledge_id])
     @pledge.receipt.attach(receipt_params[:receipt])
     flash[:success] = 'Attached'
-    redirect_back(fallback_location: @pledge)
+    redirect_to for_pledging_thank_you_screens_path
   end
 
   private

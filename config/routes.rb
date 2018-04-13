@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   resources :manage_pledges, only: :show
 
   resources :documents, only: [:destroy]
+
+  resources :thank_you_screens do
+    collection do
+      get :for_pledging
+    end
+  end
   
 end
   

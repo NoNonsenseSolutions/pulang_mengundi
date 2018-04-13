@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :reports, foreign_key: :reported_id, class_name: 'Report'
 
   def has_actionable_pledge?
-    request.pledges.donor_transferred.exists?
+    request && request.pledges.donor_transferred.exists?
   end
 
   def facebook_link

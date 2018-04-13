@@ -11,58 +11,33 @@
       p.font-weight-semibold Account Number
       p
         = @request.account_number
-
-      .row
-        .col-xs-5
-          p.font-weight-semibold Mode of transport
-          p
-            = @request.transport_type
-        .col-xs-7
-          p.font-weight-semibold Transport Company/ Operator
-          p
-            = @request.travel_company
-
-      p.font-weight-semibold Itinerary / Receipt No.
-      p
-        = simple_format(@request.itinerary)
-
-      .row
-        .col-xs-6
-          p.font-weight-semibold Total Ticket Amount
-          p
-            = number_to_currency @request.travelling_fees, unit: 'RM '
-        .col-xs-6
-          p.font-weight-semibold Requested Amount
-          p
-            = number_to_currency @request.target_amount, unit: 'RM '
+    
     hr
 
-    section.progress-bars.mt-5
-      .statuses
-        div
-          | Received: 
-          br
-          = number_to_currency @request.successful_pledges_amount, unit: 'RM '
+    h4.mt-3.text-center Pledged amount 
+    h3.mt-3.text-center #{number_to_currency @pledge.amount, unit: 'RM '}
 
-        div.ml-3.text-center
-          | Awaiting:
-          br
-          = number_to_currency @request.pending_pledges_amount, unit: 'RM '
-        div.ml-3.text-right
-          | Balance:
-          br
-          = number_to_currency @request.remaining_balance, unit: 'RM '
-
-      / Progress
-      .progress
-        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
-          span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
-        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%") 
-          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
-
-    hr
-    h4.text-center Pledged amount - #{number_to_currency @pledge.amount, unit: 'RM '}
+    p
+      big STEP 1 
+      text Manually perform a Online Transfer to Voter/Recipient with your preferred bank
+    p 
+      big STEP 2 
+      text Download screenshot and upload it here
 
     - if @pledge.waiting_for_transfer?
       .mt-5
-        = link_to button_tag("I've transferred!", class: 'btn btn-responsive btn-primary'), pledge_donor_status_path(@pledge), method: :patch
+        - if @pledge.receipt.attached?
+          h4.font-weight-semibold Receipt
+          p
+            = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "attachment")
+
+        = simple_form_for @pledge, url: pledge_upload_receipts_path(@pledge), method: :post do |f|
+          label Upload Receipt
+          label.btn.btn-default.btn-responsive for="custom-file-input"
+            = f.file_field :receipt, id: 'custom-file-input', style: 'display: none'
+            | Choose File
+          #file-name-box
+          
+          .mt-3.text-center
+            = f.submit 'Upload', class: 'btn btn-primary'
+

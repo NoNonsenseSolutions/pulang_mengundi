@@ -7,12 +7,30 @@ class PledgePresenter
     @pledge = pledge
   end
 
-  def humanize_status
+  def humanize_status_for_donor
+    text = case pledge.status
+    when "waiting_for_transfer"
+      "Pending your transfer"
+    when "donor_transferred"
+      "Pending voter confirmation"
+    when "requester_received"
+      "Completed"
+    when "requester_disputed"
+      "Disputed"
+    when "expired"
+      "Expired"
+    else
+      raise InvalidStatusError, pledge.status
+    end
+    text.upcase
+  end
+
+  def humanize_status_for_requester
     text = case pledge.status
     when "waiting_for_transfer"
       "Pending donor transfer"
     when "donor_transferred"
-      "Pending voter confirmation"
+      "Pending your confirmation"
     when "requester_received"
       "Completed"
     when "requester_disputed"

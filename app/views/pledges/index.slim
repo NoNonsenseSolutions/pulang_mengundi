@@ -20,7 +20,7 @@
                   big #{number_to_currency presenter.request_target_amount, unit: 'RM '}
           div
             small.font-weight-semibold class="#{presenter.status_klass}"
-              = presenter.humanize_status
+              = presenter.humanize_status_for_donor
     - else
       h4.text-center No pledges yet!
       = link_to requests_path do

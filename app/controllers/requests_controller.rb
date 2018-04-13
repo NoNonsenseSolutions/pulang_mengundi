@@ -1,6 +1,4 @@
 class RequestsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :index]
-
   def index
     @requests = Request.where('remaining_balance > ?', 0).order(created_at: :asc)
     @total_number_of_requests = Request.count
@@ -28,7 +26,6 @@ class RequestsController < ApplicationController
   end
 
   def show
-    store_location
     @request = Request.find(params[:id])
     @requester = @request.requester
     @pledge = Pledge.new

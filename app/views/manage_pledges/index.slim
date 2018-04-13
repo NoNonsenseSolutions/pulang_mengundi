@@ -19,7 +19,7 @@
                     big #{number_to_currency presenter.amount, unit: 'RM '}
             div
               small.font-weight-semibold class="#{presenter.status_klass}"
-                = presenter.humanize_status
+                = presenter.humanize_status_for_requester
     - else
       h4.text-center No pledges yet!
 

@@ -37,5 +37,9 @@ document.addEventListener("turbolinks:load", function(){
 })
 
 $(document).on('change', '#custom-file-input', function(){
-  $('#upload-file-info').html(this.files[0].name)
+  $('#file-name-box').empty()
+  $.each(this.files, function(i, val){
+    var label = $("<span>", {"class": "label label-info"}).text(val.name)
+    $("#file-name-box").append(label)
+  })
 })

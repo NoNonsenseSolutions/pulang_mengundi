@@ -14,8 +14,8 @@
           h3.m-0.font-weight-bold#number-voter-request data-total=@total_number_of_requests
           small No. of voter requests
     .switch.mt-5
-      = link_to "Sponsor Others", requests_path, class: "switch-items active"
-      = link_to "Need A Sponsor", root_path, class: "switch-items"
+      = link_to "Sponsor Others", root_path, class: "switch-items active"
+      = link_to "Need A Sponsor", home_path, class: "switch-items"
     h3.text-center Voter requests
     - @requests.each do |request|
       = link_to request, class: 'no-style' do

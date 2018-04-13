@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
-  root "static_pages#home"
+  root "requests#index"
 
+  get 'sponsor_someone', to: "static_pages#home", as: :home
   get 'contact', to: "static_pages#contact", as: :contact
   get 'faq', to: "static_pages#faq", as: :faq
 
@@ -20,9 +21,13 @@ Rails.application.routes.draw do
   resources :pledges, only: [:show, :index] do
     resource :donor_status, only: :update, controller: 'pledges/donor_statuses'
     resource :requester_status, only: :update, controller: 'pledges/requester_statuses'
+    resource :upload_receipts, only: :create, controller: 'pledges/upload_receipts'
   end
 
   resource :sessions, only: [:new, :destroy]
   resources :manage_pledges, only: :show
+
+  resources :documents, only: [:destroy]
   
 end
+  

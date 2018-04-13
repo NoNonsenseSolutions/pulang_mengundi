@@ -22,6 +22,12 @@
     flex-direction: column;
     justify-content: space-between;
   }
+  .space-out-column:first-child {
+    flex-grow: 0;
+  }
+  .space-out-column:last-child {
+    flex-grow: 0;
+  }
 }
 
 .show-profile-pic {

@@ -16,6 +16,8 @@ class Request < ApplicationRecord
 
   validate :cap_target_amount
 
+  after_create :update_remaining_balance!
+
   def display_pic
     requester.profile_pic
   end

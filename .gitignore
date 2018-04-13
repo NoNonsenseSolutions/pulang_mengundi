@@ -33,3 +33,5 @@
 /config/application.yml
 /localhost.crt
 /localhost.key
+
+dump.rdb

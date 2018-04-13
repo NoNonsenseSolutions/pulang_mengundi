@@ -48,7 +48,6 @@ class RequestsController < ApplicationController
       redirect_to [@request, :thank_you_screens]
     else
       flash[:danger] = @request.errors.full_messages.join("; ")
-      @request.supporting_documents.map(&:purge)
       render :new
     end
   end

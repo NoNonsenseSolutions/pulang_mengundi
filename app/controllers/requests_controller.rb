@@ -1,22 +1,26 @@
 class RequestsController < ApplicationController
   def index
     @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0)
-    if params.dig(:search, :state_seat).present?
-      if ElectoralDistrict::STATES.include?(params[:search][:state_seat])
-        @requests = @requests.where(to_state: params[:search][:state_seat])
+
+    @search_state_seat = params.dig(:search, :state_seat)
+    if @search_state_seat.present?
+      if ElectoralDistrict::STATES.include?(@search_state_seat)
+        @requests = @requests.where(to_state: @search_state_seat)
       else
-        @requests = @requests.where(to_city: params[:search][:state_seat])
+        @requests = @requests.where(to_city: @search_state_seat)
       end
     end
 
-    if params.dig(:search, :bank_name).present?
-      @requests = @requests.where(bank_name: params[:search][:bank_name])
+    @bank_name = params.dig(:search, :bank_name)
+    if @bank_name.present?
+      @requests = @requests.where(bank_name: @bank_name)
     end
 
-    if params.dig(:search, :order).present?
-      if params[:search][:bank_name] == 'Highest Balance'
+    @search_order = params.dig(:search, :order)
+    if @search_order.present?
+      if @search_order == 'Highest Balance'
         @requests = @requests.order(remaining_balance: :desc)
-      elsif params[:search][:bank_name] == 'Lowest Balance'
+      elsif @search_order == 'Lowest Balance'
         @requests = @requests.order(remaining_balance: :asc)
       else
         @requests = @requests.order("RANDOM()")

@@ -62,11 +62,11 @@
                   option 
                 optgroup label="State"
                   = ElectoralDistrict::STATES.each do |state|
-                    option selected=(state==params[:search][:state_seat]) 
+                    option selected=(state==@search_state_seat) 
                       = state
                 optgroup label="Seat"
                   = ElectoralDistrict.constituencies.each do |constituency|
-                    option selected=(constituency==params[:search][:state_seat]) 
+                    option selected=(constituency==@search_state_seat) 
                       = constituency
               // Bank
               select.mt-3.selectpicker.form-control data-live-search="true" title="Filter by bank" name="search[bank_name]"
@@ -74,15 +74,15 @@
                   option 
                 optgroup label="State"
                   = Bank::NAMES.each do |bank_name|
-                    option selected=(bank_name==params[:search][:bank_name]) 
+                    option selected=(bank_name==@bank_name) 
                       = bank_name
               // Bank
               select.mt-3.selectpicker.form-control data-live-search="true" title="Order" name="search[order]"
-                option selected=('Random'==params[:search][:order]) 
+                option selected=('Random'==@search_order) 
                   | Random
-                option selected=('Highest Balance'==params[:search][:order]) 
+                option selected=('Highest Balance'==@search_order) 
                   | Highest Balance
-                option selected=('Lowest Balance'==params[:search][:order]) 
+                option selected=('Lowest Balance'==@search_order) 
                   | Lowest Balance
 
               button.mt-3.btn.btn-primary 

@@ -13,6 +13,7 @@ class Request < ApplicationRecord
   validates :transport_type, inclusion: {in: TRANSPORT_TYPES}
   validates :target_amount, inclusion: {in: 10..5000, message: 'has to be between 10 to 5000'}
   validates :requester_id, uniqueness: true
+  validates :travelling_fees, presence: true, numericality: {greater_than_or_equal_to: 0}
 
   validate :cap_target_amount
 
@@ -62,7 +63,7 @@ class Request < ApplicationRecord
 
   private
     def cap_target_amount
-      if target_amount > (0.9 * travelling_fees)
+      if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
         errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
       end
     end

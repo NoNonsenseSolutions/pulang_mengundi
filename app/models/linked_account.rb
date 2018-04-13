@@ -11,6 +11,7 @@ class LinkedAccount < ApplicationRecord
 
     linked_account.link = auth_info[:link] unless linked_account.link
     linked_account.profile_pic = auth_info[:profile_pic] unless linked_account.profile_pic
+    linked_account.email = auth_info[:email]
 
     if linked_account.user
       # if there's already a user to this account(previously persisted)
@@ -51,10 +52,12 @@ class LinkedAccount < ApplicationRecord
     end
 
     def self.facebook_details(auth)
+      byebug
       {
         link: auth.dig('extra', 'raw_info', 'link'),
         profile_pic: auth.dig('info', 'image'),
-        name: auth.dig('extra', 'raw_info', 'name')
+        name: auth.dig('extra', 'raw_info', 'name'),
+        email: auth.dig('info', 'email')
       }
     end
 
@@ -62,7 +65,8 @@ class LinkedAccount < ApplicationRecord
       {
         link: auth.dig('info', 'urls', 'Twitter'),
         profile_pic: auth.dig('info', 'image'),
-        name: auth.dig('info', 'name')
+        name: auth.dig('info', 'name'),
+        email: auth.dig('info', 'email')
       }
     end
 end

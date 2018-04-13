@@ -15,7 +15,10 @@
       p
         = @presenter.humanize_status_for_requester
 
-
+      - if @pledge.receipt.attached?
+        p.font-weight-bold Receipt
+        p
+          = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "attachment")
 
     div
       - if policy(@pledge).requester_status_update?

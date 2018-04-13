@@ -86,6 +86,10 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <% if current_user&.has_actionable_pledge? %>
+      <div class="alert">
+      </div>
+    <% end %>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"> 
           <%= value %>

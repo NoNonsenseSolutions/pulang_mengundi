@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   end
 
   resources :pledges, only: [:show, :index] do
-    resource :donor_status, only: :update, controller: 'pledges/donor_statuses'
     resource :requester_status, only: :update, controller: 'pledges/requester_statuses'
     resource :upload_receipts, only: :create, controller: 'pledges/upload_receipts'
+    resource :disputes, only: :create, controller: 'pledges/disputes'
   end
 
   resource :sessions, only: [:new, :destroy]

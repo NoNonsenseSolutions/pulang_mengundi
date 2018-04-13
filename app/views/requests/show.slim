@@ -59,7 +59,7 @@
           span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
 
       .mt-3.text-center
-        = button_tag "Disputes: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm'
+        = button_tag "Disputes: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#disputes-modal"}
 
     section.request-details.mt-5
       p.font-weight-semibold Why I am seeking a sponsor?
@@ -126,3 +126,18 @@
           = f.submit 'Report', class: 'btn btn-danger'
 
 
+.modal.fade#disputes-modal role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        | Disputes
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body        
+        - @disputes.each do |dispute|
+          .panel.panel-success
+            .panel-body
+              = dispute.comment
+              span.pull-right
+                small
+                  = dispute.updated_at.strftime("%d %b %y")

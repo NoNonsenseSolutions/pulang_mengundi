@@ -18,12 +18,16 @@ class Request < ApplicationRecord
 
   after_create :update_remaining_balance!
 
+  def disputes
+    Dispute.where(pledge_id: self.pledges.pluck(:id))
+  end 
+
   def display_pic
     requester.profile_pic
   end
 
   def disputed_pledges_count
-    pledges.select { |p| p.requester_disputed? }.length
+    disputes.length
   end
 
 

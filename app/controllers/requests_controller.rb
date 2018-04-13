@@ -28,6 +28,8 @@ class RequestsController < ApplicationController
   def show
     @request = Request.find(params[:id])
     @requester = @request.requester
+
+    @disputes = Dispute.where(pledge_id: @request.pledges.pluck(:id),)
     @pledge = Pledge.new
   end
 

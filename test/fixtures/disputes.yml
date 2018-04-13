@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comment: MyString
+  pledge: one
+  status: 1
+
+two:
+  comment: MyString
+  pledge: two
+  status: 1

@@ -4,6 +4,8 @@ class Pledge < ApplicationRecord
 
   has_one_attached :receipt
 
+  has_many :disputes
+
   after_save :update_request_balance
 
   validates :amount, presence: true, inclusion: {in: 0..5000, message: 'has to be between 10 to 5000'}

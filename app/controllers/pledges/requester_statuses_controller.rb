@@ -3,10 +3,8 @@ class Pledges::RequesterStatusesController < ApplicationController
   def update
     @pledge = Pledge.find(params[:pledge_id])
     authorize @pledge, :requester_status_update?
-
-    if params[:requester_status] == "requester_disputed"
-      @pledge.requester_disputed!
-    elsif params[:requester_status] == "requester_received"
+    
+    if params[:requester_status] == "requester_received"
       @pledge.requester_received!
     elsif params[:requester_status] == "expired"
       @pledge.expired!

@@ -5,7 +5,9 @@ class Pledges::UploadReceiptsController < ApplicationController
 
     @pledge.receipt.attach(receipt_params[:receipt])
     @pledge.donor_transferred!
-    
+    @pledge.confirmed_at = Time.zone.now
+    @pledge.save
+
     flash[:success] = 'Thank you!'
     redirect_to for_pledging_thank_you_screens_path
   end

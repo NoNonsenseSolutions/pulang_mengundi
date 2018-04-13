@@ -1,0 +1,35 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+
+    div#app-stat-counter.bg-black.text-primary-orange
+      .row.text-center.p-5
+        .col-xs-6
+          h3.m-0.font-weight-bold
+            span
+              | RM 
+            span#total-amount-pledged data-total=@total_amount_pledged
+              | 0
+          small Total Amount Pledged
+        .col-xs-6
+          h3.m-0.font-weight-bold#number-voter-request data-total=@total_number_of_requests
+          small No. of sponsorships that are complete
+    .mt-5
+      - @requests.each do |request|
+        = link_to request, class: 'no-style' do
+          .request-card
+            .request-card-body
+              .space-out-column
+                = image_tag request.display_pic, class: 'img-responsive'
+              div.space-out-column.ml-3
+                div 
+                  big #{request.requester.name}
+                div
+                  div.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
+                  div.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}
+              div.space-out-column.ml-3
+                div.text-right
+                  small #{request.created_at.strftime("%d/%m/%Y")}
+                div.text-right
+                  small #{request.successful_pledges_percentage}% funded
+                  br
+                  p.font-weight-bold.m-0 #{number_to_currency request.remaining_balance, unit: 'RM '}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_13_080817) do
+ActiveRecord::Schema.define(version: 2018_04_13_090913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2018_04_13_080817) do
     t.string "travel_company"
     t.decimal "remaining_balance", precision: 8
     t.datetime "disabled_at"
+    t.decimal "total_received", precision: 8, scale: 3, default: "0.0"
     t.index ["disabled_at"], name: "index_requests_on_disabled_at"
     t.index ["requester_id"], name: "index_requests_on_requester_id"
   end

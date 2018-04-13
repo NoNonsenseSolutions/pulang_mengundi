@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     resource :disputes, only: :create, controller: 'pledges/disputes'
   end
 
+  resources :completed_requests, only: [:index]
+
   resource :sessions, only: [:new, :destroy]
   resources :manage_pledges, only: :show
 

@@ -63,6 +63,11 @@ class Request < ApplicationRecord
     save!
   end
 
+  def update_total_received!
+    self.total_received = pledges.requester_received.sum(:amount)
+    save!
+  end
+
   def disable!
     self.disabled_at = Time.zone.now
     save

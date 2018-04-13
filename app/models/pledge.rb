@@ -7,6 +7,7 @@ class Pledge < ApplicationRecord
   has_many :disputes, dependent: :destroy
 
   after_save :update_request_balance
+  after_save :update_request_total_received
 
   validates :amount, presence: true, inclusion: {in: 0..5000, message: 'has to be between 10 to 5000'}
   validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }
@@ -39,5 +40,9 @@ class Pledge < ApplicationRecord
 
     def update_request_balance
       request.update_remaining_balance!
+    end
+
+    def update_request_total_received
+      request.update_total_received!
     end
 end

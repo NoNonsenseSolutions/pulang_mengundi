@@ -61,5 +61,25 @@
       = simple_form_for [@request, @pledge] do |f|
         = f.input :amount, label: 'Amount to pledge (RM)', input_html: { min: "10", max: "10000"}
 
-        = f.input :read_terms, label: "I've read and understood the Terms & Conditions. I know that i need to verify the voter myself."
+        small 
+          | IMPORTANT NOTE: 
+          br
+          | This is a manual platform. 
+          br
+          | We do not connect our pledge system to a financial payment system. Please login to your online banking platform separately to facilitate bank transfer. 
+          br
+          | To prevent fraud, we strongly encourage that you match bank recipient name and Facebook/Twitter profile name along with information provided by the Voter to validate that the Voter.
+
+        label.mt-3
+          | I've read and understood the 
+          = link_to "Terms & Conditions. ", "https://www.iubenda.com/privacy-policy/46243103/legal", target: '_blank'
+          | I know that i need to verify the voter myself.
+        = f.input :read_terms
         = f.submit 'Pledge', class: 'btn btn-primary btn-responsive text-center'
+
+
+
+
+
+
+

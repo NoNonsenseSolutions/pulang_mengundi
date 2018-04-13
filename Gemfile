@@ -47,7 +47,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'countupjs-rails'
 
-
+gem 'newrelic_rpm'
 
 gem "aws-sdk-s3", require: false
 

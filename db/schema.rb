@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_12_151309) do
+ActiveRecord::Schema.define(version: 2018_04_13_021949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(version: 2018_04_12_151309) do
     t.boolean "read_terms", default: false
     t.index ["donor_id"], name: "index_pledges_on_donor_id"
     t.index ["request_id"], name: "index_pledges_on_request_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.bigint "reporter_id"
+    t.bigint "reported_id"
+    t.text "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reported_id"], name: "index_reports_on_reported_id"
+    t.index ["reporter_id", "reported_id"], name: "index_reports_on_reporter_id_and_reported_id", unique: true
+    t.index ["reporter_id"], name: "index_reports_on_reporter_id"
   end
 
   create_table "requests", force: :cascade do |t|

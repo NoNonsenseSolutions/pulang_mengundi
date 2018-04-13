@@ -102,4 +102,27 @@
       = link_to new_request_pledge_path(@request) do
         = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
           strong PROCEED
+    
+
+    section.report-user
+      .mt-5.text-center
+        - if current_user.reported?(@requester)
+          = button_tag "Reported (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
+        - else
+          = button_tag "Report User (#{@requester.reports.count})", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#report-modal"}
+
+
+
+.modal.fade#report-modal role="dialog" tabindex="-1" 
+  .modal-dialog.modal-sm role="document" 
+    .modal-content
+      .modal-header
+        | Report User
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body        
+        = simple_form_for [@requester, Report.new] do |f|
+          = f.input :reason, input_html: {required: true, class: 'border-black'}
+          = f.submit 'Report', class: 'btn btn-danger'
+
 

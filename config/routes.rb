@@ -35,5 +35,8 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :users, only: [] do
+    resources :reports, only: [:create]
+  end
 end
   

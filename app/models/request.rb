@@ -17,7 +17,7 @@ class Request < ApplicationRecord
 
   validate :cap_target_amount
 
-  after_create :update_remaining_balance!
+  before_save :update_remaining_balance!
 
   scope :without_disabled, -> { where(disabled_at: nil) }
 
@@ -60,7 +60,6 @@ class Request < ApplicationRecord
 
   def update_remaining_balance!
     self.remaining_balance = target_amount - pledges.active.sum(:amount)
-    save!
   end
 
   def update_total_received!

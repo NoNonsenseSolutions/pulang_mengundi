@@ -40,6 +40,7 @@ class Pledge < ApplicationRecord
 
     def update_request_balance
       request.update_remaining_balance!
+      request.save
     end
 
     def update_request_total_received

@@ -1,4 +1,5 @@
 class ManagePledgesController < ApplicationController
+
   def index
     @request = Request.find(params[:request_id])
     authorize @request, :manage?

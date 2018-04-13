@@ -13,6 +13,7 @@ class PledgesController < ApplicationController
   def create
     @request = Request.find(params[:request_id])
     @pledge = @request.pledges.new(pledge_params.merge(donor: current_user))
+    authorize @pledge
     if @pledge.save
       flash[:success] = 'Pledged'
       redirect_to @pledge

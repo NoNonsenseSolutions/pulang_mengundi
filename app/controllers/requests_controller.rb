@@ -1,35 +1,34 @@
 class RequestsController < ApplicationController
   def index
-    @requests = Request.where('remaining_balance > ?', 0).order(created_at: :asc)
+    @requests = policy_scope(Request).where('remaining_balance > ?', 0).order(created_at: :asc)
     @total_number_of_requests = Request.count
     @total_amount_pledged = Pledge.requester_received.sum(:amount)
   end
 
   def new
-    if current_user.request.present?
-      flash[:danger] = 'You can only create one request'
-      redirect_to current_user.request
-    else
-      @request = Request.new
-    end
+    @request = Request.new
+    authorize @request
   end
 
   def create
     @request = current_user.build_request(request_params)
+    authorize @request
     if @request.save
       flash[:success] = 'Request created'
       redirect_to [@request, :thank_you_screens]
     else
       flash[:danger] = @request.errors.full_messages.join("; ")
+      @request.supporting_documents.map(&:purge)
       render :new
     end
   end
 
   def show
     @request = Request.find(params[:id])
+    authorize(@request)
     @requester = @request.requester
 
-    @disputes = Dispute.where(pledge_id: @request.pledges.pluck(:id),)
+    @disputes = Dispute.where(pledge_id: @request.pledges.pluck(:id))
     @pledge = Pledge.new
   end
 

@@ -4,7 +4,7 @@ class Pledge < ApplicationRecord
 
   has_one_attached :receipt
 
-  has_many :disputes
+  has_many :disputes, dependent: :destroy
 
   after_save :update_request_balance
 

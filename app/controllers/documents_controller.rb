@@ -1,8 +1,11 @@
 class DocumentsController < ApplicationController
   def destroy
+
     document = ActiveStorage::Attachment.find_by(id: params[:id])
     if document
-      document.purge
+      authorize document
+
+      document.purge_later
       flash[:success] = 'Removed'
     else
       flash[:success] = 'File not found'

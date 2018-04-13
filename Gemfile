@@ -49,6 +49,8 @@ gem 'countupjs-rails'
 
 gem 'newrelic_rpm'
 
+gem 'sidekiq'
+
 gem "aws-sdk-s3", require: false
 
 group :development, :test do

@@ -49,6 +49,8 @@ gem 'countupjs-rails'
 
 gem 'newrelic_rpm'
 
+gem 'will_paginate'
+
 
 gem 'sidekiq'
 

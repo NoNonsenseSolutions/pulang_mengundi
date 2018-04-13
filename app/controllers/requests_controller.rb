@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   def index
-    @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0).order(created_at: :asc)
+    @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0).order(created_at: :asc).paginate(:page => params[:page], :per_page => 50)
     @total_number_of_requests = Request.count
     @total_amount_pledged = Pledge.requester_received.sum(:amount)
   end

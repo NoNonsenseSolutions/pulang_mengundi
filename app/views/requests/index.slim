@@ -36,3 +36,5 @@
                 small #{request.successful_pledges_percentage}% funded
                 br
                 p.font-weight-bold.m-0 #{number_to_currency request.remaining_balance, unit: 'RM '}
+
+    = will_paginate @requests

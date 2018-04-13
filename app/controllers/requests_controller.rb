@@ -1,6 +1,32 @@
 class RequestsController < ApplicationController
   def index
-    @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0).order(created_at: :asc).paginate(:page => params[:page], :per_page => 50)
+    @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0)
+    if params.dig(:search, :state_seat).present?
+      if ElectoralDistrict::STATES.include?(params[:search][:state_seat])
+        @requests = @requests.where(to_state: params[:search][:state_seat])
+      else
+        @requests = @requests.where(to_city: params[:search][:state_seat])
+      end
+    end
+
+    if params.dig(:search, :bank_name).present?
+      @requests = @requests.where(bank_name: params[:search][:bank_name])
+    end
+
+    if params.dig(:search, :order).present?
+      if params[:search][:bank_name] == 'Highest Balance'
+        @requests = @requests.order(remaining_balance: :desc)
+      elsif params[:search][:bank_name] == 'Lowest Balance'
+        @requests = @requests.order(remaining_balance: :asc)
+      else
+        @requests = @requests.order("RANDOM()")
+      end
+    else
+      @requests = @requests.order("RANDOM()")
+    end
+
+    @requests = @requests.paginate(:page => params[:page], :per_page => 50)
+
     @total_number_of_requests = Request.count
     @total_amount_pledged = Pledge.requester_received.sum(:amount)
   end

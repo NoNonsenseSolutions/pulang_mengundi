@@ -133,7 +133,7 @@
 
         
         .col-xs-4.pull-right
-          - if curerent_user
+          - if current_user
             - if current_user.reported?(@requester)
               = button_tag "Reported (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
             - else

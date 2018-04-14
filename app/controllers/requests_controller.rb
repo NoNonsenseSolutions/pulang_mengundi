@@ -18,7 +18,9 @@ class RequestsController < ApplicationController
     end
 
     @search_order = params.dig(:search, :order)
+    Request.connection.execute("SELECT setseed(#{ Time.zone.now.hour / 24.0})")
     if @search_order.present?
+
       if @search_order == 'Highest Balance'
         @requests = @requests.order(remaining_balance: :desc)
       elsif @search_order == 'Lowest Balance'

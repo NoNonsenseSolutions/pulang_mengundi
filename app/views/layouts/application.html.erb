@@ -21,9 +21,12 @@
         ga("create", "UA-117450354-2", "auto");
       </script>
     <% end %>
+
+    <% yield :custom_meta %>
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
+    <div id="fb-root"></div>
     <div class="bg-black text-center" style="height: 20px;">
       <%= link_to "Back to #pulangmengundi main site", 'https://www.pulangmengundi.com', class: 'text-primary-orange' %>
     </div>

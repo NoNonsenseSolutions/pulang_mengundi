@@ -1,3 +1,20 @@
+= content_for :custom_meta do
+  
+  meta name="description" content="Help #{@request.requester.name} vote!"
+
+  meta name="twitter:card" content="summary"
+  meta name="twitter:site" content="@PulangMengundi"
+  meta name="twitter:title" content="Help #{@request.requester.name} #pulangmengundi!"
+  meta name="twitter:description" content="#{@request.description}"
+  meta name="twitter:image:src" content="#{request_url @request}"
+
+  meta property="og:title" content="Help #{@request.requester.name} #pulangmengundi!"
+  meta property="og:image" content="#{image_url 'pulang-logo.png'}"
+  meta property="og:url" content="#{request_url @request}"
+  meta property="og:description" content="#{@request.description}"
+  meta property="og:site_name" content="PulangMengundi"
+
+
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
     section.user-details
@@ -104,13 +121,26 @@
           strong PROCEED
     
 
-    section.report-user
-      .mt-5.text-center
-        - if current_user.reported?(@requester)
-          = button_tag "Reported (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
-        - else
-          = button_tag "Report User (#{@requester.reports.count})", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#report-modal"}
+    section.report-user.mt-5
+      .row
+        .col-xs-6
+          div
+            .fb-share-button data-href="#{request_url @request}" data-layout="button" data-mobile-iframe="true" data-size="small" 
+              a.fb-xfbml-parse-ignore href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" target="_blank"  Share
+          div.mt-2
+            a.twitter-share-button data-size="small" href="https://twitter.com/intent/tweet?text=Help #{@request.requester.name} #pulangmengundi!"
+              | Tweet
 
+        
+        .col-xs-4.pull-right
+          - if current_user.reported?(@requester)
+            = button_tag "Reported (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
+          - else
+            = button_tag "Report User (#{@requester.reports.count})", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#report-modal"}
+
+    
+    section.share
+      
 
 
 .modal.fade#report-modal role="dialog" tabindex="-1" 

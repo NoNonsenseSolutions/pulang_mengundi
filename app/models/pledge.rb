@@ -14,6 +14,8 @@ class Pledge < ApplicationRecord
   validate :donor_cannot_be_requester
   validate :cannot_pledge_above_remaining_balance, on: :create
 
+  validate :cannot_have_more_than_two_pending_pledge, on: :create
+
   scope :active, -> { where(status: [0, 10, 20]) }
   scope :pending, -> { where(status: [0, 10]) }
   enum status: { waiting_for_transfer: 0, donor_transferred: 10, requester_received: 20, requester_disputed: 30, expired: 40 }
@@ -45,5 +47,11 @@ class Pledge < ApplicationRecord
 
     def update_request_total_received
       request.update_total_received!
+    end
+
+    def cannot_have_more_than_two_pending_pledge
+      if donor.can_still_pledge?
+        errors.add(:donor, "cannot have more than two pledges that hasn't been transferred")
+      end
     end
 end

@@ -5,6 +5,14 @@
       p.font-weight-bold Donor name
       p
         = @presenter.donor_name
+      - if @presenter.donor_facebook_link
+        p.font-weight-bold Donor facebook url
+        p
+          = link_to @presenter.donor_facebook_link, @presenter.donor_facebook_link, target: '_blank'
+      - elsif @presenter.donor_twitter_link
+        p.font-weight-bold Donor twitter url
+        p
+          = link_to @presenter.donor_twitter_link, @presenter.donor_twitter_link, target: '_blank'
       p.font-weight-bold Pledged at
       p
         = @presenter.created_at
@@ -22,7 +30,7 @@
 
     div
       - if policy(@pledge).requester_status_update?
-        - if @pledge.pending?
+        - if @pledge.donor_transferred?
           div.mt-3
             = link_to button_tag("I HAVE RECEIVED", class: 'btn btn-sm btn-responsive p-4 btn-primary'), pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch, data: { confirm: 'Are you sure you wan to confirm? Please log in to your bank account separately to check if the funds have indeed been transferred before clicking confirm. ' }
         - if @pledge.donor_transferred?
@@ -30,7 +38,7 @@
             = button_tag("I DID NOT RECEIVE", class: 'btn btn-sm btn-responsive p-4 btn-danger', data: {toggle: "modal", target: "#new-dispute-modal"} )
         - if @pledge.waiting_for_transfer? && @pledge.past_expiry?
           div.mt-3
-          = link_to button_tag("EXPIRE", class: 'btn btn-sm btn-responsive p-4 btn-danger'), pledge_requester_status_path(@pledge, requester_status: "expired"), method: :patch
+          = link_to button_tag("EXPIRE", class: 'btn btn-sm btn-responsive p-4 btn-danger'), pledge_requester_status_path(@pledge, requester_status: "expired"), method: :patch, data: { confirm: 'Are you sure you wan to expire this pledge? Click expire if your donor has not honoured their pledge. This will allow you to receive new pledges.' }
 
 
 .modal.fade#new-dispute-modal role="dialog" tabindex="-1" 

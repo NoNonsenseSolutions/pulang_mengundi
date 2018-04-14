@@ -65,6 +65,14 @@ class PledgePresenter
     @pledge.donor.name
   end
 
+  def donor_facebook_link
+    @pledge.donor.facebook_link
+  end
+
+  def donor_twitter_link
+    @pledge.donor.twitter_link
+  end
+
   def requester_name
     @pledge.request.requester.name
   end

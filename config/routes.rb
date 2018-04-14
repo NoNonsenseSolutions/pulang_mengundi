@@ -40,9 +40,13 @@ Rails.application.routes.draw do
       get :for_pledging
     end
   end
+
+  resource :profiles, only: [:edit, :update]
   
   resources :users, only: [] do
     resources :reports, only: [:create]
   end
+
+  resources :email_confirmations, only: [:show]
 end
   

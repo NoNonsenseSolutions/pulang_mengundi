@@ -40,6 +40,7 @@ gem 'slim-rails'
 gem 'simple_form', '3.5.1'
 gem 'pg'
 gem 'figaro'
+gem 'bcrypt'
 gem 'pundit'
 gem 'counter_culture', '~> 1.8'
 # Reduces boot times through caching; required in config/boot.rb
@@ -55,6 +56,8 @@ gem 'will_paginate'
 gem 'sidekiq'
 
 gem "aws-sdk-s3", require: false
+gem 'mailgun-ruby', '~>1.1.6'
+gem 'telephone_number'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

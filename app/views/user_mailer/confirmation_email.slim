@@ -1,0 +1,11 @@
+.container
+  = image_tag 'pulang-logo.png', style: 'max-width: 200px; width: 80%;', class: 'center-block'
+  
+
+  .text-center
+    h3 Confirm your email to join pulangmengundi.com
+    p Hello #{@user.name}! Click on the email below to confirm your email.
+ 
+    = link_to 'Confirm', email_confirmation_url(@user.temp_confirmation_token, email: @user.unconfirmed_email), class: 'btn btn-primary font-weight-bold'
+
+    div style="margin-top: 16px;" If you have any questions, simply reply to this email. We'd love to help.

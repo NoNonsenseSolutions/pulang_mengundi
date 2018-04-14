@@ -49,6 +49,13 @@
       - elsif @requester == current_user
         div
           = link_to 'Connect your twitter account.', '/auth/twitter'
+
+      - if @requester.email && @requester.email_public
+        div
+          = link_to "mailto:#{@requester.email}" do
+            div.text-facebook-blue 
+              = image_tag 'icon_mail.svg', style: 'height: 16px'
+              span.ml-3 Email: #{@requester.email}
         
     
 

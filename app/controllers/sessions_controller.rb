@@ -8,15 +8,16 @@ class SessionsController < ApplicationController
     if request.env['omniauth.auth']
       begin
         user = LinkedAccount.create_with_omniauth(request.env['omniauth.auth'], current_user)
+      
+        session[:user_id] = user.id
+
+        # Change to last path
+        flash["success"] = "Signed in as #{user.name}"
+        redirect_back_or(root_path)
       rescue LinkedAccount::UserOverwrittenError
         flash[:danger] = 'Failed to link account. The account was used to login before and is linked to another user'
         redirect_back_or(root_path) and return
       end
-      session[:user_id] = user.id
-
-      # Change to last path
-      flash["success"] = "Signed in as #{user.name}"
-      redirect_back_or(root_path)
     end
   end
 

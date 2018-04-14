@@ -11,7 +11,7 @@ class LinkedAccount < ApplicationRecord
 
     linked_account.link = auth_info[:link] unless linked_account.link
     linked_account.profile_pic = auth_info[:profile_pic] unless linked_account.profile_pic
-    linked_account.email = auth_info[:email]
+    linked_account.email = auth_info[:email] unless linked_account.email
 
     if linked_account.user
       # if there's already a user to this account(previously persisted)
@@ -30,14 +30,19 @@ class LinkedAccount < ApplicationRecord
         linked_account.user = current_user
         
       else
-        # if there's no current user, Create a user
-        linked_account.user = User.create(name: auth_info[:name], profile_pic: auth_info[:profile_pic])        
+        if user = User.find_by(email: auth_info[:email])
+          linked_account.user = user
+        else
+          # if there's no existing user, Create a user
+          linked_account.user = User.create(name: auth_info[:name], 
+            profile_pic: auth_info[:profile_pic],
+            email: auth_info[:email])
+        end
       end
 
       linked_account.save
       linked_account.user
     end
-
   end
 
   private

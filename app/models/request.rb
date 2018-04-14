@@ -33,6 +33,10 @@ class Request < ApplicationRecord
     disputes.length
   end
 
+  def completed?
+    target_amount == total_received
+  end
+
 
   def remaining_balance_percentage
     (remaining_balance / self.target_amount.to_f * 100).to_i

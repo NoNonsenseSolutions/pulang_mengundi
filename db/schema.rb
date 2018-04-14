@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_13_090913) do
+ActiveRecord::Schema.define(version: 2018_04_14_091811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,16 @@ ActiveRecord::Schema.define(version: 2018_04_13_090913) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profile_pic"
+    t.string "unconfirmed_email"
+    t.string "email"
+    t.string "phone_number"
+    t.string "phone_area_code"
+    t.string "confirmation_token"
+    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at"
+    t.boolean "email_public", default: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "disputes", "pledges"

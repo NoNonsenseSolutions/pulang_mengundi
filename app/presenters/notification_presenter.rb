@@ -2,6 +2,7 @@ class NotificationPresenter
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::TextHelper
   include ActionView::Context
   attr_reader :user
   def initialize(user)
@@ -17,6 +18,8 @@ class NotificationPresenter
       :can_be_expired
     elsif user.donor_transferred_request_pledges.present?
       :pending_received_confirmation
+    elsif user.request && !user&.request&.completed? && user.profile_incomplete?
+      :complete_profile_suggestion
     end
   end
 
@@ -28,6 +31,8 @@ class NotificationPresenter
       "You've been waiting for a transfer for more than 2 hours."
     when :pending_received_confirmation
       "A donor has transferred funds"
+    when :complete_profile_suggestion
+      "Complete your profile to get a better chance to be sponsored"
     else
       ""
     end
@@ -53,6 +58,12 @@ class NotificationPresenter
           'Manage Pledge'
         end
       end
+    when :complete_profile_suggestion
+      link_to(edit_profiles_path) do
+        content_tag(:button, class: 'btn btn-default btn-sm ml-3') do
+          'Complete my Profile'
+        end
+      end
     else
       nil
     end
@@ -62,8 +73,8 @@ class NotificationPresenter
     case category
     when :pending_donor_transfer, :pending_received_confirmation
       "alert alert-info"
-    when :can_be_expired
-      "alert alert-danger"
+    when :can_be_expired, :complete_profile_suggestion
+      "alert alert-warning"
     else
       "hidden"
     end

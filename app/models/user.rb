@@ -4,13 +4,14 @@ class User < ApplicationRecord
   has_many :reports, foreign_key: :reported_id, class_name: 'Report'
   has_many :pledges, foreign_key: :donor_id, class_name: 'Pledge'
 
-  def has_actionable_pledge?
-    request && request.pledges.donor_transferred.exists?
+  def expired_request_pledges
+    request&.pledges&.has_expired || []
   end
 
-  def pending_confirmation_pledge
-    request&.pledges.donor_transferred.first
+  def donor_transferred_request_pledges
+    request&.pledges&.donor_transferred || []
   end
+
 
   def facebook_link
     linked_accounts.find_by(provider: 'facebook')&.link

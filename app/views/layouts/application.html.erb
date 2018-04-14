@@ -89,16 +89,10 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <% if current_user&.has_actionable_pledge? %>
-      <div class="alert alert-info">
-        <span class='text-white'>A donor has transferred funds. </span>
-        <%= link_to manage_pledge_path(current_user.pending_confirmation_pledge) do %>
-          <button class="btn btn-default btn-sm ml-3">
-            Manage Pledge
-          </button>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="<%= @notification_presenter.container_class %>">
+      <span><%= @notification_presenter.text %></span>
+      <%= @notification_presenter.button %>
+    </div>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"> 
         <%= value %>

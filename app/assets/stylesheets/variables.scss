@@ -80,3 +80,13 @@ $state-warning-bg:               #fcf8e3 !default;
 $state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
 
 $state-danger-text:              $primary-red !default;
+
+
+//Alerts
+
+
+$alert-info-text:             white !default;
+
+$alert-danger-text:             white;
+$alert-danger-bg:               $primary-red;
+$alert-danger-border:           darken(adjust-hue($primary-red, -10), 5%) !default;

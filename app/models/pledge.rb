@@ -1,4 +1,5 @@
 class Pledge < ApplicationRecord
+  EXPIRY_TIME = 2.hours.ago
   belongs_to :donor, class_name: 'User'
   belongs_to :request
 
@@ -18,6 +19,7 @@ class Pledge < ApplicationRecord
 
   scope :active, -> { where(status: [0, 10, 20]) }
   scope :pending, -> { where(status: [0, 10]) }
+  scope :has_expired, -> { waiting_for_transfer.where('created_at < ?', EXPIRY_TIME) }
   enum status: { waiting_for_transfer: 0, donor_transferred: 10, requester_received: 20, requester_disputed: 30, expired: 40 }
 
   def pending?
@@ -25,7 +27,7 @@ class Pledge < ApplicationRecord
   end
 
   def past_expiry?
-    created_at < 2.hours.ago
+    created_at < EXPIRY_TIME
   end
   private
     def donor_cannot_be_requester

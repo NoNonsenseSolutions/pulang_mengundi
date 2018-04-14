@@ -133,10 +133,11 @@
 
         
         .col-xs-4.pull-right
-          - if current_user.reported?(@requester)
-            = button_tag "Reported (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
-          - else
-            = button_tag "Report User (#{@requester.reports.count})", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#report-modal"}
+          - if curerent_user
+            - if current_user.reported?(@requester)
+              = button_tag "Reported (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
+            - else
+              = button_tag "Report User (#{@requester.reports.count})", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#report-modal"}
 
     
     section.share

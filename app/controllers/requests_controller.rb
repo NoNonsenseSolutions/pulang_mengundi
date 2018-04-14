@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show  
   def index
     @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0)
 

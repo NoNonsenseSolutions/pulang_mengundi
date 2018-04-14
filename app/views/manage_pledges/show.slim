@@ -24,7 +24,7 @@
       - if policy(@pledge).requester_status_update?
         - if @pledge.pending?
           div.mt-3
-            = link_to button_tag("I HAVE RECEIVED", class: 'btn btn-sm btn-responsive p-4 btn-primary'), pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch
+            = link_to button_tag("I HAVE RECEIVED", class: 'btn btn-sm btn-responsive p-4 btn-primary'), pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch, data: { confirm: 'Are you sure you wan to confirm? Please log in to your bank account separately to check if the funds have indeed been transferred before clicking confirm. ' }
         - if @pledge.donor_transferred?
           div.mt-3
             = button_tag("I DID NOT RECEIVE", class: 'btn btn-sm btn-responsive p-4 btn-danger', data: {toggle: "modal", target: "#new-dispute-modal"} )

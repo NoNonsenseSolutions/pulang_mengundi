@@ -6,11 +6,14 @@ class ProfilesController < ApplicationController
   def update
     @user = current_user
     if @user.update(profile_params)
-      if @user.email != params.dig(:user, :email)
+      if params.dig(:user, :email).present? && (@user.email != params.dig(:user, :email))
         @user.unconfirmed_email = params.dig(:user, :email)
-        @user.save
-        UserMailer.with(user_id: @user.id).confirmation_email.deliver_later
-        flash[:success] = "Please check your email to verify your email."
+        if @user.save
+          UserMailer.with(user_id: @user.id).confirmation_email.deliver_later
+          flash[:success] = "Please check your email to verify your email."
+        else
+          flash[:danger] = "Email is not valid"
+        end
       else
         flash[:success] = "Profile Updated"
       end      

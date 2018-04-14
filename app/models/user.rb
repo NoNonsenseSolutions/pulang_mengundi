@@ -10,6 +10,14 @@ class User < ApplicationRecord
 
   validate :phone_is_valid
 
+
+  EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
+  validates :email, format: { with: EMAIL_REGEX, message: 'invalid email' }, 
+    uniqueness: true,
+    allow_blank: true
+
+  validates :unconfirmed_email, format: { with: EMAIL_REGEX, message: 'invalid email' }, allow_blank: true
+
   def expired_request_pledges
     request&.pledges&.has_expired || []
   end

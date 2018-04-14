@@ -115,6 +115,10 @@
       = link_to request_manage_pledges_path(current_user.request) do
         = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
           strong MANAGE MY REQUEST
+    - elsif current_user&.pending_requests&.include? @request
+      = link_to pledge_path(current_user.waiting_for_transfer_pledge_for(@request)) do
+        = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+          strong GO TO PLEDGE
     - else
       = link_to new_request_pledge_path(@request) do
         = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')

@@ -32,14 +32,16 @@
       - if policy(@pledge).requester_status_update?
         - if @pledge.donor_transferred?
           div.mt-3
-            = link_to button_tag("I HAVE RECEIVED", class: 'btn btn-sm btn-responsive p-4 btn-primary'), pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch, data: { confirm: 'Are you sure you wan to confirm? Please log in to your bank account separately to check if the funds have indeed been transferred before clicking confirm. ' }
+            = link_to pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch, data: { confirm: 'Are you sure you wan to confirm? Please log in to your bank account separately to check if the funds have indeed been transferred before clicking confirm. ' } do
+              = button_tag "I HAVE RECEIVED", class: 'btn btn-sm btn-responsive p-4 btn-primary font-weight-bold'
         - if @pledge.donor_transferred?
           div.mt-3
-            = button_tag("I DID NOT RECEIVE", class: 'btn btn-sm btn-responsive p-4 btn-danger', data: {toggle: "modal", target: "#new-dispute-modal"} )
+            = button_tag("I DID NOT RECEIVE", class: 'btn btn-sm btn-responsive p-4 btn-danger font-weight-bold', data: {toggle: "modal", target: "#new-dispute-modal"} )
         - if @pledge.waiting_for_transfer? && @pledge.past_expiry?
           div.mt-3
-          = link_to button_tag("EXPIRE", class: 'btn btn-sm btn-responsive p-4 btn-danger'), pledge_requester_status_path(@pledge, requester_status: "expired"), method: :patch, data: { confirm: 'Are you sure you wan to expire this pledge? Click expire if your donor has not honoured their pledge. This will allow you to receive new pledges.' }
-
+          = link_to pledge_requester_status_path(@pledge, requester_status: "expired"), method: :patch, data: { confirm: 'Are you sure you wan to expire this pledge? Click OK if your donor has not honoured their pledge. This will allow you to receive new pledges.' } do
+            = button_tag("EXPIRE", class: 'btn btn-sm btn-responsive p-4 btn-danger font-weight-bold')
+      = link_to button_tag("BACK TO MY REQUEST", class: 'btn btn-sm btn-responsive p-4 btn-primary mt-3 font-weight-bold'), @request
 
 .modal.fade#new-dispute-modal role="dialog" tabindex="-1" 
   .modal-dialog.modal-sm role="document" 

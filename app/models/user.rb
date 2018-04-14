@@ -27,4 +27,12 @@ class User < ApplicationRecord
   def can_still_pledge?
     pledges.waiting_for_transfer.count > 1
   end
+
+  def pending_requests
+    Request.joins(:pledges).where(pledges: {donor: self, status: Pledge.statuses[:waiting_for_transfer]})
+  end
+
+  def waiting_for_transfer_pledge_for(request)
+    request.pledges.waiting_for_transfer.where(donor: self).first
+  end
 end

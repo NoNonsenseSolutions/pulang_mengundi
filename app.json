@@ -8,7 +8,38 @@
     },
     "FACEBOOK_APP_SECRET": {
       "required": true
+    },
+    "TWITTER_API_KEY": {
+      "required": true
+    },
+    "TWITTER_API_SECRET": {
+      "required": true
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_ACCESS_KEY_SECRET": {
+      "required": true
+    },
+    "AWS_S3_BUCKET": {
+      "required": true
+    },
+    "AWS_REGION": {
+      "required": true
+    },
+    "HOST_URL": {
+      "required": true
+    },
+    "MAILGUN_API_KEY": {
+      "required": true
+    },
+    "MAILGUN_DOMAIN": {
+      "required": true
+    },
+    "MAILGUN_DEFAULT_FROM": {
+      "required": true
     }
+    
   },
   "formation": {
   },

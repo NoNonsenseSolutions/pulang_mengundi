@@ -1,0 +1,4 @@
+en:
+  requests:
+    index: 
+      total_amount_pledged: 'Total Amount Pledged'

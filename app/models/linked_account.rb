@@ -30,7 +30,7 @@ class LinkedAccount < ApplicationRecord
         linked_account.user = current_user
         
       else
-        if user = User.find_by(email: auth_info[:email])
+        if auth_info[:email].present? && user = User.find_by(email: auth_info[:email])
           linked_account.user = user
         else
           # if there's no existing user, Create a user

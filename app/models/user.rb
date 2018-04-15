@@ -14,7 +14,7 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
   validates :email, format: { with: EMAIL_REGEX, message: 'invalid email' }, 
     uniqueness: true,
-    allow_blank: true
+    allow_nil: true
 
   validates :unconfirmed_email, format: { with: EMAIL_REGEX, message: 'invalid email' }, allow_blank: true
 

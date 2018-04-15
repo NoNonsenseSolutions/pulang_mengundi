@@ -31,6 +31,7 @@ class LinkedAccount < ApplicationRecord
         
       else
         if auth_info[:email].present? && user = User.find_by(email: auth_info[:email])
+          #linked in sometimes returns email as an emptry string, presumably because users signed up with phone
           linked_account.user = user
         else
           # if there's no existing user, Create a user

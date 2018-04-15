@@ -1,0 +1,21 @@
+{
+  "name": "pulang_mengundi",
+  "scripts": {
+  },
+  "env": {
+    "FACEBOOK_APP_ID": {
+      "required": true
+    },
+    "FACEBOOK_APP_SECRET": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}

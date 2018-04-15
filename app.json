@@ -38,6 +38,12 @@
     },
     "MAILGUN_DEFAULT_FROM": {
       "required": true
+    },
+    "REDIS_PROVIDER": {
+      "required": true
+    },
+    "REDISTOGO_URL": {
+      "required": true
     }
     
   },

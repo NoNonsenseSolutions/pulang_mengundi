@@ -44,7 +44,7 @@ class RequestPolicy
   end
 
   def destroy?
-    edit?
+    request.requester == user && !request.completed?
   end
 
   def manage?

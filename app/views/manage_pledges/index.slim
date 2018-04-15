@@ -32,5 +32,6 @@
       - if policy(@request).edit?
         p.mt-5
           = link_to button_tag('Edit Request', class: 'btn btn-primary btn-responsive p-4'), [:edit, @request]
+      - if policy(@request).destroy?
         p.mt-5
           = link_to button_tag('Delete Request', class: 'btn btn-danger btn-responsive p-4'), request_disables_path(@request), method: :post, data: { confirm: 'Are you sure you want to prevent others from find your request?' }

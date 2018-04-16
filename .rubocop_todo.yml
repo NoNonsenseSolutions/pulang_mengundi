@@ -23,17 +23,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 14
 
-# Offense count: 9
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/sessions_controller.rb'
-    - 'app/helpers/sessions_helper.rb'
-    - 'app/models/linked_account.rb'
-    - 'app/models/pledge.rb'
-    - 'app/models/request.rb'
-    - 'app/models/user.rb'
-
 # Offense count: 1
 Style/IfInsideElse:
   Exclude:

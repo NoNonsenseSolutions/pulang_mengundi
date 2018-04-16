@@ -35,15 +35,13 @@ class Pledge < ApplicationRecord
   private
 
   def donor_cannot_be_requester
-    if request.requester == donor
-      errors.add(:donor, 'cannot pledge to your own subsidy request')
-    end
+    return unless request.requester == donor
+    errors.add(:donor, 'cannot pledge to your own subsidy request')
   end
 
   def cannot_pledge_above_remaining_balance
-    if amount && (request.remaining_balance < amount)
-      errors.add(:amount, " RM #{amount} exceeds the remaining subsidy requested for. Choose a smaller amount, or wait for some pending pledges to be voided")
-    end
+    return unless amount && (request.remaining_balance < amount)
+    errors.add(:amount, " RM #{amount} exceeds the remaining subsidy requested for. Choose a smaller amount, or wait for some pending pledges to be voided")
   end
 
   def update_request_balance
@@ -56,8 +54,7 @@ class Pledge < ApplicationRecord
   end
 
   def cannot_have_more_than_two_pending_pledge
-    if donor.can_still_pledge?
-      errors.add(:donor, "cannot have more than two pledges that hasn't been transferred")
-    end
+    return unless donor.can_still_pledge?
+    errors.add(:donor, "cannot have more than two pledges that hasn't been transferred")
   end
 end

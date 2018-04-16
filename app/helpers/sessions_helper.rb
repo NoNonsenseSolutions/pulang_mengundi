@@ -21,9 +21,8 @@ module SessionsHelper
   end
 
   def authenticate_user!
-    unless user_logged_in?
-      store_location
-      redirect_to new_sessions_path
-    end
+    return if user_logged_in?
+    store_location
+    redirect_to new_sessions_path
   end
 end

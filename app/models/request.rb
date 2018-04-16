@@ -89,8 +89,7 @@ class Request < ApplicationRecord
   private
 
   def cap_target_amount
-    if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
-      errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
-    end
+    return unless target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
+    errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
   end
 end

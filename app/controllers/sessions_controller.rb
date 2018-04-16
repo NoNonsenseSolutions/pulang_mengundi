@@ -6,19 +6,18 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    if request.env['omniauth.auth']
-      begin
-        user = LinkedAccount.create_with_omniauth(request.env['omniauth.auth'], current_user)
+    return unless request.env['omniauth.auth']
+    begin
+      user = LinkedAccount.create_with_omniauth(request.env['omniauth.auth'], current_user)
 
-        session[:user_id] = user.id
+      session[:user_id] = user.id
 
-        # Change to last path
-        flash['success'] = "Signed in as #{user.name}"
-        redirect_back_or(root_path)
-      rescue LinkedAccount::UserOverwrittenError
-        flash[:danger] = 'Failed to link account. The account was used to login before and is linked to another user'
-        redirect_back_or(root_path) && return
-      end
+      # Change to last path
+      flash['success'] = "Signed in as #{user.name}"
+      redirect_back_or(root_path)
+    rescue LinkedAccount::UserOverwrittenError
+      flash[:danger] = 'Failed to link account. The account was used to login before and is linked to another user'
+      redirect_back_or(root_path) && return
     end
   end
 
@@ -31,9 +30,9 @@ class SessionsController < ApplicationController
   private
 
   def check_logged_in
-    if user_logged_in?
-      flash[:danger] = 'Already logged in'
-      redirect_to root_path
-    end
+    return unless user_logged_in?
+
+    flash[:danger] = 'Already logged in'
+    redirect_to root_path
   end
 end

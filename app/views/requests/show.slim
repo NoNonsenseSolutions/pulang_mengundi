@@ -1,5 +1,5 @@
 = content_for :custom_meta do
-  
+
   meta name="description" content="Help #{@request.requester.name} vote!"
 
   meta name="twitter:card" content="summary"
@@ -26,93 +26,93 @@
           - if @requester.ic.present?
             | IC: XXXXXX-XX-#{@requester.ic.last(4)}
           - else
-            | IC: Not Provided
+            | IC: #{t('.not_provider')}
         br
-        small SEAT: #{@request.to_city}
+        small #{t('.seat')} #{@request.to_city}
         br
-        small STATE: #{@request.to_state}
+        small #{t('.state')} #{@request.to_state}
         br
-    
+
     section.social-media-details.mt-5.text-center
       - if @requester.facebook_link
         div
           = link_to @requester.facebook_link, target: '_blank' do
-            div.text-facebook-blue 
+            div.text-facebook-blue
               = image_tag 'icon_facebook.svg', style: 'height: 14px'
               span.ml-3 #{@requester.name}'s facebook profile
               = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
       - elsif @requester == current_user
         div
-          = link_to 'Connect your facebook account', '/auth/facebook'
+          = link_to t('.connect_fb_acc'), omniauth_localized_path(:facebook)
 
       - if @requester.twitter_link
         div
           = link_to @requester.twitter_link, target: '_blank' do
-            div.text-facebook-blue 
+            div.text-facebook-blue
               = image_tag 'icon_twitter.svg', style: 'height: 16px'
               span.ml-3 #{@requester.name}'s twitter profile
               = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
       - elsif @requester == current_user
         div
-          = link_to 'Connect your twitter account.', '/auth/twitter'
+          = link_to t('.connect_tw_acc'), omniauth_localized_path(:twitter)
 
       - if @requester.email && @requester.email_public
         div
           = link_to "mailto:#{@requester.email}" do
-            div.text-facebook-blue 
+            div.text-facebook-blue
               = image_tag 'icon_mail.svg', style: 'height: 16px'
-              span.ml-3 Email: #{@requester.email}
-        
-    
+              span.ml-3 #{t('.email')}: #{@requester.email}
+
+
 
     section.progress-bars.mt-5
       .statuses
         div
-          | Received: 
+          = t('.received')
           br
           = number_to_currency @request.successful_pledges_amount, unit: 'RM '
 
         div.ml-3.text-center
-          | Awaiting:
+          = t('.awaiting')
           br
           = number_to_currency @request.pending_pledges_amount, unit: 'RM '
         div.ml-3.text-right
-          | Balance:
+          = t('.balance')
           br
           = number_to_currency @request.remaining_balance, unit: 'RM '
 
       / Progress
       .progress
-        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
+        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%")
           span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
-        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%") 
-          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
+        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%")
+          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)
 
       .mt-3.text-center
-        = button_tag "Disputes: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#disputes-modal"}
+        = button_tag "#{t('.disputes')}: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#disputes-modal"}
 
     section.request-details.mt-5
-      p.font-weight-semibold Why I am seeking a sponsor?
+      p.font-weight-semibold = t('.why_i_am')
       p
         = simple_format(@request.description)
 
       .row
         .col-xs-5
-          p.font-weight-semibold Mode of transport
+          p.font-weight-semibold = t('.mode_of_transport')
           p
             = @request.transport_type
         .col-xs-7
-          p.font-weight-semibold Transport Company
+          p.font-weight-semibold = t('.travel_company')
           p
             = @request.travel_company
 
-      p.font-weight-semibold Itinerary / Receipt No.
+      p.font-weight-semibold = t('.itinerary')
       p
         = simple_format(@request.itinerary)
 
       .row
         .col-xs-6
-          p.font-weight-semibold Total Ticket Amount
+          p.font-weight-semibold = t('.total_ticket_amount')
           p
             = number_to_currency @request.travelling_fees, unit: 'RM '
         .col-xs-6
@@ -127,61 +127,61 @@
     - if @request.requester == current_user
       = link_to request_manage_pledges_path(current_user.request) do
         = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-          strong MANAGE MY REQUEST
+          strong = t('.manage_my_request')
     - elsif current_user&.pending_requests&.include? @request
       = link_to pledge_path(current_user.waiting_for_transfer_pledge_for(@request)) do
         = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-          strong GO TO PLEDGE
+          strong = t('.go_to_pledge')
     - else
       = link_to new_request_pledge_path(@request) do
         = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-          strong PROCEED
-    
+          strong = t('.proceed')
+
 
     section.report-user.mt-5
       .row
         .col-xs-6
           div
-            .fb-share-button data-href="#{request_url @request}" data-layout="button" data-mobile-iframe="true" data-size="small" 
-              a.fb-xfbml-parse-ignore href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" target="_blank"  Share
+            .fb-share-button data-href="#{request_url @request}" data-layout="button" data-mobile-iframe="true" data-size="small"
+              a.fb-xfbml-parse-ignore href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" target="_blank" = t('.share')
           div.mt-2
-            a.twitter-share-button data-size="small" href="https://twitter.com/intent/tweet?text=Help #{@request.requester.name} #pulangmengundi!"
-              | Tweet
+            a.twitter-share-button data-size="small" href="https://twitter.com/intent/tweet?text=#{t('.help')} #{@request.requester.name} #pulangmengundi!"
+              = t('.tweet')
 
-        
+
         .col-xs-4.pull-right
           - if current_user
             - if current_user.reported?(@requester)
-              = button_tag "Reported (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
+              = button_tag "#{t('.reported')} (#{@requester.reports.count})", class: 'btn btn-danger btn-sm'
             - else
-              = button_tag "Report User (#{@requester.reports.count})", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#report-modal"}
+              = button_tag "#{t('.report_user')} (#{@requester.reports.count})", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#report-modal"}
 
-    
+
     section.share
-      
 
 
-.modal.fade#report-modal role="dialog" tabindex="-1" 
-  .modal-dialog.modal-sm role="document" 
+
+.modal.fade#report-modal role="dialog" tabindex="-1"
+  .modal-dialog.modal-sm role="document"
     .modal-content
       .modal-header
-        | Report User
-        button.close aria-label="Close" data-dismiss="modal" type="button" 
+        = t('.report_user')
+        button.close aria-label="Close" data-dismiss="modal" type="button"
           span aria-hidden="true"  &times;
-      .modal-body        
+      .modal-body
         = simple_form_for [@requester, Report.new] do |f|
           = f.input :reason, input_html: {required: true, class: 'border-black'}
-          = f.submit 'Report', class: 'btn btn-danger'
+          = f.submit t('.report'), class: 'btn btn-danger'
 
 
-.modal.fade#disputes-modal role="dialog" tabindex="-1" 
-  .modal-dialog role="document" 
+.modal.fade#disputes-modal role="dialog" tabindex="-1"
+  .modal-dialog role="document"
     .modal-content
       .modal-header
-        | Disputes
-        button.close aria-label="Close" data-dismiss="modal" type="button" 
+        = t('.disputes')
+        button.close aria-label="Close" data-dismiss="modal" type="button"
           span aria-hidden="true"  &times;
-      .modal-body        
+      .modal-body
         - @disputes.each do |dispute|
           .panel.panel-success
             .panel-body

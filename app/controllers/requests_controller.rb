@@ -61,7 +61,7 @@ class RequestsController < ApplicationController
     @request = current_user.build_request(request_params)
     authorize @request
     if @request.save
-      flash[:success] = 'Request created'
+      flash[:success] = t('.success')
       redirect_to [@request, :thank_you_screens]
     else
       flash[:danger] = @request.errors.full_messages.join("; ")
@@ -87,7 +87,7 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     authorize @request
     if @request.update(request_params)
-      flash[:success] = 'Request updated'
+      flash[:success] = t('.success')
       redirect_to @request
     else
       flash[:danger] = @request.errors.full_messages.join("; ")

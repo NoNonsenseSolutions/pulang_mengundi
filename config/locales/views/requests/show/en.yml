@@ -1,0 +1,19 @@
+en:
+  requests:
+    show:
+      why_i_am: Why I am seeking a sponsor?
+      mode_of_transport: Mode of transport
+      travel_company: Transport Company
+      itinerary: Itinerary / Receipt No.
+      total_ticket_amount: Total Ticket Amount
+      manage_my_request: MANAGE MY REQUEST
+      go_to_pledge: GO TO PLEDGE
+      proceed: PROCEED
+      share: Share
+      help: Help
+      tweet: Tweet
+      reported: Reported
+      report_user: Report User
+      report: Report
+      disputes: Disputes
+      not_provider: Not Provided

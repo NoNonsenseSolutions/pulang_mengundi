@@ -1,0 +1,17 @@
+en:
+  manage_pledges:
+    show:
+      pledge: Pledge
+      donor_name: Donor Name
+      donor_facebook_url: Donor facebook url
+      donor_twitter_url: Donor twitter url
+      pledged_at: Pledge at
+      amount: Amount
+      status: Status
+      pledge_status_confirm: Are you sure you wan to confirm? Please log in to your bank account separately to check if the funds have indeed been transferred before clicking confirm.
+      i_have_received: I HAVE RECEIVED
+      i_did_not_receive: I DID NOT RECEIVE
+      expire_pledge_confirm: Are you sure you wan to expire this pledge? Click OK if your donor has not honoured their pledge. This will allow you to receive new pledges.
+      expire: "EXPIRE"
+      back_to_my_request: BACK TO MY REQUEST
+      dispute: Dispute

@@ -1,0 +1,10 @@
+en:
+  manage_pledges:
+    index:
+      manage_my_request: Manage my request
+      restore_request: Restore Request
+      restore_request_confirm: Are you sure you want to restore the request?
+      delete_request: Delete Request
+      delete_request_confirm: Are you sure you want to prevent others from find your request?
+      pledge: Pledge
+      edit_request: Edit Request

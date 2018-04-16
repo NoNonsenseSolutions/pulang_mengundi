@@ -1,9 +1,9 @@
-Confirm your email for join pulangmengundi.com
+<%= t('.confirm_your_email') %> pulangmengundi.com
 
 ===============================================
 
-Hello <%= @user.name %>
+<%= t('.hello') %> <%= @user.name %>
 
-To confirm your email, just follow this link: <%= email_confirmation_url(@user.temp_confirmation_token, email: @user.unconfirmed_email) %>.
+<%= t('.to_confirm_your_email') %> <%= email_confirmation_url(@user.temp_confirmation_token, email: @user.unconfirmed_email) %>.
 
-If you have any questions, simply reply to this email. We'd love to help.
+<%= t('.if_you_have_any') %>

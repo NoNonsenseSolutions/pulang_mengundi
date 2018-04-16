@@ -1,0 +1,27 @@
+en:
+  pledges:
+    show:
+      seat: 'SEAT:'
+      state: 'STATE:'
+      connect_fb_acc: Connect your facebook account
+      connect_tw_acc: Connect your twitter account
+      email: Email
+      received: 'Received:'
+      awaiting: 'Awaiting:'
+      balance: 'Balance:'
+      bank_transfer_details: Bank Transfer Details
+      recipient_name: Recipient Name
+      bank: Bank
+      account_number: Account Number
+      request_link: Request link
+      pledge_amount: Pledged amount
+      step_1:
+        title: STEP 1
+        text: Manually perform a Online Transfer to Voter/Recipient with your preferred bank
+      step_2:
+        title: STEP 2
+        text: Download screenshot and upload it here
+      receipt: Receipt
+      upload_receipt: Upload Receipt
+      choose_file: Choose File
+      upload: Upload

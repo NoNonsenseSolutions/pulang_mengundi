@@ -3,7 +3,7 @@
     .vertical-center
       div
         h2.text-center
-          | Thank you for participating in GE14 #pulangmengundi
+          = t('.thank_you_for')
         = link_to root_path do
             = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-              strong Back to home
+              strong = t('.back_to_home')

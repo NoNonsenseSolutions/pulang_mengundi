@@ -1,0 +1,5 @@
+---
+en:
+  user_mailer:
+    confirmation_email:
+      subject: Confirm your email to for pulangmengundi.com

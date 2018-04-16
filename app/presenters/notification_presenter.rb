@@ -1,10 +1,12 @@
-class NotificationPresenter
+class NotificationPresenter < ApplicationPresenter
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::TextHelper
   include ActionView::Context
   attr_reader :user
+
+
   def initialize(user)
     @user = user
   end
@@ -26,13 +28,13 @@ class NotificationPresenter
   def text
     case category
     when :pending_donor_transfer
-      "Transferred the money for your pledge?"
+      t('notification.text.pending_donor_transfer')
     when :can_be_expired
-      "You've been waiting for a transfer for more than 2 hours."
+      t('notification.text.can_be_expired')
     when :pending_received_confirmation
-      "A donor has transferred funds"
+      t('notification.text.pending_received_confirmation')
     when :complete_profile_suggestion
-      "Complete your profile to get a better chance to be sponsored"
+      t('notification.text.complete_profile_suggestion')
     else
       ""
     end
@@ -43,25 +45,25 @@ class NotificationPresenter
     when :pending_donor_transfer
       link_to pledge_path(user.pledges.waiting_for_transfer.first) do
         content_tag :button, class: 'btn btn-default btn-sm ml-3' do
-          'Upload Receipt'
+          t('notification.button.pending_donor_transfer')
         end
       end
     when :can_be_expired
       link_to manage_pledge_path(user.expired_request_pledges.first) do
         content_tag :button, class: 'btn btn-default btn-sm ml-3' do
-          'Expire or confirm pledge'
+          t('notification.button.can_be_expired')
         end
       end
     when :pending_received_confirmation
       link_to manage_pledge_path(user.donor_transferred_request_pledges.first) do
         content_tag :button, class: 'btn btn-default btn-sm ml-3' do
-          'Manage Pledge'
+          t('notification.button.pending_received_confirmation')
         end
       end
     when :complete_profile_suggestion
       link_to(edit_profiles_path) do
         content_tag(:button, class: 'btn btn-default btn-sm ml-3') do
-          'Complete my Profile'
+          t('notification.button.complete_profile_suggestion')
         end
       end
     else

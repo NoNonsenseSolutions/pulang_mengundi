@@ -1,0 +1,4 @@
+en:
+  requests:
+    new:
+      reminder: 'REMINDER: You can only create one request per user'

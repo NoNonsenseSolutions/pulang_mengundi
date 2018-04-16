@@ -1,0 +1,52 @@
+---
+en:
+  pledges:
+    disputes:
+      create:
+        disputed: Disputed
+    requester_statuses:
+      update:
+        success: Pledge has been updated
+    upload_receipts:
+      create:
+        thank_you: Thank you!
+        missing_receipt: Please upload a receipt to show that you have transferred
+    create:
+      success: Thank you for pledging.
+  requests:
+    disables:
+      create:
+        already_disabled: Request already disabled
+        disabled: Request disabled
+    enables:
+      create:
+        enabled: Request enabled
+        not_disabled: Request was not disabled
+    index:
+      total_amount_pledged: Total Amount Pledged
+    create:
+      success: Your request has been successfully created
+    update:
+      success: Request successfully updated
+  documents:
+    deleted: Deleted
+    not_found: File not found
+  email_confirmations:
+    show:
+      email_confirmed: You email has been confirmed.
+      invalid_confirmation_link: Invalid confirmation link
+  profiles:
+    update:
+      check_email: Please check your email to verify your email.
+      invalid_email: Email is not valid
+      success: Profile updated!
+  reports:
+    create:
+      success: You have successfully reported this user
+  sessions:
+    create:
+      failed_to_link_account: Failed to link account. The account was used to login
+        before and is linked to another user
+    destroy:
+      logged_out: Logged out
+    already_logged_in: Already logged in

@@ -5,12 +5,12 @@ class EmailConfirmationsController < ApplicationController
 
     if user && user.email_confirmation?(params[:id]) 
       if user.update(email: params[:email], confirmed_at: Time.zone.now, unconfirmed_email: nil)
-        flash[:success] = "Email confirmed!"
+        flash[:success] = t('.email_confirmed')
       else
         flash[:danger] = user.errors.full_messages.join("; ")
       end
     else
-      flash[:danger] = "Invalid confirmation link"    
+      flash[:danger] = t('.invalid_confirmation_link')
     end
     
     redirect_to root_path

@@ -1,46 +1,45 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-    h3 Bank Transfer Details
+    h3 =t('.bank_transfer_details')
     section.bank-details
-      p.font-weight-bold Recipient Name
+      p.font-weight-bold = t('.recipient_name')
       p
         = @request.account_name
-      p.font-weight-bold Bank
+      p.font-weight-bold = t('.bank')
       p
         = @request.bank_name
-      p.font-weight-bold Account Number
+      p.font-weight-bold = t('.account_number')
       p
         = @request.account_number
-      p.font-weight-bold Request link
+      p.font-weight-bold = t('.request_link')
       p
         = link_to request_url(@request), @request, class: 'text-link'
-    
     hr
 
-    h4.mt-3.text-center Pledged amount 
+    h4.mt-3.text-center = t('.pledge_amount')
     h3.mt-3.text-center #{number_to_currency @pledge.amount, unit: 'RM '}
 
     p
-      big STEP 1 
-      text Manually perform a Online Transfer to Voter/Recipient with your preferred bank
-    p 
-      big STEP 2 
-      text Download screenshot and upload it here
+      big = t('.step_1.title')
+      text = t('.step_1.text')
+    p
+      big = t('.step_2.title')
+      text = t('.step_2.text')
 
     - if @pledge.waiting_for_transfer?
       .mt-5
         - if @pledge.receipt.attached?
-          h4.font-weight-semibold Receipt
+          h4.font-weight-semibold = t('.receipt')
           p
             = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "attachment")
 
         = simple_form_for @pledge, url: pledge_upload_receipts_path(@pledge), method: :post do |f|
-          label Upload Receipt
+          label = t('.upload_receipt')
           label.btn.btn-default.btn-responsive for="custom-file-input"
             = f.file_field :receipt, id: 'custom-file-input', style: 'display: none'
-            | Choose File
+            = t('.choose_file')
           #file-name-box
-          
+
           .mt-3.text-center
-            = f.submit 'Upload', class: 'btn btn-primary'
+            = f.submit t('.upload'), class: 'btn btn-primary'
 

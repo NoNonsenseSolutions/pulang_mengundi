@@ -1,0 +1,27 @@
+---
+en:
+  notification:
+    text:
+      pending_donor_transfer: Transferred the money for your pledge?
+      can_be_expired: You've been waiting for a transfer for more than 2 hours.
+      pending_received_confirmation: A donor has transferred funds
+      complete_profile_suggestion: Complete your profile to get a better chance to
+        be sponsored
+    button:
+      pending_donor_transfer: Upload Receipt
+      can_be_expired: Expire or confirm pledge
+      pending_received_confirmation: Manage Pledge
+      complete_profile_suggestion: Complete my Profile
+  pledge:
+    humanize_status_for_donor:
+      waiting_for_transfer: Pending your transfer
+      donor_transferred: Pending voter confirmation
+      requester_received: Completed
+      requester_disputed: Disputed
+      expired: Expired
+    humanize_status_for_requester:
+      waiting_for_transfer: Pending donor transfer
+      donor_transferred: Pending your confirmation
+      requester_received: Completed
+      requester_disputed: Disputed
+      expired: Expired

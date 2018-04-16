@@ -54,6 +54,7 @@ gem 'will_paginate'
 
 
 gem 'sidekiq'
+gem 'translation'
 
 gem "aws-sdk-s3", require: false
 gem 'mailgun-ruby', '~>1.1.6'

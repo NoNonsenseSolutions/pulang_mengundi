@@ -6,22 +6,22 @@
         .col-xs-6
           h3.m-0.font-weight-bold
             span
-              | RM 
+              | RM
             span#total-amount-pledged data-total=@total_amount_pledged
               | 0
-          small Total Amount Pledged
+          small = t('.total_amount_pledged')
         .col-xs-6
           h3.m-0.font-weight-bold#number-voter-request data-total=@total_number_of_requests
-          small No. of voter requests
+          small = t('.no_of_voter_requests')
     .switch.mt-5
-      = link_to "Sponsor Others", root_path, class: "switch-items active"
-      = link_to "Need A Sponsor", home_path, class: "switch-items"
-    h3.text-center Voter requests
+      = link_to t('.sponsor_others'), root_path, class: "switch-items active"
+      = link_to t('.need_a_sponsor'), home_path, class: "switch-items"
+    h3.text-center = t('.voter_requests')
 
-    
+
     .text-center
-      = link_to 'Filter Requests', 'javascript:;', id: 'filters-toggle', class: 'btn btn-primary', data: {toggle: "modal", target: "#filterModal"}
-    
+      = link_to t('.filter_requests'), 'javascript:;', id: 'filters-toggle', class: 'btn btn-primary', data: {toggle: "modal", target: "#filterModal"}
+
 
 
 
@@ -33,7 +33,7 @@
               .space-out-column
                 = image_tag request.display_pic, class: 'img-responsive'
               div.space-out-column.ml-3
-                div 
+                div
                   big #{request.requester.name}
                   div.font-size-tiny style='font-weight: 300' 
                     - if request.requester.ic.present?
@@ -41,8 +41,8 @@
                     - else
                       | IC: Not Provided
                 div
-                  div.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
-                  div.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}
+                  div.font-size-tiny style='font-weight: 300' #{t('.seat')} #{request.to_city}
+                  div.font-size-tiny style='font-weight: 300' #{t('.state')} #{request.to_state}
               div.space-out-column.ml-3
                 div.text-right
                   small #{request.created_at.strftime("%d/%m/%Y")}
@@ -55,7 +55,7 @@
 
 
 = content_for :modal do
-  #filterModal.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  #filterModal.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
     .modal-dialog.modal-sm role="document" style="top: 25%;"
       .modal-content.bg-primary-orange
         .modal-body
@@ -63,32 +63,32 @@
             = simple_form_for :search, url: root_path, method: :get do
               // STATE AND SEAT
               select.mt-3.selectpicker.form-control data-live-search="true" title="Filter by state or seat" name="search[state_seat]"
-                optgroup label="All"
-                  option 
-                optgroup label="State"
+                optgroup label=t('.form.all')
+                  option
+                optgroup label=t('.form.state')
                   = ElectoralDistrict::STATES.each do |state|
-                    option selected=(state==@search_state_seat) 
+                    option selected=(state==@search_state_seat)
                       = state
-                optgroup label="Seat"
+                optgroup label=t('.form.seat')
                   = ElectoralDistrict.constituencies.each do |constituency|
-                    option selected=(constituency==@search_state_seat) 
+                    option selected=(constituency==@search_state_seat)
                       = constituency
               // Bank
               select.mt-3.selectpicker.form-control data-live-search="true" title="Filter by bank" name="search[bank_name]"
-                optgroup label="All"
-                  option 
-                optgroup label="State"
+                optgroup label=t('.form.all')
+                  option
+                optgroup label=t('.form.state')
                   = Bank::NAMES.each do |bank_name|
-                    option selected=(bank_name==@bank_name) 
+                    option selected=(bank_name==@bank_name)
                       = bank_name
               // Bank
               select.mt-3.selectpicker.form-control data-live-search="true" title="Order" name="search[order]"
-                option selected=('Random'==@search_order) 
-                  | Random
-                option selected=('Highest Balance'==@search_order) 
-                  | Highest Balance
-                option selected=('Lowest Balance'==@search_order) 
-                  | Lowest Balance
+                option selected=('Random'==@search_order)
+                  = t('.random')
+                option selected=('Highest Balance'==@search_order)
+                  = t('.highest_balance')
+                option selected=('Lowest Balance'==@search_order)
+                  = t('.lowest_balance')
 
-              button.mt-3.btn.btn-primary 
-                | Search
+              button.mt-3.btn.btn-primary
+                = t('.search')

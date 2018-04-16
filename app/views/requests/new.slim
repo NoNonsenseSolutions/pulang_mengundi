@@ -1,12 +1,12 @@
 = render 'form'
 
-.modal.fade#one-request-modal role="dialog" tabindex="-1" 
-  .modal-dialog.modal-sm role="document" 
+.modal.fade#one-request-modal role="dialog" tabindex="-1"
+  .modal-dialog.modal-sm role="document"
     .modal-content
       .modal-body
-        button.close aria-label="Close" data-dismiss="modal" type="button" 
+        button.close aria-label="Close" data-dismiss="modal" type="button"
           span aria-hidden="true"  &times;
-        p REMINDER: You can only create one request per user
+        p = t('.reminder')
 
     /! /.modal-content
   /! /.modal-dialog

@@ -38,8 +38,13 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = Request.new
-    authorize @request
+    if current_user.email.present? && current_user.ic.present?
+      @request = Request.new
+      authorize @request
+    else
+      flash[:danger] = 'Missing IC or Email information.'
+      redirect_to edit_profiles_path
+    end
   end
 
   def create

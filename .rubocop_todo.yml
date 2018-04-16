@@ -23,20 +23,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 14
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'app/controllers/pledges/disputes_controller.rb'
-    - 'app/controllers/pledges/requester_statuses_controller.rb'
-    - 'app/controllers/pledges/upload_receipts_controller.rb'
-    - 'app/controllers/requests/disables_controller.rb'
-    - 'app/controllers/requests/enables_controller.rb'
-    - 'app/policies/active_storage/attachment_policy.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.

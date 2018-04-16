@@ -23,7 +23,7 @@ class PledgePresenter
              'Expired'
            else
              raise InvalidStatusError, pledge.status
-    end
+           end
     text.upcase
   end
 
@@ -41,7 +41,7 @@ class PledgePresenter
              'Expired'
            else
              raise InvalidStatusError, pledge.status
-    end
+           end
     text.upcase
   end
 
@@ -59,7 +59,7 @@ class PledgePresenter
               'Expired'
             else
               raise InvalidStatusError, pledge.status
-    end
+            end
     klass
   end
 

@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
                     @requests.order(remaining_balance: :asc)
                   else
                     @requests.order('RANDOM()')
-                              end
+                  end
                 else
                   @requests.order('RANDOM()')
                 end

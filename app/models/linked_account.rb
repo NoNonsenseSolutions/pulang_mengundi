@@ -35,7 +35,7 @@ class LinkedAccount < ApplicationRecord
           linked_account.user = user
         else
           # if there's no existing user, Create a user
-          linked_account.user = User.create(name: auth_info[:name], 
+          linked_account.user = User.create!(name: auth_info[:name], 
             profile_pic: auth_info[:profile_pic],
             email: auth_info[:email])
         end
@@ -67,11 +67,12 @@ class LinkedAccount < ApplicationRecord
     end
 
     def self.twitter_details(auth)
+      email = auth.dig('info', 'email')
       {
         link: auth.dig('info', 'urls', 'Twitter'),
         profile_pic: auth.dig('info', 'image'),
         name: auth.dig('info', 'name'),
-        email: auth.dig('info', 'email')
+        email: email.present? ? email : nil
       }
     end
 end

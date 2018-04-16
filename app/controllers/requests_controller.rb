@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :show  
+  skip_before_action :authenticate_user!, only: :show
   def index
     @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0)
 
@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
 
   def new
     user_ic_email_present = current_user.email.present? && current_user.ic.present?
-    
+
     if user_ic_email_present
       age_in_days = (DateTime.now - DateTime.parse(current_user.ic.first(6))).to_f
       age_in_year = (age_in_days/365)
@@ -97,9 +97,9 @@ class RequestsController < ApplicationController
 
   private
     def request_params
-      params.require(:request).permit(:bank_name, :account_number, 
-        :account_name, :transport_type, :to_state, :to_city, 
-        :description, :travelling_fees, :target_amount, :itinerary, 
+      params.require(:request).permit(:bank_name, :account_number,
+        :account_name, :transport_type, :to_state, :to_city,
+        :description, :travelling_fees, :target_amount, :itinerary,
         :travel_company, supporting_documents: [])
     end
 end

@@ -19,6 +19,8 @@
 //= require bootstrap-select
 //= require requests
 //= require home
+//= require activestorage
+//= require direct_upload
 
 
 document.addEventListener("turbolinks:load", function(){

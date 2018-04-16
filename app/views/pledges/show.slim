@@ -36,7 +36,7 @@
         = simple_form_for @pledge, url: pledge_upload_receipts_path(@pledge), method: :post do |f|
           label = t('.upload_receipt')
           label.btn.btn-default.btn-responsive for="custom-file-input"
-            = f.file_field :receipt, id: 'custom-file-input', style: 'display: none'
+            = f.file_field :receipt, id: 'custom-file-input', style: 'display: none', direct_upload: true
             = t('.choose_file')
           #file-name-box
 

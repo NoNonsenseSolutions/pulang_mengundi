@@ -16,7 +16,7 @@ class User < ApplicationRecord
     uniqueness: true,
     allow_nil: true
 
-  IC_REGEX = /\d{6}-\d{2}-\d{4}/
+  IC_REGEX = /([0-9][0-9])((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\-([0-9][0-9])\-([0-9][0-9][0-9][0-9])/
   validates :ic, format: { with: IC_REGEX, message: 'invalid '},
     uniqueness: true,
     allow_nil: true

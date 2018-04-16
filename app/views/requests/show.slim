@@ -22,6 +22,8 @@
         = image_tag @request.display_pic, class: 'show-profile-pic'
       div.ml-3
         h3.m-0.p-0 = @requester.name
+        small IC: XXXXXX-XX-#{@requester.ic.last(4)}
+        br
         small SEAT: #{@request.to_city}
         br
         small STATE: #{@request.to_state}

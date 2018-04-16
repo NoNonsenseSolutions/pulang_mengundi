@@ -35,6 +35,7 @@
               div.space-out-column.ml-3
                 div 
                   big #{request.requester.name}
+                  div.font-size-tiny style='font-weight: 300' IC: XXXXXX-XX-#{request.requester.ic.last(4)}
                 div
                   div.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
                   div.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}

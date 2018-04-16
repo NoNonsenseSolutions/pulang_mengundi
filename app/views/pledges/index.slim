@@ -1,6 +1,6 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-    h2.text-center Sponsorship History
+    h2.text-center = t('.sponsorship_history')
     - if @pledges.present?
       - @pledges.each do |pledge|
         - presenter = PledgePresenter.new(pledge)
@@ -8,7 +8,7 @@
           .pledge-card.mt-3
             .pledge-card-body
               div.space-out-column.ml-3
-                div 
+                div
                   big #{presenter.requester_name}
                 div.mt-3
                   div.font-size-tiny.font-weight-lighter SEAT: #{presenter.request_seat}
@@ -22,7 +22,7 @@
             small.font-weight-semibold class="#{presenter.status_klass}"
               = presenter.humanize_status_for_donor
     - else
-      h4.text-center No pledges yet!
+      h4.text-center = t('.no_pledges_yet')
       = link_to requests_path do
           = button_tag class: 'btn btn-primary p-4 btn-responsive  mt-3' do
-            strong VIEW VOTER LIST
+            strong = t('.view_voter_list')

@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
     reporter = current_user
     @report = Report.new report_params.merge({reporter: reporter, reported: reported})
     if @report.save
-      flash[:success] = 'Reported'
+      flash[:success] = t('.success')
     else
       flash[:danger] = @report.errors.full_messages.join('; ')
     end

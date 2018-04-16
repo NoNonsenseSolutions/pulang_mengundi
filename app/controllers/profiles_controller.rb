@@ -10,12 +10,12 @@ class ProfilesController < ApplicationController
         @user.unconfirmed_email = params.dig(:user, :email)
         if @user.save
           UserMailer.with(user_id: @user.id).confirmation_email.deliver_later
-          flash[:success] = "Please check your email to verify your email."
+          flash[:success] = t('.check_email')
         else
-          flash[:danger] = "Email is not valid"
+          flash[:danger] = t('.invalid_email')
         end
       else
-        flash[:success] = "Profile Updated"
+        flash[:success] = t('.success')
       end      
     else
       flash[:danger] = @user.errors.full_messages.join("; ")

@@ -1,25 +1,25 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-    h3.text-center Pledge
+    h3.text-center = t('.pledge')
     div.mt-5
-      p.font-weight-bold Donor name
+      p.font-weight-bold = t('.donor_name')
       p
         = @presenter.donor_name
       - if @presenter.donor_facebook_link
-        p.font-weight-bold Donor facebook url
+        p.font-weight-bold = t('.donor_facebook_url')
         p
           = link_to @presenter.donor_facebook_link, @presenter.donor_facebook_link, target: '_blank'
       - elsif @presenter.donor_twitter_link
-        p.font-weight-bold Donor twitter url
+        p.font-weight-bold t('.donor_twitter_url')
         p
           = link_to @presenter.donor_twitter_link, @presenter.donor_twitter_link, target: '_blank'
-      p.font-weight-bold Pledged at
+      p.font-weight-bold = t('.pledged_at')
       p
         = @presenter.created_at
-      p.font-weight-bold Amount
+      p.font-weight-bold = t('.amount')
       p
         = @presenter.amount
-      p.font-weight-bold Status
+      p.font-weight-bold = t('.status')
       p
         = @presenter.humanize_status_for_requester
 
@@ -32,25 +32,25 @@
       - if policy(@pledge).requester_status_update?
         - if @pledge.donor_transferred?
           div.mt-3
-            = link_to pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch, data: { confirm: 'Are you sure you wan to confirm? Please log in to your bank account separately to check if the funds have indeed been transferred before clicking confirm. ' } do
-              = button_tag "I HAVE RECEIVED", class: 'btn btn-sm btn-responsive p-4 btn-primary font-weight-bold'
+            = link_to pledge_requester_status_path(@pledge, requester_status: "requester_received"), method: :patch, data: { confirm: t('.pledge_status_confirm') } do
+              = button_tag t('.i_have_received'), class: 'btn btn-sm btn-responsive p-4 btn-primary font-weight-bold'
         - if @pledge.donor_transferred?
           div.mt-3
-            = button_tag("I DID NOT RECEIVE", class: 'btn btn-sm btn-responsive p-4 btn-danger font-weight-bold', data: {toggle: "modal", target: "#new-dispute-modal"} )
+            = button_tag(t('.i_did_not_receive'), class: 'btn btn-sm btn-responsive p-4 btn-danger font-weight-bold', data: {toggle: "modal", target: "#new-dispute-modal"} )
         - if @pledge.waiting_for_transfer? && @pledge.past_expiry?
           div.mt-3
-          = link_to pledge_requester_status_path(@pledge, requester_status: "expired"), method: :patch, data: { confirm: 'Are you sure you wan to expire this pledge? Click OK if your donor has not honoured their pledge. This will allow you to receive new pledges.' } do
-            = button_tag("EXPIRE", class: 'btn btn-sm btn-responsive p-4 btn-danger font-weight-bold')
-      = link_to button_tag("BACK TO MY REQUEST", class: 'btn btn-sm btn-responsive p-4 btn-primary mt-3 font-weight-bold'), @request
+          = link_to pledge_requester_status_path(@pledge, requester_status: "expired"), method: :patch, data: { confirm: t('.expire_pledge_confirm') } do
+            = button_tag(t('.expire'), class: 'btn btn-sm btn-responsive p-4 btn-danger font-weight-bold')
+      = link_to button_tag(t('.back_to_my_request'), class: 'btn btn-sm btn-responsive p-4 btn-primary mt-3 font-weight-bold'), @request
 
-.modal.fade#new-dispute-modal role="dialog" tabindex="-1" 
-  .modal-dialog.modal-sm role="document" 
+.modal.fade#new-dispute-modal role="dialog" tabindex="-1"
+  .modal-dialog.modal-sm role="document"
     .modal-content
       .modal-header
-        | Dispute
-        button.close aria-label="Close" data-dismiss="modal" type="button" 
+        = t('.dispute')
+        button.close aria-label="Close" data-dismiss="modal" type="button"
           span aria-hidden="true"  &times;
-      .modal-body        
+      .modal-body
         = simple_form_for [@pledge, Dispute.new] do |f|
           = f.input :comment, input_html: {required: true, class: 'border-black'}
           = f.submit 'Report', class: 'btn btn-danger text-center'

@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :initialize_notification_presenter
 
+  before_action :set_locale
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
@@ -18,5 +20,17 @@ class ApplicationController < ActionController::Base
     flash[:danger] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
     redirect_to(request.referrer || root_path)
   end
+
+  def default_url_options(options = {})
+    { locale: I18n.locale }
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] if params[:locale].present?
+    # redirect back to home page if user typed in URL such as /my
+    rescue
+    redirect_to root_path(locale: :en)
+  end
+
 
 end

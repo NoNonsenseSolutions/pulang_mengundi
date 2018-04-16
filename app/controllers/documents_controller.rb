@@ -6,9 +6,9 @@ class DocumentsController < ApplicationController
       authorize document
 
       document.purge_later
-      flash[:success] = 'Removed'
+      flash[:success] = t('.deleted')
     else
-      flash[:success] = 'File not found'
+      flash[:danger] = t('.not_found')
     end
     redirect_back(fallback_location: root_path)
   end

@@ -5,31 +5,31 @@
         .col-xs-6
           h3.m-0.font-weight-bold
             span
-              | RM 
+              | RM
             span#total-amount-pledged data-total=@total_amount_pledged
-              
-          small Total Amount Pledged
+
+          small = t('.total_amount_pledged')
         .col-xs-6
           h3.m-0.font-weight-bold#number-voter-request data-total=@total_number_of_requests
-          small No. of voter requests
+          small = t('.no_of_voter_requests')
     .switch.mt-5
-      = link_to "Sponsor Others", root_path, class: "switch-items"
-      = link_to "Need A Sponsor", home_path, class: "switch-items active"
+      = link_to t('.sponsor_others'), root_path, class: "switch-items"
+      = link_to t('.need_a_sponsor'), home_path, class: "switch-items active"
 
-    h3.mb-5.mt-5.text-center Need A Sponsor
+    h3.mb-5.mt-5.text-center = t('.need_a_sponsor')
     - if current_user
-      - if current_user.request 
+      - if current_user.request
         = link_to request_manage_pledges_path(current_user.request) do
           = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-            strong MANAGE MY REQUEST
+            strong = t('.manage_my_request')
       - else
         = link_to new_request_path do
           = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-            strong SUBMIT MY REQUEST
+            strong = t('.submit_my_request')
     - else
       = link_to new_request_path do
         = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-          strong SUBMIT MY REQUEST
+          strong = t('.submit_my_request')
       = link_to new_sessions_path do
         = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-          strong MANAGE MY REQUEST
+          strong = t('.manage_my_request')

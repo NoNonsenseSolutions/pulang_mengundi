@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <strong>#PULANGMENGUNDI</strong>
+      <% end %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if params[:locale] != 'ms' %>
+          <li class="nav-item">
+            <%= link_to 'BM', root_path(locale: :ms), class: 'font-weight-semibold' %>
+          </li>
+        <% end %>
+        <% if params[:locale] != 'en' %>
+          <li class="nav-item">
+            <%= link_to 'EN', root_path(locale: :en), class: 'font-weight-semibold' %>
+          </li>
+        <% end %>
+        <% if params[:locale] != 'zh' %>
+          <li class="nav-item">
+            <%= link_to '中文', root_path(locale: :zh), class: 'font-weight-semibold' %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to t('.carpool'), 'https://carpool.pulangmengundi.com', class: 'font-weight-semibold' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('.subsidy'), root_path, class: 'font-weight-semibold' %>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <%= link_to t('.faq'), faq_path, class: 'font-weight-semibold' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t('.contact'), contact_path, class: 'font-weight-semibold' %>
+        </li>
+        <% if user_logged_in? %>
+          <% if current_user.request %>
+            <!-- if user has request -->
+            <li class="nav-item">
+              <%= link_to t('.my_request'), current_user.request, class: 'font-weight-semibold' %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to t('.completed_sponsorships'), completed_requests_path, class: 'font-weight-semibold' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to t('.my_sponsorships'), pledges_path, class: 'font-weight-semibold' %>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle font-weight-semibold" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name.truncate(15) %><span class="caret"></span></a>
+            <ul class="dropdown-menu bg-primary-orange">
+              <li class="nav-item">
+                <%= link_to t('.profile'), edit_profiles_path, class: 'font-weight-semibold' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to t('.log_out'), sessions_path, method: :delete, class: 'font-weight-semibold' %>
+              </li>
+            </ul>
+          </li>
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to t('.log_in'), new_sessions_path, class: 'font-weight-semibold' %>
+          </li>
+        <% end %>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,13 @@
+en:
+  layouts:
+    navbar:
+      carpool: Carpool
+      subsidy: Subsidy
+      faq: FAQ
+      contact: Contact
+      my_request: My Request
+      completed_sponsorships: Completed Sponsorships
+      my_sponsorships: My Sponsorships
+      profile: Profile
+      log_out: Log out
+      log_in: Log in

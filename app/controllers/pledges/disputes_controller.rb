@@ -7,7 +7,7 @@ class Pledges::DisputesController < ApplicationController
 
     if @dispute.save
       @pledge.requester_disputed!
-      flash[:success] = 'Disputed'
+      flash[:success] = t ('.disputed')
     else
       flash[:danger] = @dispute.errors.full_messages.join('; ')
     end

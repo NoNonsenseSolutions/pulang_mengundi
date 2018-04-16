@@ -1,0 +1,26 @@
+en:
+  static_pages:
+    contact:
+      find_us_on_social_media: Find us on Social Media
+    faq:
+      title: FAQ
+      q_1:
+        title: 1. Do you keep my details?
+        answer: Our platform authenticates your identity based on your fb profile. With your permission, we obtain these information
+        name: name
+        profile_pic_url: profile pic url
+        profile_url: profile url
+        bank_account: bank account
+      q_2:
+        title: 2. Will my details be shared with others?
+        answer: No. Never.
+      q_3:
+        title: 3. I have a problem with the app, who do I contact?
+        answer: Don’t fret, reach us at pulang.undi@gmail.com
+    home:
+      total_amount_pledged: Total Amount Pledged
+      no_of_voter_requests: No. of voter requests
+      need_a_sponsor: Need A Sponsor
+      sponsor_others: Sponsor Others
+      manage_my_request: MANAGE MY REQUEST
+      submit_my_request: SUBMIT MY REQUEST

@@ -1,0 +1,17 @@
+en:
+  requests:
+    form:
+      tell_us_why: Tell us why you need a sponsor
+      total_ticket_amount: Total ticket amount (RM)
+      sponsorship_requests: Sponsorship requests(RM)
+      bank: Bank
+      choose_file: Choose File
+      supporting_documents: Supporting Documents
+      uploaded_documents: Uploaded Documents
+      delete: Delete
+      delete_confirm: Are you sure you want to delete this file?
+      please_make_sure_all_your: Please make sure all your details, especially bank details are correct, as they cannot be changed once a pledge has been made
+      itinerary: Intinerary / Receipt No.
+      travel_company: Travel Company
+      transport_type: Transport Type
+      description: Tell Us Why

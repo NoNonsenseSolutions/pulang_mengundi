@@ -3,10 +3,10 @@
     .vertical-center
       div
         h2.text-center
-          | Thank You for Your Sponsorship.
+          = t('.thank_you_for')
 
         p.text-center
-          | Your random act of kindness has helped Malaysians to perform their civic duty. #pulangmengundi
+          = t('.your_random_act')
         = link_to root_path do
             = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-              strong Sponsor others
+              strong t('.sponsor_others')

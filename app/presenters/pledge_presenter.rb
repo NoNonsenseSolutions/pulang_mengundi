@@ -1,4 +1,4 @@
-class PledgePresenter
+class PledgePresenter < ApplicationPresenter
   class InvalidStatusError < StandardError 
   end;
 
@@ -10,15 +10,15 @@ class PledgePresenter
   def humanize_status_for_donor
     text = case pledge.status
     when "waiting_for_transfer"
-      "Pending your transfer"
+      t('pledge.humanize_status_for_donor.waiting_for_transfer')
     when "donor_transferred"
-      "Pending voter confirmation"
+      t('pledge.humanize_status_for_donor.donor_transferred')
     when "requester_received"
-      "Completed"
+      t('pledge.humanize_status_for_donor.requester_received')
     when "requester_disputed"
-      "Disputed"
+      t('pledge.humanize_status_for_donor.requester_disputed')
     when "expired"
-      "Expired"
+      t('pledge.humanize_status_for_donor.expired')
     else
       raise InvalidStatusError, pledge.status
     end
@@ -28,15 +28,15 @@ class PledgePresenter
   def humanize_status_for_requester
     text = case pledge.status
     when "waiting_for_transfer"
-      "Pending donor transfer"
+      t('pledge.humanize_status_for_requester.waiting_for_transfer')
     when "donor_transferred"
-      "Pending your confirmation"
+      t('pledge.humanize_status_for_requester.donor_transferred')
     when "requester_received"
-      "Completed"
+      t('pledge.humanize_status_for_requester.requester_received')
     when "requester_disputed"
-      "Disputed"
+      t('pledge.humanize_status_for_requester.requester_disputed')
     when "expired"
-      "Expired"
+      t('pledge.humanize_status_for_requester.expired')
     else
       raise InvalidStatusError, pledge.status
     end
@@ -54,7 +54,7 @@ class PledgePresenter
     when "requester_disputed"
       "text-danger"
     when "expired"
-      "Expired"
+      "text-danger"
     else
       raise InvalidStatusError, pledge.status
     end

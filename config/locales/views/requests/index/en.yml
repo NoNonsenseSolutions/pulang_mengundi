@@ -1,0 +1,19 @@
+en:
+  requests:
+    index:
+      total_amount_pledged: Total Amount Pledged
+      no_of_voter_requests: No. of voter requests
+      sponsor_others: Sponsor Others
+      need_a_sponsor: Need A Sponsor
+      voter_requests: Voter Requests
+      filter_requests: Filter Requests
+      seat: 'SEAT:'
+      state: 'STATE:'
+      form:
+        all: All
+        state: State
+        seat: Seat
+      random: Random
+      highest_balance: Highest Balance
+      lowest_balance: Lowest Balance
+      search: Search

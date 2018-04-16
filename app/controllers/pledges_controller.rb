@@ -15,7 +15,7 @@ class PledgesController < ApplicationController
     @pledge = @request.pledges.new(pledge_params.merge(donor: current_user))
     authorize @pledge
     if @pledge.save
-      flash[:success] = 'Pledged'
+      flash[:success] = t('.success')
       redirect_to @pledge
     else
       flash[:danger] = @pledge.errors.full_messages.join("; ")

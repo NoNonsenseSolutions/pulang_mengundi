@@ -1,0 +1,9 @@
+en:
+  user_mailer:
+    confirmation_email:
+      confirm_your_email: Confirm your email to join
+      to_confirm_your_email: 'To confirm your email, just follow this link:'
+      hello: Hello
+      click_on_the_email: Click on the email below to confirm your email.
+      confirm: Confirm
+      if_you_have_any: If you have any questions, simply reply to this email. We'd love to help.

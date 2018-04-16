@@ -1,37 +1,37 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
     section#guideline
-      h4.text-danger.font-weight-bold PERFORM CHECKS BEFORE SPONSORING
+      h4.text-danger.font-weight-bold = t('.perform_check_before_sponsoring')
 
-      h5 1. Talk to Voter
+      h5 = t('.talk_to_vovter')
       ul
-        li Click FB / twitter profile link to 
-        span.font-weight-bold add 
-        span them to chat or ping them on WhatsApp to get to know them.
-      small.font-weight-bold Tip! 
-      small Ask for email and phone number in case you need to contact them again
+        li = t('.click_fb_twitter_profile')
+        span.font-weight-bold = t('.add')
+        span = t('.them_to_chat_or_ping')
+      small.font-weight-bold = t('.tip')
+      small = t('ask_for_email_and_phone')
       br
-      small.font-weight-bold Pro Tip! 
-      small Video Call to make sure they’re legit
+      small.font-weight-bold = t('.pro_tip')
+      small = t('.video_call')
 
-      h5 2. Verify Voting Info
+      h5 = t('.verify_voting_info')
       ul
-        li Get proof of voter travel itinerary
-        li 
-          span Validate voting constituency by cross-checking their NRIC with 
-          a.font-weight-semibold.text-link target="_blank" href="https://pengundi.spr.gov.my" SPR
+        li = t('.get_proof_of_voter')
+        li
+          span =t('.validate_voting_constituency')
+          a.font-weight-semibold.text-link target="_blank" href="https://pengundi.spr.gov.my" = t('.spr')
 
-      h5 3. Perform Bank Transfer
-      ul  
-        li Log into your online banking platform to perform transfer
-      small.font-weight-bold Tip! 
-      small Try to sponsor someone using the same bank to check if their Facebook/Twitter name tallies with their bank account name
+      h5 = t('.perform_bank_transfer')
+      ul
+        li = t('.log_into_your_online_banking')
+      small.font-weight-bold = t('.tip')
+      small = t('.try_to_sponsor_someone')
 
-      h5 4. Finalise Your Transfer
-      ul  
-        li Upload transaction receipt, click "I've Transferred"
-        li Inform the voter that you’ve already transferred
-      
+      h5 = t('.finalize_your_transfer')
+      ul
+        li = t('.upload_transaction_receipt')
+        li = t('.inform_the_voter')
+
       br
 
     hr
@@ -39,45 +39,45 @@
     section.progress-bars.mt-5
       .statuses
         div
-          | Received: 
+          = t('.received')
           br
           = number_to_currency @request.successful_pledges_amount, unit: 'RM '
 
         div.ml-3.text-center
-          | Awaiting:
+          = t('.awaiting')
           br
           = number_to_currency @request.pending_pledges_amount, unit: 'RM '
         div.ml-3.text-right
-          | Balance:
+          = t('.balance')
           br
           = number_to_currency @request.remaining_balance, unit: 'RM '
 
       / Progress
       .progress
-        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%") 
+        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%")
           span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
-        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%") 
-          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)  
+        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%")
+          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)
 
     div.mt-5
       = simple_form_for [@request, @pledge] do |f|
         = f.input :amount, label: 'Amount to pledge (RM)', input_html: { min: "10", max: "10000"}
 
-        small 
-          | IMPORTANT NOTE: 
+        small
+          = t('.important_note')
           br
-          | This is a manual platform. 
+          = t('.this_is_a_manual_platform')
           br
-          | We do not connect our pledge system to a financial payment system. Please login to your online banking platform separately to facilitate bank transfer. 
+          = t('.we_do_not_connect')
           br
-          | To prevent fraud, we strongly encourage that you match bank recipient name and Facebook/Twitter profile name along with information provided by the Voter to validate that the Voter.
+          = t('.to_prevent_fraud')
 
         label.mt-3
-          | I've read and understood the 
-          = link_to "Terms & Conditions. ", "https://www.iubenda.com/privacy-policy/46243103/legal", target: '_blank'
-          | I know that i need to verify the voter myself.
+          = t('.i_read_and_understood')
+          = link_to t('.terms_and_conditions'), "https://www.iubenda.com/privacy-policy/46243103/legal", target: '_blank'
+          = t('.i_know_that_i')
         = f.input :read_terms
-        = f.submit 'Pledge', class: 'btn btn-primary btn-responsive text-center'
+        = f.submit t('.pledge'), class: 'btn btn-primary btn-responsive text-center'
 
 
 

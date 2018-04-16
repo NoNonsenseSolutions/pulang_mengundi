@@ -9,10 +9,10 @@ class Pledges::UploadReceiptsController < ApplicationController
       @pledge.confirmed_at = Time.zone.now
       @pledge.save
 
-      flash[:success] = 'Thank you!'
+      flash[:success] = t('.thank_you')
       redirect_to for_pledging_thank_you_screens_path
     else
-      flash[:danger] = 'Please upload a receipt to show that you have transferred'
+      flash[:danger] = t('.missing_receipt')
       redirect_back(fallback_location: @pledge)
     end
     

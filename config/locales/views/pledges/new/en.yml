@@ -1,0 +1,33 @@
+en:
+  pledges:
+    new:
+      perform_checks_before_sponsoring: PERFORM CHECKS BEFORE SPONSORING
+      talk_to_voter: 1. Talk to Voter
+      click_fb_twitter_profile: Click FB / twitter profile link to
+      add: add
+      them_to_chat_or_ping: them to chat or ping them on WhatsApp to get to know them.
+      ask_for_email_and_phone: Ask for email and phone number in case you need to contact them again
+      tip: Tip!
+      pro_tip: Pro Tip!
+      video_call: Video Call to make sure they’re legit
+      verify_voting_info: 2. Verify Voting Info
+      get_proof_of_voter: Get proof of voter travel itinerary
+      validate_voting_constituency: Validate voting constituency by cross-checking their NRIC with
+      spr: SPR
+      perform_bank_transfer: 3. Perform Bank Transfer
+      log_into_your_online_banking: Log into your online banking platform to perform transfer
+      try_to_sponsor_someone: Try to sponsor someone using the same bank to check if their Facebook/Twitter name tallies with their bank account name
+      finalize_your_transfer: 4. Finalise Your Transfer
+      upload_transaction_receipt: Upload transaction receipt, click "I've Transferred"
+      inform_the_voter: Inform the voter that you’ve already transferred
+      received: 'Received:'
+      awaiting: 'Awaiting:'
+      balance: 'Balance:'
+      important_note: 'IMPORTANT NOTE:'
+      this_is_a_manual_platform: This is a manual platform.
+      we_do_not_connect: We do not connect our pledge system to a financial payment system. Please login to your online banking platform separately to facilitate bank transfer.
+      to_prevent_fraud: To prevent fraud, we strongly encourage that you match bank recipient name and Facebook/Twitter profile name along with information provided by the Voter to validate that the Voter.
+      i_read_and_understood: I've read and understood the
+      terms_and_conditions: "Terms & Conditions. "
+      i_know_that_i: I know that i need to verify the voter myself.
+      pledge: Pledge

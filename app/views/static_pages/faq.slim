@@ -1,17 +1,17 @@
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-    h3 FAQ
+    h3 = t('.title')
 
-    h5.mt-5.font-weight-semibold 1. Do you keep my details?
-    p Our platform authenticates your identity based on your fb profile. With your permission, we obtain these information:
+    h5.mt-5.font-weight-semibold = t('.q_1.title')
+    p = t('.q_1.answer')
     ul
-      li name
-      li profile pic url
-      li profile url
-      li bank account
+      li = t('.q_1.name')
+      li = t('.q_1.profile_pic_url')
+      li = t('.q_1.profile_url')
+      li = t('.q_1.bank_account')
 
-    h5.mt-5.font-weight-semibold 2. Will my details be shared with others?
-    p No. Never.
+    h5.mt-5.font-weight-semibold = t('.q_2.title')
+    p = t('.q_2.answer')
 
-    h5.mt-5.font-weight-semibold 3. I have a problem with the app, who do I contact?
+    h5.mt-5.font-weight-semibold
     p Don’t fret, reach us at pulang.undi@gmail.com

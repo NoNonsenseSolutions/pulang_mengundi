@@ -4,9 +4,9 @@ class Requests::EnablesController < ApplicationController
     authorize(@request, :destroy?)
     if @request.disabled?
       @request.enable!
-      flash[:success] = "Request enabled"
+      flash[:success] = t(".enabled")
     else
-      flash[:danger] = "Request was not disabled"
+      flash[:danger] = t('.not_disabled')
     end
     redirect_back(fallback_location: manage_pledge_path(@request))
   end

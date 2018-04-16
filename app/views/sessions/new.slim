@@ -3,15 +3,15 @@
     .vertical-center
       div
         h2.text-center.mb-5.mt-5
-          | Please Login
+          = t('.please_login')
         .login-box
           .social-media-icons
-            = link_to '/auth/facebook' do
+            = link_to omniauth_localized_path(:facebook) do
               = image_tag 'icon_facebook.svg', class: 'img-responsive'
           .social-media-icons
-            = link_to '/auth/twitter' do
+            = link_to omniauth_localized_path(:twitter) do
               = image_tag 'icon_twitter.svg', class: 'img-responsive'
     div.text-center
-      small We dedicate this app to WKY, without which, none of this would be possible. GWS Pa.
+      small = t('.dedication')
 
 

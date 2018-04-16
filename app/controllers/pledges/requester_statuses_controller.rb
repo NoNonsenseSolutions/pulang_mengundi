@@ -12,7 +12,7 @@ class Pledges::RequesterStatusesController < ApplicationController
       raise "Status received #{params[:requester_status]}"
     end
 
-    flash[:success] = 'Pledge has been updated'
+    flash[:success] = t('.success')
     redirect_to(request_manage_pledges_path @pledge.request)
   end
 end

@@ -27,22 +27,21 @@ class LinkedAccount < ApplicationRecord
       end
     else
       # new linked account
-      if current_user
-        # assign current user
-        linked_account.user = current_user
-
-      else
-        user = User.find_by(email: auth_info[:email]) if auth_info[:email].present?
-        if user
-          # linked in sometimes returns email as an emptry string, presumably because users signed up with phone
-          linked_account.user = user
-        else
-          # if there's no existing user, Create a user
-          linked_account.user = User.create!(name: auth_info[:name],
+      linked_account.user = if current_user
+                              # assign current user
+                              current_user
+                            else
+                              user = User.find_by(email: auth_info[:email]) if auth_info[:email].present?
+                              if user
+                                # linked in sometimes returns email as an emptry string, presumably because users signed up with phone
+                                user
+                              else
+                                # if there's no existing user, Create a user
+                                User.create!(name: auth_info[:name],
                                              profile_pic: auth_info[:profile_pic],
                                              email: auth_info[:email])
-        end
-      end
+                              end
+                            end
 
       linked_account.save
       linked_account.user

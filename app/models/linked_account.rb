@@ -32,7 +32,8 @@ class LinkedAccount < ApplicationRecord
         linked_account.user = current_user
 
       else
-        if auth_info[:email].present? && user = User.find_by(email: auth_info[:email])
+        user = User.find_by(email: auth_info[:email]) if auth_info[:email].present?
+        if user
           # linked in sometimes returns email as an emptry string, presumably because users signed up with phone
           linked_account.user = user
         else
@@ -48,34 +49,36 @@ class LinkedAccount < ApplicationRecord
     end
   end
 
-  private
+  class << self
+    private
 
-  def self.extract_info(auth)
-    if auth['provider'] == 'facebook'
-      facebook_details(auth)
-    elsif auth['provider'] == 'twitter'
-      twitter_details(auth)
-    else
-      raise 'not implemented'
+    def extract_info(auth)
+      if auth['provider'] == 'facebook'
+        facebook_details(auth)
+      elsif auth['provider'] == 'twitter'
+        twitter_details(auth)
+      else
+        raise 'not implemented'
+      end
     end
-  end
 
-  def self.facebook_details(auth)
-    {
-      link: auth.dig('extra', 'raw_info', 'link'),
-      profile_pic: auth.dig('info', 'image'),
-      name: auth.dig('extra', 'raw_info', 'name'),
-      email: auth.dig('info', 'email')
-    }
-  end
+    def facebook_details(auth)
+      {
+        link: auth.dig('extra', 'raw_info', 'link'),
+        profile_pic: auth.dig('info', 'image'),
+        name: auth.dig('extra', 'raw_info', 'name'),
+        email: auth.dig('info', 'email')
+      }
+    end
 
-  def self.twitter_details(auth)
-    email = auth.dig('info', 'email')
-    {
-      link: auth.dig('info', 'urls', 'Twitter'),
-      profile_pic: auth.dig('info', 'image'),
-      name: auth.dig('info', 'name'),
-      email: email.present? ? email : nil
-    }
+    def twitter_details(auth)
+      email = auth.dig('info', 'email')
+      {
+        link: auth.dig('info', 'urls', 'Twitter'),
+        profile_pic: auth.dig('info', 'image'),
+        name: auth.dig('info', 'name'),
+        email: email.present? ? email : nil
+      }
+    end
   end
 end

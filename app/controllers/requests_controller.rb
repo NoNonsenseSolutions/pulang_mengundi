@@ -36,9 +36,7 @@ class RequestsController < ApplicationController
       elsif @search_date_created == 'Random'
         @requests = @requests.order("RANDOM()")
       end
-    end
-
-    if !@search_date_created.present? && !@search_order.present? && !@search_state_seat.present? && !@bank_name.present?
+    else
       @requests = @requests.order("RANDOM()")
     end
 
@@ -111,6 +109,6 @@ class RequestsController < ApplicationController
       params.require(:request).permit(:bank_name, :account_number, 
         :account_name, :transport_type, :to_state, :to_city, 
         :description, :travelling_fees, :target_amount, :itinerary, 
-        :travel_company, supporting_documents: [])
+        :travel_company, :created_at, supporting_documents: [])
     end
 end

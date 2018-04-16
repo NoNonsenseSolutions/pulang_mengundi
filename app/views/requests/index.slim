@@ -83,12 +83,23 @@
                       = bank_name
               // Bank
               select.mt-3.selectpicker.form-control data-live-search="true" title="Order" name="search[order]"
-                option selected=('Random'==@search_order) 
-                  | Random
+                optgroup label="None"
+                  option 
                 option selected=('Highest Balance'==@search_order) 
                   | Highest Balance
                 option selected=('Lowest Balance'==@search_order) 
                   | Lowest Balance
+
+              // Date
+              select.mt-3.selectpicker.form-control datez-live-search="true" title="Date Created" name="search[date_created]"
+                optgroup label="None"
+                  option 
+                option selected=('Random'==@search_date_created) 
+                  | Random
+                option selected=('Newest'==@search_date_created) 
+                  | Newest
+                option selected=('Oldest'==@search_date_created) 
+                  | Oldest
 
               button.mt-3.btn.btn-primary 
                 | Search

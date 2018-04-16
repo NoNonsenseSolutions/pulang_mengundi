@@ -24,10 +24,21 @@ class RequestsController < ApplicationController
         @requests = @requests.order(remaining_balance: :desc)
       elsif @search_order == 'Lowest Balance'
         @requests = @requests.order(remaining_balance: :asc)
-      else
+      end
+    end
+
+    @search_date_created = params.dig(:search, :date_created)
+    if @search_date_created.present?
+      if @search_date_created == 'Newest'
+        @requests = @requests.order(created_at: :desc)
+      elsif @search_date_created == 'Oldest'
+        @requests = @requests.order(created_at: :asc)
+      elsif @search_date_created == 'Random'
         @requests = @requests.order("RANDOM()")
       end
-    else
+    end
+
+    if !@search_date_created.present? && !@search_order.present? && !@search_state_seat.present? && !@bank_name.present?
       @requests = @requests.order("RANDOM()")
     end
 

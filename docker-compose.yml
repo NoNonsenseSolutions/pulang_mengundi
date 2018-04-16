@@ -1,0 +1,33 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:10-alpine
+    volumes:
+      - .:/app
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:4-alpine
+    ports:
+      - '6379:6379'
+  app:
+    build: .
+    command: ./bin/docker/start
+    volumes:
+      - .:/app
+    volumes_from:
+      - cache
+    environment:
+      - DOCKERIZED=true
+      - PGHOST=postgres
+      - PGUSER=postgres
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+  cache:
+    image: busybox
+    volumes:
+      - /cache

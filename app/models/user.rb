@@ -16,6 +16,11 @@ class User < ApplicationRecord
     uniqueness: true,
     allow_nil: true
 
+  IC_REGEX = /\d{6}-\d{2}-\d{4}/
+  validates :ic, format: { with: IC_REGEX, message: 'invalid ic'},
+    uniqueness: true,
+    allow_nil: true
+
   validates :unconfirmed_email, format: { with: EMAIL_REGEX, message: 'invalid email' }, allow_blank: true
 
   def expired_request_pledges

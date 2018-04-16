@@ -21,12 +21,19 @@
           | Check your email to confirm #{@user.unconfirmed_email} belongs to you. 
         small = link_to "Resend Email", profiles_path({user: {email: @user.unconfirmed_email}}), method: :patch, class: 'text-link'
 
-
       = f.input :email_public, label: 'Set email to public. (Helps donors to contact you if your social media is private)', class: 'mt-5'
+
+      - if !@user.ic.present?
+        = f.input :ic, label: "IC Number", wrapper_html: { class: 'mb-0'}, placeholder: '999999-99-9999'
+      - else
+        = f.input :ic, label: "IC Number", disabled: true, wrapper_html: { class: 'mb-0'}, placeholder: '999999-99-9999'
+
+      p.mb-0
+        | Include dash "-" in the IC Number. IC Number can not be updated once saved. Contact customer service if changes need to be done.
 
       div.row.mt-5
         div.col-xs-4
           = f.input :phone_area_code, collection: PhoneAreaCode.list, selected: f.object.phone_area_code || '60', input_html: { class: 'selectpicker pr-0', data: { 'live-search' => true }}, label: "Area"
         div.col-xs-8
-          = f.input :phone_number, label: 'Phone Number(Optional)'
+          = f.input :phone_number, label: 'Phone Number(Optional)', placeholder: '99-999-9999'
       = f.submit 'Save', class: 'btn btn-primary btn-responsive'

@@ -38,8 +38,23 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = Request.new
-    authorize @request
+    user_ic_email_present = current_user.email.present? && current_user.ic.present?
+    
+    if user_ic_email_present
+      age_in_days = (DateTime.now - DateTime.parse(current_user.ic.first(6))).to_f
+      age_in_year = (age_in_days/365)
+
+      if age_in_year <= 21
+        flash[:danger] = 'Not eligible! Please contact customer service'
+        redirect_to root_path
+      else
+        @request = Request.new
+        authorize @request
+      end
+    else
+      flash[:danger] = 'Missing IC or Email information.'
+      redirect_to edit_profiles_path
+    end
   end
 
   def create

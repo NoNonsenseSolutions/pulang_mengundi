@@ -22,14 +22,3 @@ Metrics/MethodLength:
 # Offense count: 4
 Metrics/PerceivedComplexity:
   Max: 14
-
-# # Offense count: 1
-# Style/MultilineTernaryOperator:
-#   Exclude:
-#     - 'app/models/concerns/email_confirmation.rb'
-
-# Offense count: 54
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 4961

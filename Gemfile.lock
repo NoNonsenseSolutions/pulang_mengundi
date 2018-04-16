@@ -86,6 +86,7 @@ GEM
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -180,6 +181,14 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     pg (0.20.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.6.0)
+      byebug (~> 10.0)
+      pry (~> 0.10)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.3)
     pundit (1.1.0)
@@ -304,7 +313,6 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.3.7)
   bootstrap-select-rails
-  byebug
   capybara (~> 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
@@ -319,6 +327,8 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   pg
+  pry-byebug
+  pry-rails
   puma (~> 3.11)
   pundit
   rails (= 5.2.0.beta2)

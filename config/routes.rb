@@ -1,27 +1,26 @@
+# frozen_string_literal: true
+
 Rails.application.routes.default_url_options[:host] = ENV['HOST_URL']
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope '/:locale', locale: /#{I18n.available_locales.join("|")}/ do
+    root 'requests#index'
 
-  scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
-    root "requests#index"
-
-    get 'sponsor_someone', to: "static_pages#home", as: :home
-    get 'contact', to: "static_pages#contact", as: :contact
-    get 'faq', to: "static_pages#faq", as: :faq
+    get 'sponsor_someone', to: 'static_pages#home', as: :home
+    get 'contact', to: 'static_pages#contact', as: :contact
+    get 'faq', to: 'static_pages#faq', as: :faq
 
     get 'auth/:provider/localized', to: 'sessions#localized', as: :omniauth_localized
 
-
-    resources :requests, only: [:index, :new, :create, :edit, :update, :show] do
-      resources :pledges, only: [:new, :create]
+    resources :requests, only: %i[index new create edit update show] do
+      resources :pledges, only: %i[new create]
       resource :thank_you_screens, only: :show
       resources :manage_pledges, only: [:index]
       resource :enables, only: :create, controller: 'requests/enables'
       resource :disables, only: :create, controller: 'requests/disables'
     end
 
-    resources :pledges, only: [:show, :index] do
+    resources :pledges, only: %i[show index] do
       resource :requester_status, only: :update, controller: 'pledges/requester_statuses'
       resource :upload_receipts, only: :create, controller: 'pledges/upload_receipts'
       resource :disputes, only: :create, controller: 'pledges/disputes'
@@ -29,7 +28,7 @@ Rails.application.routes.draw do
 
     resources :completed_requests, only: [:index]
 
-    resource :sessions, only: [:new, :destroy]
+    resource :sessions, only: %i[new destroy]
     resources :manage_pledges, only: :show
 
     resources :documents, only: [:destroy]
@@ -40,7 +39,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :profiles, only: [:edit, :update]
+    resource :profiles, only: %i[edit update]
 
     resources :users, only: [] do
       resources :reports, only: [:create]
@@ -54,7 +53,6 @@ Rails.application.routes.draw do
   get 'auth/twitter/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
 
-
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :redirected_root
-  get "/*path", to: redirect("/#{I18n.default_locale}/%{path}", status: 302), constraints: {path: /(?!(#{I18n.available_locales.join("|")})\/).*/}, format: false
+  get '/*path', to: redirect("/#{I18n.default_locale}/%{path}", status: 302), constraints: { path: /(?!(#{I18n.available_locales.join("|")})\/).*/ }, format: false
 end

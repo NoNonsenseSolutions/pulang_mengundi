@@ -23,23 +23,10 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 14
 
-# Offense count: 1
-Style/IfInsideElse:
-  Exclude:
-    - 'app/models/linked_account.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/models/pledge.rb'
-    - 'app/models/request.rb'
-    - 'app/models/user.rb'
-
-# Offense count: 1
-Style/MultilineTernaryOperator:
-  Exclude:
-    - 'app/models/concerns/email_confirmation.rb'
+# # Offense count: 1
+# Style/MultilineTernaryOperator:
+#   Exclude:
+#     - 'app/models/concerns/email_confirmation.rb'
 
 # Offense count: 54
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.

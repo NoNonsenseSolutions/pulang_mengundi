@@ -17,7 +17,7 @@ class User < ApplicationRecord
     allow_nil: true
 
   IC_REGEX = /\d{6}-\d{2}-\d{4}/
-  validates :ic, format: { with: IC_REGEX, message: 'invalid ic'},
+  validates :ic, format: { with: IC_REGEX, message: 'invalid '},
     uniqueness: true,
     allow_nil: true
 

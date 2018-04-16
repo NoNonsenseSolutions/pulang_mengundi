@@ -24,7 +24,7 @@
       = f.input :email_public, label: 'Set email to public. (Helps donors to contact you if your social media is private)', class: 'mt-5'
 
       - if !@user.ic.present?
-        = f.input :ic, label: "IC Number", wrapper_html: { class: 'mb-0'}
+        = f.input :ic, label: "IC Number", wrapper_html: { class: 'mb-0'}, placeholder: '999999-99-9999'
       - else
         = f.input :ic, label: "IC Number", disabled: true, wrapper_html: { class: 'mb-0'}, placeholder: '999999-99-9999'
 

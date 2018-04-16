@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RequestPolicy
   class Scope
     attr_reader :user, :scope
@@ -33,9 +35,9 @@ class RequestPolicy
 
   def show?
     if @request.disabled?
-      return request.requester == user
+      request.requester == user
     else
-      return true 
+      true
     end
   end
 

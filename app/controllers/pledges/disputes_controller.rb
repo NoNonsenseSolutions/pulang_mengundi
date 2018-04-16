@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Pledges::DisputesController < ApplicationController
   def create
     @pledge = Pledge.find(params[:pledge_id])
@@ -15,7 +17,8 @@ class Pledges::DisputesController < ApplicationController
   end
 
   private
-    def dispute_params
-      params.require(:dispute).permit(:comment)
-    end
+
+  def dispute_params
+    params.require(:dispute).permit(:comment)
+  end
 end

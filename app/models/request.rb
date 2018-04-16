@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 class Request < ApplicationRecord
-  TRANSPORT_TYPES = ["FLIGHT", "BUS", "TRAIN"]
+  TRANSPORT_TYPES = %w[FLIGHT BUS TRAIN].freeze
   belongs_to :requester, class_name: 'User'
   has_many :pledges, dependent: :destroy
 
   has_many_attached :supporting_documents
 
   validates :bank_name, presence: true, inclusion: { in: Bank::NAMES, message: 'must be in the list of banks' }
-  validates :account_number, 
-    presence: true, uniqueness: { scope: :bank_name }, 
-    format: { with: /\A\d+\z/, message: "can only contain numbers" }
+  validates :account_number,
+            presence: true, uniqueness: { scope: :bank_name },
+            format: { with: /\A\d+\z/, message: 'can only contain numbers' }
   validates :account_name, presence: true
-  validates :transport_type, inclusion: {in: TRANSPORT_TYPES}
-  validates :target_amount, inclusion: {in: 10..5000, message: 'has to be between 10 to 5000'}
+  validates :transport_type, inclusion: { in: TRANSPORT_TYPES }
+  validates :target_amount, inclusion: { in: 10..5000, message: 'has to be between 10 to 5000' }
   validates :requester_id, uniqueness: true
-  validates :travelling_fees, presence: true, numericality: {greater_than_or_equal_to: 0}
+  validates :travelling_fees, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   validate :cap_target_amount
 
@@ -22,8 +24,8 @@ class Request < ApplicationRecord
   scope :without_disabled, -> { where(disabled_at: nil) }
 
   def disputes
-    Dispute.where(pledge_id: self.pledges.pluck(:id))
-  end 
+    Dispute.where(pledge_id: pledges.pluck(:id))
+  end
 
   def display_pic
     requester.profile_pic
@@ -37,9 +39,8 @@ class Request < ApplicationRecord
     target_amount == total_received
   end
 
-
   def remaining_balance_percentage
-    (remaining_balance / self.target_amount.to_f * 100).to_i
+    (remaining_balance / target_amount.to_f * 100).to_i
   end
 
   def successful_pledges_amount
@@ -51,15 +52,15 @@ class Request < ApplicationRecord
   end
 
   def successful_pledges_percentage
-    (pledges.requester_received.sum(:amount) / self.target_amount.to_f * 100).to_i
+    (pledges.requester_received.sum(:amount) / target_amount.to_f * 100).to_i
   end
 
   def disputed_pledges_percentage
-    (pledges.requester_disputed.sum(:amount) / self.target_amount.to_f * 100).to_i
+    (pledges.requester_disputed.sum(:amount) / target_amount.to_f * 100).to_i
   end
 
   def pending_pledges_percentage
-    (pledges.pending.sum(:amount) / self.target_amount.to_f * 100).to_i
+    (pledges.pending.sum(:amount) / target_amount.to_f * 100).to_i
   end
 
   def update_remaining_balance!
@@ -82,13 +83,14 @@ class Request < ApplicationRecord
   end
 
   def disabled?
-    !self.disabled_at.nil?
+    !disabled_at.nil?
   end
 
   private
-    def cap_target_amount
-      if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
-        errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
-      end
+
+  def cap_target_amount
+    if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
+      errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
     end
+  end
 end

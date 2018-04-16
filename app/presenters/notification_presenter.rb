@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationPresenter
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
@@ -26,15 +28,15 @@ class NotificationPresenter
   def text
     case category
     when :pending_donor_transfer
-      "Transferred the money for your pledge?"
+      'Transferred the money for your pledge?'
     when :can_be_expired
       "You've been waiting for a transfer for more than 2 hours."
     when :pending_received_confirmation
-      "A donor has transferred funds"
+      'A donor has transferred funds'
     when :complete_profile_suggestion
-      "Complete your profile to get a better chance to be sponsored"
+      'Complete your profile to get a better chance to be sponsored'
     else
-      ""
+      ''
     end
   end
 
@@ -64,19 +66,17 @@ class NotificationPresenter
           'Complete my Profile'
         end
       end
-    else
-      nil
     end
   end
 
   def container_class
     case category
     when :pending_donor_transfer, :pending_received_confirmation
-      "alert alert-info"
+      'alert alert-info'
     when :can_be_expired, :complete_profile_suggestion
-      "alert alert-warning"
+      'alert alert-warning'
     else
-      "hidden"
+      'hidden'
     end
   end
 end

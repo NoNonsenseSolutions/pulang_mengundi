@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Pledges::UploadReceiptsController < ApplicationController
   def create
     @pledge = Pledge.find(params[:pledge_id])
@@ -15,11 +17,11 @@ class Pledges::UploadReceiptsController < ApplicationController
       flash[:danger] = 'Please upload a receipt to show that you have transferred'
       redirect_back(fallback_location: @pledge)
     end
-    
   end
 
   private
-    def receipt_params
-      params.require(:pledge).permit(:receipt)
-    end
+
+  def receipt_params
+    params.require(:pledge).permit(:receipt)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ActiveStorage::AttachmentPolicy
   attr_reader :user, :document
 
@@ -8,8 +10,6 @@ class ActiveStorage::AttachmentPolicy
 
   def destroy?
     record = document.record
-    if record.is_a? Request
-      return record.requester == user
-    end
+    return record.requester == user if record.is_a? Request
   end
 end

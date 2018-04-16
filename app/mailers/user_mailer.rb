@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserMailer < ApplicationMailer
   def confirmation_email
     @user = User.find(params[:user_id])

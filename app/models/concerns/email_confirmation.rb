@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module EmailConfirmation
   attr_accessor :temp_confirmation_token
 
   def create_confirmation_token
     self.temp_confirmation_token = SecureRandom.urlsafe_base64
-    update_attribute(:confirmation_token,  digest(temp_confirmation_token))
+    update_attribute(:confirmation_token, digest(temp_confirmation_token))
     update_attribute(:confirmation_sent_at, Time.zone.now)
   end
 
@@ -17,6 +19,7 @@ module EmailConfirmation
   end
 
   private
+
   def digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

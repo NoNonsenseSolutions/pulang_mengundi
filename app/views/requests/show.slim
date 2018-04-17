@@ -17,128 +17,125 @@
 
 .row
   .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-    - if @request.completed?
-      = t('.info_hidden_for_completed_requests')
-    - else
-      section.user-details
+    section.user-details
+      div
+        = image_tag @request.display_pic, class: 'show-profile-pic'
+      div.ml-3
+        h3.m-0.p-0 = @requester.name
+        small
+          - if @requester.ic.present?
+            | IC: XXXXXX-XX-#{@requester.ic.last(4)}
+          - else
+            | IC: #{t('.not_provider')}
+        br
+        small #{t('.seat')} #{@request.to_city}
+        br
+        small #{t('.state')} #{@request.to_state}
+        br
+
+    section.social-media-details.mt-5.text-center
+      - if @requester.facebook_link
         div
-          = image_tag @request.display_pic, class: 'show-profile-pic'
-        div.ml-3
-          h3.m-0.p-0 = @requester.name
-          small
-            - if @requester.ic.present?
-              | IC: XXXXXX-XX-#{@requester.ic.last(4)}
-            - else
-              | IC: #{t('.not_provider')}
+          = link_to @requester.facebook_link, target: '_blank' do
+            div.text-facebook-blue
+              = image_tag 'icon_facebook.svg', style: 'height: 14px'
+              span.ml-3 #{@requester.name}'s facebook profile
+              = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
+      - elsif @requester == current_user
+        div
+          = link_to t('.connect_fb_acc'), omniauth_localized_path(:facebook)
+
+      - if @requester.twitter_link
+        div
+          = link_to @requester.twitter_link, target: '_blank' do
+            div.text-facebook-blue
+              = image_tag 'icon_twitter.svg', style: 'height: 16px'
+              span.ml-3 #{@requester.name}'s twitter profile
+              = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
+      - elsif @requester == current_user
+        div
+          = link_to t('.connect_tw_acc'), omniauth_localized_path(:twitter)
+
+      - if @requester.email && @requester.email_public
+        div
+          = link_to "mailto:#{@requester.email}" do
+            div.text-facebook-blue
+              = image_tag 'icon_mail.svg', style: 'height: 16px'
+              span.ml-3 #{t('.email')}: #{@requester.email}
+
+
+
+    section.progress-bars.mt-5
+      .statuses
+        div
+          = t('.received')
           br
-          small #{t('.seat')} #{@request.to_city}
+          = number_to_currency @request.successful_pledges_amount, unit: 'RM '
+
+        div.ml-3.text-center
+          = t('.awaiting')
           br
-          small #{t('.state')} #{@request.to_state}
+          = number_to_currency @request.pending_pledges_amount, unit: 'RM '
+        div.ml-3.text-right
+          = t('.balance')
           br
+          = number_to_currency @request.remaining_balance, unit: 'RM '
 
-      section.social-media-details.mt-5.text-center
-        - if @requester.facebook_link
-          div
-            = link_to @requester.facebook_link, target: '_blank' do
-              div.text-facebook-blue
-                = image_tag 'icon_facebook.svg', style: 'height: 14px'
-                span.ml-3 #{@requester.name}'s facebook profile
-                = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
-        - elsif @requester == current_user
-          div
-            = link_to t('.connect_fb_acc'), omniauth_localized_path(:facebook)
+      / Progress
+      .progress
+        .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%")
+          span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
+        .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%")
+          span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)
 
-        - if @requester.twitter_link
-          div
-            = link_to @requester.twitter_link, target: '_blank' do
-              div.text-facebook-blue
-                = image_tag 'icon_twitter.svg', style: 'height: 16px'
-                span.ml-3 #{@requester.name}'s twitter profile
-                = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
-        - elsif @requester == current_user
-          div
-            = link_to t('.connect_tw_acc'), omniauth_localized_path(:twitter)
+      .mt-3.text-center
+        = button_tag "#{t('.disputes')}: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#disputes-modal"}
 
-        - if @requester.email && @requester.email_public
-          div
-            = link_to "mailto:#{@requester.email}" do
-              div.text-facebook-blue
-                = image_tag 'icon_mail.svg', style: 'height: 16px'
-                span.ml-3 #{t('.email')}: #{@requester.email}
+    section.request-details.mt-5
+      p.font-weight-semibold = t('.why_i_am')
+      p
+        = simple_format(@request.description)
 
+      .row
+        .col-xs-5
+          p.font-weight-semibold = t('.mode_of_transport')
+          p
+            = @request.transport_type
+        .col-xs-7
+          p.font-weight-semibold = t('.travel_company')
+          p
+            = @request.travel_company
 
+      p.font-weight-semibold = t('.itinerary')
+      p
+        = simple_format(@request.itinerary)
 
-      section.progress-bars.mt-5
-        .statuses
-          div
-            = t('.received')
-            br
-            = number_to_currency @request.successful_pledges_amount, unit: 'RM '
-
-          div.ml-3.text-center
-            = t('.awaiting')
-            br
-            = number_to_currency @request.pending_pledges_amount, unit: 'RM '
-          div.ml-3.text-right
-            = t('.balance')
-            br
-            = number_to_currency @request.remaining_balance, unit: 'RM '
-
-        / Progress
-        .progress
-          .progress-bar.progress-bar-success style=("width: #{@request.successful_pledges_percentage}%")
-            span.sr-only #{@request.successful_pledges_percentage}% Successful (success)
-          .progress-bar.progress-bar-info style=("width: #{@request.pending_pledges_percentage}%")
-            span.sr-only #{@request.successful_pledges_percentage}% Pending (pending)
-
-        .mt-3.text-center
-          = button_tag "#{t('.disputes')}: #{@request.disputed_pledges_count}", class: 'btn btn-danger btn-sm', data: {toggle: "modal", target: "#disputes-modal"}
-
-      section.request-details.mt-5
-        p.font-weight-semibold = t('.why_i_am')
+      .row
+        .col-xs-6
+          p.font-weight-semibold = t('.total_ticket_amount')
+          p
+            = number_to_currency @request.travelling_fees, unit: 'RM '
+        .col-xs-6
+          p.font-weight-semibold Requested Amount
+          p
+            = number_to_currency @request.target_amount, unit: 'RM '
+      p.font-weight-semibold Supporting Documents
+      - @request.supporting_documents.each do |sd|
         p
-          = simple_format(@request.description)
+          = link_to sd.filename, rails_blob_path(sd, disposition: "attachment")
 
-        .row
-          .col-xs-5
-            p.font-weight-semibold = t('.mode_of_transport')
-            p
-              = @request.transport_type
-          .col-xs-7
-            p.font-weight-semibold = t('.travel_company')
-            p
-              = @request.travel_company
-
-        p.font-weight-semibold = t('.itinerary')
-        p
-          = simple_format(@request.itinerary)
-
-        .row
-          .col-xs-6
-            p.font-weight-semibold = t('.total_ticket_amount')
-            p
-              = number_to_currency @request.travelling_fees, unit: 'RM '
-          .col-xs-6
-            p.font-weight-semibold Requested Amount
-            p
-              = number_to_currency @request.target_amount, unit: 'RM '
-        p.font-weight-semibold Supporting Documents
-          - @request.supporting_documents.each do |sd|
-            p
-              = link_to sd.filename, rails_blob_path(sd, disposition: "attachment")
-
-      - if @request.requester == current_user
-        = link_to request_manage_pledges_path(current_user.request) do
-          = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-            strong = t('.manage_my_request')
-      - elsif current_user&.pending_requests&.include? @request
-        = link_to pledge_path(current_user.waiting_for_transfer_pledge_for(@request)) do
-          = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-            strong = t('.go_to_pledge')
-      - else
-        = link_to new_request_pledge_path(@request) do
-          = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-            strong = t('.proceed')
+    - if @request.requester == current_user
+      = link_to request_manage_pledges_path(current_user.request) do
+        = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+          strong = t('.manage_my_request')
+    - elsif current_user&.pending_requests&.include? @request
+      = link_to pledge_path(current_user.waiting_for_transfer_pledge_for(@request)) do
+        = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+          strong = t('.go_to_pledge')
+    - else
+      = link_to new_request_pledge_path(@request) do
+        = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+          strong = t('.proceed')
 
 
     section.report-user.mt-5

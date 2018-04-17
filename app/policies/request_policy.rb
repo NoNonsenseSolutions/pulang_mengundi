@@ -32,11 +32,10 @@ class RequestPolicy
   end
 
   def show?
-    if @request.disabled?
-      return request.requester == user
-    else
-      return true 
-    end
+    return true if request.requester == user
+    return false if @request.disabled?
+    return false if @request.completed?
+    return true
   end
 
   def update?

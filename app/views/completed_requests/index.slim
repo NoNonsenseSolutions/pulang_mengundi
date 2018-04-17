@@ -15,21 +15,20 @@
           small = t('.no_of_completed_sponsorships')
     .mt-5
       - @requests.each do |request|
-        = link_to request, class: 'no-style' do
-          .request-card
-            .request-card-body
-              .space-out-column
-                = image_tag request.display_pic, class: 'img-responsive'
-              div.space-out-column.ml-3
-                div
-                  big #{request.requester.name}
-                div
-                  div.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
-                  div.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}
-              div.space-out-column.ml-3
-                div.text-right
-                  small #{request.created_at.strftime("%d/%m/%Y")}
-                div.text-right
-                  small #{t('.funded', percentage: request.successful_pledges_percentage)}
-                  br
-                  p.font-weight-bold.m-0 #{number_to_currency request.remaining_balance, unit: 'RM '}
+        .request-card
+          .request-card-body
+            .space-out-column
+              = image_tag request.display_pic, class: 'img-responsive'
+            div.space-out-column.ml-3
+              div
+                big #{request.requester.name}
+              div
+                div.font-size-tiny style='font-weight: 300' SEAT: #{request.to_city}
+                div.font-size-tiny style='font-weight: 300' STATE: #{request.to_state}
+            div.space-out-column.ml-3
+              div.text-right
+                small #{request.created_at.strftime("%d/%m/%Y")}
+              div.text-right
+                small #{t('.funded', percentage: request.successful_pledges_percentage)}
+                br
+                p.font-weight-bold.m-0 #{number_to_currency request.target_amount, unit: 'RM '}

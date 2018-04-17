@@ -86,20 +86,20 @@
                 optgroup label="None"
                   option 
                 option selected=('Highest Balance'==@search_order) 
-                  | Highest Balance
+                  = t('.highest_balance')
                 option selected=('Lowest Balance'==@search_order) 
-                  | Lowest Balance
+                  = t('.lowest_balance')
 
               // Date
               select.mt-3.selectpicker.form-control datez-live-search="true" title="Date Created" name="search[date_created]"
                 optgroup label="None"
                   option 
                 option selected=('Random'==@search_date_created) 
-                  | Random
+                  = t('.random')
                 option selected=('Newest'==@search_date_created) 
-                  | Newest
+                  = t('.newest_created')
                 option selected=('Oldest'==@search_date_created) 
-                  | Oldest
+                  = t('.oldest_created')
 
               button.mt-3.btn.btn-primary 
                 | Search

@@ -219,6 +219,8 @@ ms:
       random: Rawak
       highest_balance: Jumlah tertinggi
       lowest_balance: Jumlah terendah
+      newest_created: Terbaru
+      oldest_created: Tertua
       search: Cari
     disables:
       create:

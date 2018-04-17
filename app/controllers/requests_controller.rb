@@ -109,6 +109,6 @@ class RequestsController < ApplicationController
       params.require(:request).permit(:bank_name, :account_number, 
         :account_name, :transport_type, :to_state, :to_city, 
         :description, :travelling_fees, :target_amount, :itinerary, 
-        :travel_company, :created_at, supporting_documents: [])
+        :travel_company, supporting_documents: [])
     end
 end

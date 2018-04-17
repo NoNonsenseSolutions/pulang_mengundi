@@ -35,7 +35,7 @@
               div.space-out-column.ml-3
                 div
                   big #{request.requester.name}
-                  div.font-size-tiny style='font-weight: 300' 
+                  div.font-size-tiny style='font-weight: 300'
                     - if request.requester.ic.present?
                       | IC: XXXXXX-XX-#{request.requester.ic.last(4)}
                     - else

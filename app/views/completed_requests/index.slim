@@ -30,6 +30,6 @@
                 div.text-right
                   small #{request.created_at.strftime("%d/%m/%Y")}
                 div.text-right
-                  small #{t('.funded', percentage: request.successful_pledges_percentage)}%
+                  small #{t('.funded', percentage: request.successful_pledges_percentage)}
                   br
                   p.font-weight-bold.m-0 #{number_to_currency request.remaining_balance, unit: 'RM '}

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if request.env['omniauth.auth']
       begin
         user = LinkedAccount.create_with_omniauth(request.env['omniauth.auth'], current_user)
-      
+
         session[:user_id] = user.id
 
         # Change to last path
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     def check_logged_in
       if user_logged_in?
         flash[:danger] = t('sessions.already_logged_in')
-        redirect_to root_path 
+        redirect_to root_path
       end
     end
 end

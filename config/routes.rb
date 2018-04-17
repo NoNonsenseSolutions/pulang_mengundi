@@ -3,7 +3,16 @@
 Rails.application.routes.default_url_options[:host] = ENV['HOST_URL']
 
 Rails.application.routes.draw do
+  devise_for :admins, controllers: { sessions: 'administrator/sessions' }
+
+  namespace :administrator do
+    root 'users#index'
+
+    resources :users, only: %i[index]
+  end
+
   scope '/:locale', locale: /#{I18n.available_locales.join("|")}/ do
+
     root 'requests#index'
 
     get 'sponsor_someone', to: 'static_pages#home', as: :home

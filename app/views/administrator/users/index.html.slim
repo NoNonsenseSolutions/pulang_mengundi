@@ -1,0 +1,20 @@
+h1.page-header Users
+.row.placeholders
+.table-responsive
+  table.table.table-striped
+    thead
+      tr
+        th #
+        th Name
+        th Email
+        th Created at
+    tbody
+      - @users.each_with_index do |user, index|
+        tr
+          td= index + 1
+          td= user.name || '-'
+          td= user.email || '-'
+          td= l user.created_at
+    = paginate @users
+    .col-lg-12
+        = page_entries_info @users

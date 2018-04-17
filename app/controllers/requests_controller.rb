@@ -48,7 +48,15 @@ class RequestsController < ApplicationController
   end
 
   def new
+<<<<<<< HEAD
     @user = current_user
+=======
+    user_ic_email_present = current_user.email.present? && current_user.ic.present?
+
+    if user_ic_email_present
+      age_in_days = (DateTime.now - DateTime.parse(current_user.ic.first(6))).to_f
+      age_in_year = (age_in_days/365)
+>>>>>>> Add Devise for admin
 
     unless @user.mandatory_information_for_request_complete?
       flash[:danger] = t('.missing_ic')
@@ -60,12 +68,12 @@ class RequestsController < ApplicationController
       store_location
       redirect_to terms_and_conditions_path and return
     end
-    
+
     unless @user.eligible_to_vote?
       flash[:danger] = t('.not_eligible')
       redirect_to root_path and return
     end
-    
+
     @request = Request.new
     authorize @request
   end
@@ -110,9 +118,16 @@ class RequestsController < ApplicationController
 
   private
     def request_params
-      params.require(:request).permit(:bank_name, :account_number, 
-        :account_name, :transport_type, :to_state, :to_city, 
-        :description, :travelling_fees, :target_amount, :itinerary, 
+<<<<<<< HEAD
+      params.require(:request).permit(:bank_name, :account_number,
+        :account_name, :transport_type, :to_state, :to_city,
+        :description, :travelling_fees, :target_amount, :itinerary,
         :travel_company, :read_terms, supporting_documents: [])
+=======
+      params.require(:request).permit(:bank_name, :account_number,
+        :account_name, :transport_type, :to_state, :to_city,
+        :description, :travelling_fees, :target_amount, :itinerary,
+        :travel_company, supporting_documents: [])
+>>>>>>> Add Devise for admin
     end
 end

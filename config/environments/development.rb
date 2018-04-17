@@ -27,6 +27,12 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # If the server is within a Docker environment, we make sure that
+  # we whitelist the IP for web-console.
+  if ENV["DOCKERIZED"] == "true"
+    config.web_console.whitelisted_ips = `ip route|awk '/default/ { print $3 }'`.strip
+  end
+
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :amazon
 

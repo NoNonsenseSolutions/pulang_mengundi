@@ -9,7 +9,7 @@
     - else
       - if @pledges.present?
         div.mt-5
-          = "#{pluralize(@pledges.count, t('.pledge'))}"
+          = pluralize(@pledges.count, t('.pledge'))
           - @pledges.each do |pledge|
             - presenter = PledgePresenter.new(pledge)
             = link_to manage_pledge_path(pledge), class: 'no-style' do

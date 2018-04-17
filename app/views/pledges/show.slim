@@ -21,18 +21,22 @@
 
     p
       big = t('.step_1.title')
+      | &nbsp
       text = t('.step_1.text')
     p
       big = t('.step_2.title')
+      | &nbsp
       text = t('.step_2.text')
 
-    - if @pledge.waiting_for_transfer?
-      .mt-5
-        - if @pledge.receipt.attached?
-          h4.font-weight-semibold = t('.receipt')
-          p
-            = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "attachment")
+    - if @pledge.receipt.attached?
+      h4.font-weight-semibold = t('.receipt')
+      p
+        = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "attachment")
+        |  | 
+        = link_to t('.delete'), document_path(@pledge.receipt.attachment.id), method: :delete, data: { confirm: t('.delete_confirm') }
 
+    - else
+      .mt-5
         = simple_form_for @pledge, url: pledge_upload_receipts_path(@pledge), method: :post do |f|
           label = t('.upload_receipt')
           label.btn.btn-default.btn-responsive for="custom-file-input"

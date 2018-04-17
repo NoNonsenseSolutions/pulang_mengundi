@@ -12,6 +12,8 @@ en:
       bank_transfer_details: Bank Transfer Details
       recipient_name: Recipient Name
       bank: Bank
+      delete: Delete
+      delete_confirm: Are you sure you want to delete this file?
       account_number: Account Number
       request_link: Request link
       pledge_amount: Pledged amount

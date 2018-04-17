@@ -33,6 +33,7 @@ class RequestPolicy
 
   def show?
     return true if request.requester == user
+    return true if request.pledges.pluck(:donor_id).include?(user.id)
     return false if @request.disabled?
     return false if @request.completed?
     return true

@@ -228,8 +228,8 @@ ms:
         disabled: Permintaan dilumpuhkan
     enables:
       create:
-        enabled: 
-        not_disabled: 
+        enabled: Permintaan dibolehkan
+        not_disabled: Permintaan tidak dilumpuhkan
     create:
       success: Permintaan anda berjaya dibuat
     update:
@@ -242,7 +242,7 @@ ms:
       choose_file: Pilih fail
       supporting_documents: Dokumen Sokongan
       uploaded_documents: Dokumen yang telah dimuat naik
-      delete: 
+      delete: Padam
       delete_confirm: Adakah anda pasti mahu memadamkan fail ini?
       please_make_sure_all_your: Sila pastikan semua butiran anda, khususnya butiran
         bank adalah betul, kerana ia tidak boleh diubah setelah ikrar dibuat
@@ -250,6 +250,12 @@ ms:
       travel_company: Syarikat Perjalanan
       transport_type: Jenis Pengangkutan
       description: Beritahu Kami Mengapa
+      return_user_term: 
+      term_and_condition1: 
+      term_and_condition2: 
+      term_and_condition3: 
+      term_and_condition4: 
+      term_and_condition5: 
     show:
       why_i_am: Mengapa saya mencari penaja?
       mode_of_transport: Jenis Pengangkutan
@@ -266,10 +272,12 @@ ms:
       report_user: Lapor pengguna
       report: Lapor
       disputes: Pertikaian
-      not_provider: 
+      not_provider: Tidak disediakan
     new:
       reminder: 'PERINGATAN: Anda hanya boleh membuat satu permintaan bagi setiap
         pengguna'
+      missing_ic: 
+      not_eligible: 
   simple_form:
     'yes': Ya
     'no': Tidak
@@ -433,9 +441,11 @@ ms:
       area: Kawasan
       phone_number_optional: Nombor telefon (tidak wajib)
       save: Simpan
-      ic_number: 
-      check_email_to_confirm: 
-      include_dash_in_ic: 
+      ic_number: Nombor IC
+      check_email_to_confirm: Semak e-mel anda untuk mengesahkan %{unconfirmed_email}
+        milik anda.
+      include_dash_in_ic: Sertakan tanda "-" dalam Nombor IC. Nombor IC tidak dapat
+        dikemas kini setelah disimpan. Hubungi khidmat pelanggan jika perubahan diperlukan.
   static_pages:
     home:
       submit_my_request: HANTAR PERMINTAAN SAYA
@@ -461,7 +471,7 @@ ms:
         answer: Tidak.
       q_3:
         title: 3. Saya mempunyai masalah dengan aplikasi ini. Siapa patut saya hubungi?
-        answer: Jangan risau, hubungi kami di pulang.undi @ gmail.com
+        answer: Jangan risau, hubungi kami di pulang.undi@gmail.com
   completed_requests:
     index:
       total_amount_pledged: Jumlah Dijanjikan
@@ -507,13 +517,13 @@ ms:
       edit_request: Edit Permintaan
   layouts:
     navbar:
-      carpool: 
-      subsidy: 
-      faq: 
-      contact: 
-      my_request: 
-      completed_sponsorships: 
-      my_sponsorships: 
-      profile: 
-      log_out: 
-      log_in: 
+      carpool: Carpool
+      subsidy: Subsidi
+      faq: Soalan Lazim
+      contact: Hubungi
+      my_request: Permintaan saya
+      completed_sponsorships: Tajaan yang telah dibuat
+      my_sponsorships: Tajaan saya
+      profile: Profil
+      log_out: Log keluar
+      log_in: Log masuk

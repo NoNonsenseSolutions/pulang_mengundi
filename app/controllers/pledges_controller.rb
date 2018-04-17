@@ -6,6 +6,12 @@ class PledgesController < ApplicationController
 
   def new
     @request = Request.find(params[:request_id])
+    @user = current_user
+    unless @user.read_terms?
+      store_location
+      redirect_to terms_and_conditions_path and return
+    end
+
     @pledge = @request.pledges.new
     authorize @pledge
   end
@@ -31,6 +37,6 @@ class PledgesController < ApplicationController
 
   private
     def pledge_params
-      params.require(:pledge).permit(:amount, :read_terms)
+      params.require(:pledge).permit(:amount)
     end
 end

@@ -24,6 +24,9 @@ en:
         not_disabled: Request was not disabled
     index:
       total_amount_pledged: Total Amount Pledged
+    new:
+      missing_ic: Missing IC or Email information.
+      not_eligible: Not eligible! Please contact customer service
     create:
       success: Your request has been successfully created
     update:

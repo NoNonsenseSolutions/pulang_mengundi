@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_16_124524) do
+ActiveRecord::Schema.define(version: 2018_04_17_143715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2018_04_16_124524) do
     t.decimal "remaining_balance", precision: 8
     t.datetime "disabled_at"
     t.decimal "total_received", precision: 8, scale: 3, default: "0.0"
-    t.boolean "read_terms", default: false
     t.index ["disabled_at"], name: "index_requests_on_disabled_at"
     t.index ["requester_id"], name: "index_requests_on_requester_id"
   end
@@ -120,6 +119,7 @@ ActiveRecord::Schema.define(version: 2018_04_16_124524) do
     t.datetime "confirmed_at"
     t.boolean "email_public", default: false
     t.string "ic"
+    t.boolean "read_terms", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["ic"], name: "index_users_on_ic", unique: true

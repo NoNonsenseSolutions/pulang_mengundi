@@ -1,6 +1,5 @@
 class RequestsController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  skip_before_action :request_agree_term, only: [:show, :update]
 
   def index
     @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0)
@@ -49,24 +48,26 @@ class RequestsController < ApplicationController
   end
 
   def new
-    user_ic_email_present = current_user.email.present? && current_user.ic.present?
-    
-    if user_ic_email_present
-      age_in_days = (DateTime.now - DateTime.parse(current_user.ic.first(6))).to_f
-      age_in_year = (age_in_days/365)
+    @user = current_user
 
-      if age_in_year <= 21
-        flash[:danger] = 'Not eligible! Please contact customer service'
-        redirect_to root_path
-      else
-        @request = Request.new
-        authorize @request
-      end
-    else
-      flash[:danger] = 'Missing IC or Email information.'
+    unless @user.mandatory_information_for_request_complete?
+      flash[:danger] = t('.missing_ic')
       store_location
-      redirect_to edit_profiles_path
+      redirect_to edit_profiles_path and return
     end
+
+    unless @user.read_terms?
+      store_location
+      redirect_to terms_and_conditions_path and return
+    end
+    
+    unless @user.eligible_to_vote?
+      flash[:danger] = t('.not_eligible')
+      redirect_to root_path and return
+    end
+    
+    @request = Request.new
+    authorize @request
   end
 
   def create

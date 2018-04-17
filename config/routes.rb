@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     end
 
     resources :email_confirmations, only: [:show]
+
+    resource :terms_and_conditions, only: [:show, :update]
   end
 
   # omniauth out of scope, as omniauth does not support dynamic paths

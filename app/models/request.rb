@@ -16,6 +16,8 @@ class Request < ApplicationRecord
   validates :travelling_fees, presence: true, numericality: {greater_than_or_equal_to: 0}
   validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }
 
+  validate :user_has_read_terms, on: :create
+
   validate :cap_target_amount
 
   before_save :update_remaining_balance!
@@ -90,5 +92,9 @@ class Request < ApplicationRecord
       if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
         errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
       end
+    end
+
+    def user_has_read_terms
+      errors.add(:requester, 'has not read the terms and conditions') unless requester.read_terms?
     end
 end

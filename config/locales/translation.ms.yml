@@ -219,9 +219,9 @@ ms:
       random: Rawak
       highest_balance: Jumlah tertinggi
       lowest_balance: Jumlah terendah
-      newest_created: Terbaru
-      oldest_created: Tertua
       search: Cari
+      newest_created: 
+      oldest_created: 
     disables:
       create:
         already_disabled: Permintaan telah dilumpuhkan
@@ -476,7 +476,7 @@ ms:
     index:
       total_amount_pledged: Jumlah Dijanjikan
       no_of_completed_sponsorships: Bilangan tajaan yang telah dibuat
-      funded: "%{percentaged} dibiayai"
+      funded: "%{percentage} dibiayai"
   thank_you_screens:
     for_pledging:
       thank_you_for: Terima Kasih atas Penajaan Anda.

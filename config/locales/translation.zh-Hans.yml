@@ -210,9 +210,9 @@ zh-Hans:
       random: 随意
       highest_balance: 余额从高到低
       lowest_balance: 余额从低到高
-      newest_created:
-      oldest_created:
       search: 
+      newest_created: 
+      oldest_created: 
     disables:
       create:
         already_disabled: 
@@ -443,7 +443,7 @@ zh-Hans:
     index:
       total_amount_pledged: 认捐总额
       no_of_completed_sponsorships: 
-      funded: 已受资助 %{percentaged}
+      funded: 已受资助 %{percentage}
   thank_you_screens:
     for_pledging:
       thank_you_for: 

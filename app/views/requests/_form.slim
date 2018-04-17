@@ -47,9 +47,22 @@
               | |
               = link_to t('.delete'), document_path(sd), method: :delete, data: { confirm: t('.delete_confirm') }
 
-
-
       .text-center.mt-5
         p.text-danger = t('.please_make_sure_all_your')
-        = f.button :submit, class: 'btn btn-primary'
+        button.btn.btn-primary type='button' data-toggle='modal' data-target='#terms-modal' Create Request
 
+  .modal#terms-modal role="dialog" tabindex="-1"
+    .modal-dialog role="document"
+      .modal-content
+        .modal-header
+        	.modal-title Terms & Conditions
+        .modal-body
+          p = t('.return_user_term')
+          p = t('.term_and_condition1')
+          p = t('.term_and_condition2')
+          p = t('.term_and_condition3')
+          p = t('.term_and_condition4')
+          p = t('.term_and_condition5')
+          = f.input :read_terms, label: 'I agree'
+        .modal-footer
+          = f.button :submit, 'Submit', class: 'btn btn-primary'

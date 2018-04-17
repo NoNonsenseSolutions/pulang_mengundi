@@ -1,5 +1,7 @@
 class RequestsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :show  
+  skip_before_action :authenticate_user!, only: :show
+  skip_before_action :request_agree_term, only: [:show, :update]
+
   def index
     @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0)
 
@@ -62,6 +64,7 @@ class RequestsController < ApplicationController
       end
     else
       flash[:danger] = 'Missing IC or Email information.'
+      store_location
       redirect_to edit_profiles_path
     end
   end
@@ -100,7 +103,7 @@ class RequestsController < ApplicationController
       redirect_to @request
     else
       flash[:danger] = @request.errors.full_messages.join("; ")
-      render :new
+      render :edit
     end
   end
 
@@ -109,6 +112,6 @@ class RequestsController < ApplicationController
       params.require(:request).permit(:bank_name, :account_number, 
         :account_name, :transport_type, :to_state, :to_city, 
         :description, :travelling_fees, :target_amount, :itinerary, 
-        :travel_company, supporting_documents: [])
+        :travel_company, :read_terms, supporting_documents: [])
     end
 end

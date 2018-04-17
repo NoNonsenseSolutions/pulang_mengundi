@@ -14,6 +14,7 @@ class Request < ApplicationRecord
   validates :target_amount, inclusion: {in: 10..5000, message: 'has to be between 10 to 5000'}
   validates :requester_id, uniqueness: true
   validates :travelling_fees, presence: true, numericality: {greater_than_or_equal_to: 0}
+  validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }
 
   validate :cap_target_amount
 
@@ -36,7 +37,6 @@ class Request < ApplicationRecord
   def completed?
     target_amount == total_received
   end
-
 
   def remaining_balance_percentage
     (remaining_balance / self.target_amount.to_f * 100).to_i

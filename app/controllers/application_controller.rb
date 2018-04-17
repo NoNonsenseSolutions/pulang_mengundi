@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   before_action :authenticate_user!
   before_action :initialize_notification_presenter
+  before_action :request_agree_term
 
   before_action :set_locale
 
@@ -21,6 +22,12 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 
+  def request_agree_term
+    if current_user && current_user.request && !current_user.request.read_terms
+      redirect_to request_path(current_user.request, modal: true)
+    end
+  end
+
   def default_url_options(options = {})
     { locale: I18n.locale }
   end
@@ -31,6 +38,4 @@ class ApplicationController < ActionController::Base
     rescue
     redirect_to root_path(locale: :en)
   end
-
-
 end

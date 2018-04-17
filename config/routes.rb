@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     root 'users#index'
 
     resources :users, only: %i[index]
+    resources :admins, only: %i[index]
   end
 
   scope '/:locale', locale: /#{I18n.available_locales.join("|")}/ do

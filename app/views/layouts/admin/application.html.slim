@@ -17,17 +17,21 @@ html
             span.icon-bar
             span.icon-bar
           a.navbar-brand href="#" PulangMengundi
-        #navbar.navbar-collapse.collapse
-          ul.nav.navbar-nav.navbar-right
-            li
-              = current_admin.name
-            li
-              = link_to 'Sign out', destroy_admin_session_path, method: :delete, data: { confirm: "Sign out?" }
+        - if current_admin
+          #navbar.navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                = current_admin.name
+              li
+                = link_to 'Sign out', destroy_admin_session_path, method: :delete, data: { confirm: "Sign out?" }
     .container-fluid
       .row
-        .col-sm-3.col-md-2.sidebar
-          ul.nav.nav-sidebar
-            li.active
-              a href="#" Users
+        - if current_admin
+          .col-sm-3.col-md-2.sidebar
+            ul.nav.nav-sidebar
+              li class=('active' if request.path.include?('administrator/users'))
+                a href=administrator_users_path Users
+              li class=('active' if request.path.include?('administrator/admins'))
+                a href=administrator_admins_path Admins
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
           = yield

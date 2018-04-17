@@ -6,6 +6,6 @@ feature 'pledges index' do
     visit pledges_path(locale: :en)
   end
 
-  xscenario 'User able to view existing pledges' do
+  scenario 'User able to view existing pledges' do
   end
 end

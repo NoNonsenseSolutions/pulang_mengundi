@@ -102,13 +102,13 @@ GEM
       after_commit_action (~> 1.0)
     countupjs-rails (1.3.2.3)
     crass (1.0.4)
-    diff-lcs (1.3)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.7.1)
@@ -293,6 +293,8 @@ GEM
     selenium-webdriver (3.11.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.0.0)
     sidekiq (5.0.4)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -310,6 +312,8 @@ GEM
       slim (~> 3.0)
     spring (2.0.2)
       activesupport (>= 4.2)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -387,10 +391,12 @@ DEPENDENCIES
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers
   sidekiq
   simple_form (= 3.5.1)
   slim-rails
   spring
+  spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   telephone_number
   translation

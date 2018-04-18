@@ -278,6 +278,8 @@ ms:
       term_and_condition5: Jika anda percaya data yang diperolehi kami tidak tepat,
         tidak lengkap, mengelirukan atau bukan yang terkini, sila hubungi kami untuk
         tindakan selanjutnya.
+      acknowledge: 
+      full_terms: 
     show:
       why_i_am: Mengapa saya mencari penaja?
       mode_of_transport: Jenis Pengangkutan
@@ -567,8 +569,9 @@ ms:
         alert: 
   devise:
     confirmations:
-      confirmed: 
-      send_instructions: 
+      confirmed: E-mel anda telah disahkan.
+      send_instructions: Anda akan menerima e-mel dengan arahan untuk mengesahkan
+        alamat e-mel anda dalam beberapa minit.
       send_paranoid_instructions: 
     failure:
       already_authenticated: 
@@ -616,3 +619,10 @@ ms:
       send_instructions: 
       send_paranoid_instructions: 
       unlocked: 
+  services:
+    phone_verification:
+      message: 
+  default:
+    disclaimer:
+      reminder: 
+      text: 

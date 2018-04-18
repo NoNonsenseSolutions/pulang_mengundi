@@ -255,6 +255,8 @@ zh-Hans:
       term_and_condition3: 目前，我们只收集您在此网页所填写的资料。我们将会使用这些资料来处理您的请求。在特定情况下，我们可能得将您的资料透露于我们的合作伙伴，以促成捐助和/或拼车的安排工作。
       term_and_condition4: Pulangmengundi.com将采取一切合理的措施来确保您所提供的个人资料获得保密。
       term_and_condition5: 如果您认为我们所保存的您的个人资料并不准确，不完整，误导或没有及时更新，请即可联系我们。
+      acknowledge: 
+      full_terms: 
     show:
       why_i_am: 为什么我需要捐助？
       mode_of_transport: 交通模式
@@ -564,3 +566,10 @@ zh-Hans:
       send_instructions: 
       send_paranoid_instructions: 
       unlocked: 
+  services:
+    phone_verification:
+      message: 
+  default:
+    disclaimer:
+      reminder: 
+      text: 

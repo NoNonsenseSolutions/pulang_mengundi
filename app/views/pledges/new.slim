@@ -7,25 +7,26 @@
       ul
         li = t('.click_fb_twitter_profile')
         span.font-weight-bold = t('.add')
+        | &nbsp
         span = t('.them_to_chat_or_ping')
       small.font-weight-bold = t('.tip')
-      small = t('ask_for_email_and_phone')
+      small.ml-3 = t('ask_for_email_and_phone')
       br
       small.font-weight-bold = t('.pro_tip')
-      small = t('.video_call')
+      small.ml-3 = t('.video_call')
 
       h5 = t('.verify_voting_info')
       ul
         li = t('.get_proof_of_voter')
         li
           span =t('.validate_voting_constituency') 
-          a.font-weight-semibold.text-link target="_blank" href="https://pengundi.spr.gov.my" = t('.spr')
+          a.font-weight-semibold.text-link.ml-2 target="_blank" href="https://pengundi.spr.gov.my" = t('.spr')
 
       h5 = t('.perform_bank_transfer')
       ul
         li = t('.log_into_your_online_banking')
       small.font-weight-bold = t('.tip')
-      small = t('.try_to_sponsor_someone')
+      small.ml-3 = t('.try_to_sponsor_someone')
 
       h5 = t('.finalize_your_transfer')
       ul
@@ -61,8 +62,7 @@
 
     div.mt-5
       = simple_form_for [@request, @pledge] do |f|
-        = f.input :amount, label: 'Amount to pledge (RM)', input_html: { min: "10", max: "10000"}
-
+        
         small
           = t('.important_note')
           br
@@ -77,6 +77,12 @@
           | &nbsp
           = link_to t('.terms_and_conditions'), "https://www.pulangmengundi.com/terms.html", target: '_blank'
           = t('.i_know_that_i')
+
+        hr
+        h4 = t('default.disclaimer.reminder')
+        small = simple_format(t('default.disclaimer.text'))
+
+        = f.input :amount, label: 'Amount to pledge (RM)', input_html: { min: "10", max: "10000"}
 
         = recaptcha_tags
         br

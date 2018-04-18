@@ -53,8 +53,8 @@ class Pledge < ApplicationRecord
     end
 
     def cannot_have_more_than_two_pending_pledge
-      if donor.can_still_pledge?
-        errors.add(:donor, "cannot have more than two pledges that hasn't been transferred")
+      unless donor.can_pledge?
+        errors.add(:donor, "cannot have more than two pending pledges. If you've uploaded the receipt, please get the requester to confirm receipt")
       end
     end
 

@@ -48,6 +48,10 @@
               = link_to t('.delete'), document_path(sd), method: :delete, data: { confirm: t('.delete_confirm') }
 
       br
+
+      h4 = t('default.disclaimer.reminder')
+      small = simple_format(t('default.disclaimer.text'))
+        
       = recaptcha_tags
 
       .text-center.mt-5

@@ -94,6 +94,6 @@ class Request < ApplicationRecord
     end
 
     def user_has_read_terms
-      errors.add(:requester, 'has not read the terms and conditions') unless requester.read_terms?
+      errors.add(:requester, 'has not agreed to the terms and conditions') unless requester.read_terms?
     end
 end

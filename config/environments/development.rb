@@ -63,9 +63,13 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'https://localhost', port: 3000}
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV['MAILGUN_API_KEY'],
-    domain: ENV['MAILGUN_DOMAIN'],
+  config.action_mailer.smtp_settings = {
+    address: ENV['AWS_SES_REGION'],
+    port: 587,
+    authentication: :login,
+    user_name: ENV['AWS_SES_USERNAME'],
+    password: ENV['AWS_SES_PASSWORD'],
+    enable_starttls_auto: true,
+    return_response: true
   }
 end

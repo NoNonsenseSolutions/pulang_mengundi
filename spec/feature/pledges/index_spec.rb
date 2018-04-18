@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'pledges index' do
   background do
-    set_omniauth
+    mock_omniauth
     visit pledges_path(locale: :en)
   end
 

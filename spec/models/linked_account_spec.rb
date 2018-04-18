@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe LinkedAccount do
   context 'self.create_with_omniauth' do
     let(:current_user) { create(:user) }
 
-    [:facebook, :twitter].each do |provider|
+    %i[facebook twitter].each do |provider|
       context provider do
         let(:auth) { create(:auth_hash, provider) }
 

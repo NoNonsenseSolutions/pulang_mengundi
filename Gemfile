@@ -40,6 +40,7 @@ gem "recaptcha", require: "recaptcha/rails"
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rubocop-rails'
 end
 
 group :development do

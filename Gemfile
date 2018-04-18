@@ -13,6 +13,7 @@ gem 'bootstrap-select-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'counter_culture', '~> 1.8'
 gem 'countupjs-rails'
+gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -34,6 +35,7 @@ gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
+gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do
   gem 'capybara', '~> 2.15'
@@ -51,4 +53,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'spring-commands-rspec'
 end

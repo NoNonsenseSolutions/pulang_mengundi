@@ -77,6 +77,10 @@
           | &nbsp
           = link_to t('.terms_and_conditions'), "https://www.iubenda.com/privacy-policy/46243103/legal", target: '_blank'
           = t('.i_know_that_i')
+
+        = recaptcha_tags
+        br
+
         = f.submit t('.pledge'), class: 'btn btn-primary btn-responsive text-center'
 
 

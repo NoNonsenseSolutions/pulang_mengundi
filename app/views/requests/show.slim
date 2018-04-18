@@ -127,7 +127,7 @@
       - else
         - @request.supporting_documents.each do |sd|
           p
-            = link_to sd.filename, rails_blob_path(sd, disposition: "attachment")
+            = link_to sd.filename, rails_blob_path(sd, disposition: "inline"), target: :_blank
 
     - if @request.requester == current_user
       = link_to request_manage_pledges_path(current_user.request) do

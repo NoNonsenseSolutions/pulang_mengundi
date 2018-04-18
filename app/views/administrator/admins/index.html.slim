@@ -16,6 +16,4 @@ a.btn.btn-info.active href=new_administrator_admin_path role="button" New admin
           td= admin.name || '-'
           td= admin.email || '-'
           td= l admin.created_at
-    = paginate @admins
-    .col-lg-12
-        = page_entries_info @admins
+    = will_paginate @admins

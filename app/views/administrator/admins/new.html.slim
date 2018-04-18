@@ -3,4 +3,4 @@ h1.page-header New admin
 = simple_form_for [:administrator, @admin] do |f|
   = f.input :name, input_html: {required: true}
   = f.input :email, input_html: {required: true}
-  = f.submit 'Report', class: 'btn btn-primary'
+  = f.submit 'Create admin', class: 'btn btn-primary'

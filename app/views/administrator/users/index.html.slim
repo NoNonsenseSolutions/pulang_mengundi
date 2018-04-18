@@ -15,6 +15,4 @@ h1.page-header Users
           td= user.name || '-'
           td= user.email || '-'
           td= l user.created_at
-    = paginate @users
-    .col-lg-12
-        = page_entries_info @users
+    = will_paginate @users

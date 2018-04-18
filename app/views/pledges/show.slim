@@ -31,7 +31,7 @@
     - if @pledge.receipt.attached?
       h4.font-weight-semibold = t('.receipt')
       p
-        = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "attachment")
+        = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "inline"), target: :_blank
         |  | 
         = link_to t('.delete'), document_path(@pledge.receipt.attachment.id), method: :delete, data: { confirm: t('.delete_confirm') }
 

@@ -121,9 +121,13 @@
             = number_to_currency @request.target_amount, unit: 'RM '
             
       p.font-weight-semibold Supporting Documents
-      - @request.supporting_documents.each do |sd|
+      - if @request.supporting_documents.count == 0
         p
-          = link_to sd.filename, rails_blob_path(sd, disposition: "attachment")
+          = t('.no_supporting_document')
+      - else
+        - @request.supporting_documents.each do |sd|
+          p
+            = link_to sd.filename, rails_blob_path(sd, disposition: "attachment")
 
     - if @request.requester == current_user
       = link_to request_manage_pledges_path(current_user.request) do

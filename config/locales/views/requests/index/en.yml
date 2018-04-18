@@ -18,4 +18,6 @@ en:
       lowest_balance: Lowest Balance
       newest_created: Newest
       oldest_created: Oldest
+      yes_document_provided: "Yes"
+      no_document_provided: "No"
       search: Search

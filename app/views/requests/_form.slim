@@ -47,6 +47,9 @@
               | |
               = link_to t('.delete'), document_path(sd), method: :delete, data: { confirm: t('.delete_confirm') }
 
+      br
+      = recaptcha_tags
+
       .text-center.mt-5
         p.text-danger = t('.please_make_sure_all_your')
 

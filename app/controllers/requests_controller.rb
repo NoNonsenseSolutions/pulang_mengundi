@@ -73,7 +73,8 @@ class RequestsController < ApplicationController
   def create
     @request = current_user.build_request(request_params)
     authorize @request
-    if @request.save
+
+    if verify_recaptcha(model: @request) && @request.save
       flash[:success] = t('.success')
       redirect_to [@request, :thank_you_screens]
     else

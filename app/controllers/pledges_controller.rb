@@ -20,7 +20,7 @@ class PledgesController < ApplicationController
     @request = Request.find(params[:request_id])
     @pledge = @request.pledges.new(pledge_params.merge(donor: current_user))
     authorize @pledge
-    if @pledge.save
+    if verify_recaptcha(model: @pledge) && @pledge.save
       flash[:success] = t('.success')
       redirect_to @pledge
     else

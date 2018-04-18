@@ -56,8 +56,8 @@ class User < ApplicationRecord
     Report.where(reporter: self, reported: user).exists?
   end
 
-  def can_still_pledge?
-    pledges.waiting_for_transfer.count > 1
+  def can_pledge?
+    pledges.pending.count < 2
   end
 
   def pending_requests

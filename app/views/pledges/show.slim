@@ -10,7 +10,8 @@
         = @request.bank_name
       p.font-weight-bold = t('.account_number')
       p
-        = @request.account_number
+        = @request.account_number.gsub(/.(?=.{4})/,'#')
+        p Get the bank account directly from the requester, but make sure the last four digit matches!
       p.font-weight-bold = t('.request_link')
       p
         = link_to request_url(@request), @request, class: 'text-link'

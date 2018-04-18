@@ -13,6 +13,7 @@ en:
         all: All
         state: State
         seat: Seat
+        bank: Bank
       random: Random
       highest_balance: Highest Balance
       lowest_balance: Lowest Balance

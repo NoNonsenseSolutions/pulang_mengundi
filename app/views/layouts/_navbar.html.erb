@@ -40,12 +40,6 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">
-          <%= link_to t('.faq'), faq_path, class: 'font-weight-semibold' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to t('.contact'), contact_path, class: 'font-weight-semibold' %>
-        </li>
         <% if user_logged_in? %>
           <% if current_user.request %>
             <!-- if user has request -->

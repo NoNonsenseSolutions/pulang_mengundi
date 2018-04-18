@@ -110,6 +110,14 @@ ms:
       even: mesti genap
       required: mesti wujud
       taken: telah digunakan
+      already_confirmed: 
+      confirmation_period_expired: 
+      expired: 
+      not_found: 
+      not_locked: 
+      not_saved:
+        one: 
+        other: 
     unavailable_session: |
       Sesi %{id} tidak lagi berada dalam memori.
 
@@ -216,6 +224,7 @@ ms:
         all: Semua
         state: Negeri
         seat: Tempat duduk
+        bank: 
       random: Rawak
       highest_balance: Jumlah tertinggi
       lowest_balance: Jumlah terendah
@@ -250,12 +259,25 @@ ms:
       travel_company: Syarikat Perjalanan
       transport_type: Jenis Pengangkutan
       description: Beritahu Kami Mengapa
-      return_user_term: 
-      term_and_condition1: 
-      term_and_condition2: 
-      term_and_condition3: 
-      term_and_condition4: 
-      term_and_condition5: 
+      return_user_term: Terma dan syarat penggunaan platform ini telah dikemaskinikan.
+        Sila baca dan terima perubahan terbaru ini untuk terus menggunakan PulangMengundi.com.
+        Jika anda tolak perubahan ini, atau jika anda gagal membuat keputusan, kami
+        akan terpaksa untuk memadamkan segala data peribadi anda daripada sistem kami.
+      term_and_condition1: Adalah penting yang anda memberikan kami kebenaran untuk
+        memperoleh butiran peribadi anda.
+      term_and_condition2: Anda perlu jelas tentang segala jenis data peribadi yang
+        kami perolehi daripada anda. Data yang diberikan boleh berbentuk wajib ataupun
+        sukarela.
+      term_and_condition3: Buat waktu ini, kami hanya memperoleh data yang anda berikan
+        kepada kami melalui platform yang sedia ada. Data ini mungkin dikongsi dengan
+        Rakan-rakan Strategik kami untuk memudahkan perkongsian kenderaan dan/atau
+        pemindahan dana untuk tujuan penajaaan.
+      term_and_condition4: PulangMengundi.com akan mengambil langkah-langkah fizikal,
+        teknikal dan organisasi untuk menjaga keselamatan maklumat-maklumat sulit
+        yang anda kongsi bersama kami.
+      term_and_condition5: Jika anda percaya data yang diperolehi kami tidak tepat,
+        tidak lengkap, mengelirukan atau bukan yang terkini, sila hubungi kami untuk
+        tindakan selanjutnya.
     show:
       why_i_am: Mengapa saya mencari penaja?
       mode_of_transport: Jenis Pengangkutan
@@ -273,6 +295,9 @@ ms:
       report: Lapor
       disputes: Pertikaian
       not_provider: Tidak disediakan
+      info_hidden_for_completed_requests: 
+      connect_fb_acc: 
+      connect_tw_acc: 
     new:
       reminder: 'PERINGATAN: Anda hanya boleh membuat satu permintaan bagi setiap
         pengguna'
@@ -371,6 +396,8 @@ ms:
       upload_receipt: Muat naik resit
       choose_file: Pilih fail
       upload: Muat naik
+      delete: 
+      delete_confirm: 
     new:
       perform_checks_before_sponsoring: Lakukan pemeriksaan berikut sebelum anda teruskan
         tajaan anda!
@@ -476,7 +503,7 @@ ms:
     index:
       total_amount_pledged: Jumlah Dijanjikan
       no_of_completed_sponsorships: Bilangan tajaan yang telah dibuat
-      funded: "%{percentage} dibiayai"
+      funded: "%{percentage}% dibiayai"
   thank_you_screens:
     for_pledging:
       thank_you_for: Terima Kasih atas Penajaan Anda.
@@ -527,3 +554,65 @@ ms:
       profile: Profil
       log_out: Log keluar
       log_in: Log masuk
+      terms: 
+      privacy_policy: 
+  flash:
+    actions:
+      create:
+        notice: 
+      update:
+        notice: 
+      destroy:
+        notice: 
+        alert: 
+  devise:
+    confirmations:
+      confirmed: 
+      send_instructions: 
+      send_paranoid_instructions: 
+    failure:
+      already_authenticated: 
+      inactive: 
+      invalid: 
+      locked: 
+      last_attempt: 
+      not_found_in_database: 
+      timeout: 
+      unauthenticated: 
+      unconfirmed: 
+    mailer:
+      confirmation_instructions:
+        subject: 
+      reset_password_instructions:
+        subject: 
+      unlock_instructions:
+        subject: 
+      email_changed:
+        subject: 
+      password_change:
+        subject: 
+    omniauth_callbacks:
+      failure: 
+      success: 
+    passwords:
+      no_token: 
+      send_instructions: 
+      send_paranoid_instructions: 
+      updated: 
+      updated_not_active: 
+    registrations:
+      destroyed: 
+      signed_up: 
+      signed_up_but_inactive: 
+      signed_up_but_locked: 
+      signed_up_but_unconfirmed: 
+      update_needs_confirmation: 
+      updated: 
+    sessions:
+      signed_in: 
+      signed_out: 
+      already_signed_out: 
+    unlocks:
+      send_instructions: 
+      send_paranoid_instructions: 
+      unlocked: 

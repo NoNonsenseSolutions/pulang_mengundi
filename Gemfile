@@ -58,4 +58,5 @@ group :test do
   gem 'ffaker'
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
+  gem 'simplecov'
 end

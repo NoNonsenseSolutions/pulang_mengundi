@@ -1,0 +1,4 @@
+en:
+  services:
+    phone_verification:
+      message: Your pulangmengundi.com verification code is %{verification_code}

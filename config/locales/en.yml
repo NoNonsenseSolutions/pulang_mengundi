@@ -1,5 +1,11 @@
 ---
 en:
+  default:
+    disclaimer:
+      reminder: REMINDER!
+      text: |
+        Our neutral platform does not support or condone any behavior that expresses affiliation, association or bias towards any political party be it in the form of words, bribery or any similar manner that instigates an individual to act in a certain behavior.
+        If you encounter an instance where these terms have been violated or if you observe malpractice of the above, please report the user to our Site Admin (pulang.undi@gmail.com).
   pundit:
     default: You cannot perform this action.
     request_policy:

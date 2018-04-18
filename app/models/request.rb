@@ -15,6 +15,8 @@ class Request < ApplicationRecord
   validates :requester_id, uniqueness: true
   validates :travelling_fees, presence: true, numericality: {greater_than_or_equal_to: 0}
 
+  validate :user_has_read_terms, on: :create
+
   validate :cap_target_amount
 
   before_save :update_remaining_balance!
@@ -36,7 +38,6 @@ class Request < ApplicationRecord
   def completed?
     target_amount == total_received
   end
-
 
   def remaining_balance_percentage
     (remaining_balance / self.target_amount.to_f * 100).to_i
@@ -90,5 +91,9 @@ class Request < ApplicationRecord
       if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
         errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
       end
+    end
+
+    def user_has_read_terms
+      errors.add(:requester, 'has not read the terms and conditions') unless requester.read_terms?
     end
 end

@@ -3,7 +3,7 @@
     section#guideline
       h4.text-danger.font-weight-bold = t('.perform_check_before_sponsoring')
 
-      h5 = t('.talk_to_vovter')
+      h5 = t('.talk_to_voter')
       ul
         li = t('.click_fb_twitter_profile')
         span.font-weight-bold = t('.add')
@@ -18,7 +18,7 @@
       ul
         li = t('.get_proof_of_voter')
         li
-          span =t('.validate_voting_constituency')
+          span =t('.validate_voting_constituency') 
           a.font-weight-semibold.text-link target="_blank" href="https://pengundi.spr.gov.my" = t('.spr')
 
       h5 = t('.perform_bank_transfer')
@@ -74,6 +74,7 @@
 
         label.mt-3
           = t('.i_read_and_understood')
+          | &nbsp
           = link_to t('.terms_and_conditions'), "https://www.iubenda.com/privacy-policy/46243103/legal", target: '_blank'
           = t('.i_know_that_i')
         = f.input :read_terms

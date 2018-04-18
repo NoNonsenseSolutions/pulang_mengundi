@@ -119,6 +119,7 @@
           p.font-weight-semibold Requested Amount
           p
             = number_to_currency @request.target_amount, unit: 'RM '
+            
       p.font-weight-semibold Supporting Documents
       - @request.supporting_documents.each do |sd|
         p
@@ -158,9 +159,7 @@
 
 
     section.share
-
-
-
+    
 .modal.fade#report-modal role="dialog" tabindex="-1"
   .modal-dialog.modal-sm role="document"
     .modal-content

@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
     else
       flash[:danger] = @user.errors.full_messages.join("; ")
     end
-    redirect_back(fallback_location: edit_profiles_path)
+    redirect_back_or(edit_profiles_path)
   end
 
   private

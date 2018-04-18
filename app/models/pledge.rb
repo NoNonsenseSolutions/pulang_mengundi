@@ -11,11 +11,12 @@ class Pledge < ApplicationRecord
   after_save :update_request_total_received
 
   validates :amount, presence: true, inclusion: {in: 0..5000, message: 'has to be between 10 to 5000'}
-  validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }
   validate :donor_cannot_be_requester
   validate :cannot_pledge_above_remaining_balance, on: :create
 
   validate :cannot_have_more_than_two_pending_pledge, on: :create
+
+  validate :user_has_read_terms, on: :create
 
   scope :active, -> { where(status: [0, 10, 20]) }
   scope :pending, -> { where(status: [0, 10]) }
@@ -55,5 +56,9 @@ class Pledge < ApplicationRecord
       if donor.can_still_pledge?
         errors.add(:donor, "cannot have more than two pledges that hasn't been transferred")
       end
+    end
+
+    def user_has_read_terms
+      errors.add(:donor, 'has not read the terms and conditions') unless donor.read_terms?
     end
 end

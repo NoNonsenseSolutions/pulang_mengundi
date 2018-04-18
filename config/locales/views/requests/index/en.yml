@@ -16,4 +16,6 @@ en:
       random: Random
       highest_balance: Highest Balance
       lowest_balance: Lowest Balance
+      newest_created: Newest
+      oldest_created: Oldest
       search: Search

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   before_action :authenticate_user!
   before_action :initialize_notification_presenter
-
+  before_action :prompt_tnc
   before_action :set_locale
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -21,6 +21,13 @@ class ApplicationController < ActionController::Base
     redirect_to(request.referrer || root_path)
   end
 
+  def prompt_tnc
+    if current_user && current_user.request && !current_user.read_terms
+      store_location
+      redirect_to terms_and_conditions_path
+    end
+  end
+
   def default_url_options(options = {})
     { locale: I18n.locale }
   end
@@ -31,6 +38,4 @@ class ApplicationController < ActionController::Base
     rescue
     redirect_to root_path(locale: :en)
   end
-
-
 end

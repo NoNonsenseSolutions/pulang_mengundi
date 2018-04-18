@@ -195,22 +195,24 @@ zh-Hans:
       create?: 
   requests:
     index:
-      total_amount_pledged: 
-      no_of_voter_requests: 
-      sponsor_others: 
+      total_amount_pledged: 认捐总额
+      no_of_voter_requests: 选民请求数量
+      sponsor_others: 捐助他人
       need_a_sponsor: 
-      voter_requests: 
-      filter_requests: 
-      seat: 
-      state: 
+      voter_requests: 选民请求
+      filter_requests: 筛选请求
+      seat: 席位
+      state: 州属
       form:
         all: 
-        state: 
-        seat: 
-      random: 
-      highest_balance: 
-      lowest_balance: 
+        state: 州属
+        seat: 席位
+      random: 随意
+      highest_balance: 余额从高到低
+      lowest_balance: 余额从低到高
       search: 
+      newest_created: 
+      oldest_created: 
     disables:
       create:
         already_disabled: 
@@ -225,11 +227,11 @@ zh-Hans:
       success: 
     form:
       tell_us_why: 
-      total_ticket_amount: 
+      total_ticket_amount: 总票价 (RM)
       sponsorship_requests: 
       bank: 
       choose_file: 
-      supporting_documents: 
+      supporting_documents: 证明文件
       uploaded_documents: 
       delete: 
       delete_confirm: 
@@ -238,25 +240,33 @@ zh-Hans:
       travel_company: 
       transport_type: 
       description: 
+      return_user_term: 
+      term_and_condition1: 
+      term_and_condition2: 
+      term_and_condition3: 
+      term_and_condition4: 
+      term_and_condition5: 
     show:
-      why_i_am: 
-      mode_of_transport: 
-      travel_company: 
-      itinerary: 
-      total_ticket_amount: 
+      why_i_am: 为什么我需要捐助？
+      mode_of_transport: 交通模式
+      travel_company: 交通公司名称
+      itinerary: 行程细节/收据号码
+      total_ticket_amount: 总票价
       manage_my_request: 
       go_to_pledge: 
-      proceed: 
+      proceed: 继续
       share: 
       help: 
       tweet: 
       reported: 
-      report_user: 
+      report_user: 举报用户
       report: 
       disputes: 
       not_provider: 
     new:
       reminder: 
+      missing_ic: 
+      not_eligible: 
   simple_form:
     'yes': 
     'no': 
@@ -321,14 +331,14 @@ zh-Hans:
     create:
       success: 
     show:
-      seat: 
-      state: 
+      seat: 席位
+      state: 州属
       connect_fb_acc: 
       connect_tw_acc: 
       email: 
-      received: 
-      awaiting: 
-      balance: 
+      received: 已获得
+      awaiting: 未认定
+      balance: 还需要
       bank_transfer_details: 
       recipient_name: 
       bank: 
@@ -346,8 +356,8 @@ zh-Hans:
       choose_file: 
       upload: 
     new:
-      perform_checks_before_sponsoring: 
-      talk_to_voter: 
+      perform_checks_before_sponsoring: 在捐助前请进行以下检查
+      talk_to_voter: 与选民交谈
       click_fb_twitter_profile: 
       add: 
       them_to_chat_or_ping: 
@@ -355,21 +365,21 @@ zh-Hans:
       tip: 
       pro_tip: 
       video_call: 
-      verify_voting_info: 
-      get_proof_of_voter: 
+      verify_voting_info: 2.验证选民资料
+      get_proof_of_voter: 获取选民行程证明
       validate_voting_constituency: 
       spr: 
-      perform_bank_transfer: 
-      log_into_your_online_banking: 
+      perform_bank_transfer: 3.进行银行转账
+      log_into_your_online_banking: 登录您的电子银行平台进行转账
       try_to_sponsor_someone: 
-      finalize_your_transfer: 
-      upload_transaction_receipt: 
-      inform_the_voter: 
-      received: 
-      awaiting: 
-      balance: 
-      important_note: 
-      this_is_a_manual_platform: 
+      finalize_your_transfer: 4.完成转账
+      upload_transaction_receipt: 上载汇款收据，点击“我已转账”
+      inform_the_voter: 通知选民您已转账
+      received: 已获得
+      awaiting: 未认定
+      balance: 还需要
+      important_note: 重要提示：
+      this_is_a_manual_platform: 这是个人工平台。
       we_do_not_connect: 
       to_prevent_fraud: 
       i_read_and_understood: 
@@ -407,10 +417,10 @@ zh-Hans:
   static_pages:
     home:
       submit_my_request: 
-      total_amount_pledged: 
-      no_of_voter_requests: 
+      total_amount_pledged: 认捐总额
+      no_of_voter_requests: 选民请求数量
       need_a_sponsor: 
-      sponsor_others: 
+      sponsor_others: 捐助他人
       manage_my_request: 
     contact:
       find_us_on_social_media: 
@@ -431,14 +441,14 @@ zh-Hans:
         answer: 
   completed_requests:
     index:
-      total_amount_pledged: 
+      total_amount_pledged: 认捐总额
       no_of_completed_sponsorships: 
-      funded: 
+      funded: 已受资助 %{percentage}
   thank_you_screens:
     for_pledging:
       thank_you_for: 
       your_random_act: 
-      sponsor_others: 
+      sponsor_others: 捐助他人
     show:
       thank_you_for: 
       back_to_home: 

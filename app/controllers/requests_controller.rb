@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :show  
+  skip_before_action :authenticate_user!, only: :show
+
   def index
     @requests = policy_scope(Request).without_disabled.where('remaining_balance > ?', 0)
 
@@ -24,7 +25,16 @@ class RequestsController < ApplicationController
         @requests = @requests.order(remaining_balance: :desc)
       elsif @search_order == 'Lowest Balance'
         @requests = @requests.order(remaining_balance: :asc)
-      else
+      end
+    end
+
+    @search_date_created = params.dig(:search, :date_created)
+    if @search_date_created.present?
+      if @search_date_created == 'Newest'
+        @requests = @requests.order(created_at: :desc)
+      elsif @search_date_created == 'Oldest'
+        @requests = @requests.order(created_at: :asc)
+      elsif @search_date_created == 'Random'
         @requests = @requests.order("RANDOM()")
       end
     else
@@ -38,23 +48,26 @@ class RequestsController < ApplicationController
   end
 
   def new
-    user_ic_email_present = current_user.email.present? && current_user.ic.present?
-    
-    if user_ic_email_present
-      age_in_days = (DateTime.now - DateTime.parse(current_user.ic.first(6))).to_f
-      age_in_year = (age_in_days/365)
+    @user = current_user
 
-      if age_in_year <= 21
-        flash[:danger] = 'Not eligible! Please contact customer service'
-        redirect_to root_path
-      else
-        @request = Request.new
-        authorize @request
-      end
-    else
-      flash[:danger] = 'Missing IC or Email information.'
-      redirect_to edit_profiles_path
+    unless @user.mandatory_information_for_request_complete?
+      flash[:danger] = t('.missing_ic')
+      store_location
+      redirect_to edit_profiles_path and return
     end
+
+    unless @user.read_terms?
+      store_location
+      redirect_to terms_and_conditions_path and return
+    end
+    
+    unless @user.eligible_to_vote?
+      flash[:danger] = t('.not_eligible')
+      redirect_to root_path and return
+    end
+    
+    @request = Request.new
+    authorize @request
   end
 
   def create
@@ -92,7 +105,7 @@ class RequestsController < ApplicationController
       redirect_to @request
     else
       flash[:danger] = @request.errors.full_messages.join("; ")
-      render :new
+      render :edit
     end
   end
 
@@ -101,6 +114,6 @@ class RequestsController < ApplicationController
       params.require(:request).permit(:bank_name, :account_number, 
         :account_name, :transport_type, :to_state, :to_city, 
         :description, :travelling_fees, :target_amount, :itinerary, 
-        :travel_company, supporting_documents: [])
+        :travel_company, :read_terms, supporting_documents: [])
     end
 end

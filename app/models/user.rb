@@ -9,7 +9,7 @@ class User < ApplicationRecord
   delegate :link, :email, to: :twitter, prefix: true, allow_nil: true
 
   validate :phone_is_valid
-
+  validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }, on: :tnc_prompt
 
   EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
   validates :email, format: { with: EMAIL_REGEX, message: 'invalid email' }, 
@@ -29,7 +29,15 @@ class User < ApplicationRecord
 
   def donor_transferred_request_pledges
     request&.pledges&.donor_transferred || []
-  end  
+  end
+
+  def mandatory_information_for_request_complete?
+    email.present? && ic.present?
+  end
+
+  def eligible_to_vote?
+    21.years.ago > DateTime.parse(self.ic.first(6))
+  end
 
   def profile_incomplete?
     missing_social_link? || emails.empty?

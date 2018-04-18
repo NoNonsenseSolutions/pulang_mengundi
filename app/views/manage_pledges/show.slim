@@ -26,7 +26,7 @@
       - if @pledge.receipt.attached?
         p.font-weight-bold Receipt
         p
-          = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "attachment")
+          = link_to @pledge.receipt.filename, rails_blob_path(@pledge.receipt, disposition: "inline"), target: :_blank
 
     div
       - if policy(@pledge).requester_status_update?

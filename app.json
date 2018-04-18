@@ -27,6 +27,15 @@
     "AWS_REGION": {
       "required": true
     },
+    "AWS_SES_REGION": {
+      "required": true
+    },
+    "AWS_SES_USERNAME": {
+      "required": true
+    },
+    "AWS_SES_PASSWORD": {
+      "required": true
+    },
     "HOST_URL": {
       "required": true
     },

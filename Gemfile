@@ -38,14 +38,8 @@ gem 'will_paginate'
 gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do
-  gem 'capybara', '~> 2.15'
-  gem 'chromedriver-helper'
-  gem 'factory_bot_rails'
-  gem 'ffaker'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.7'
-  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -56,6 +50,12 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 2.15'
+  gem 'chromedriver-helper'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'selenium-webdriver'
+  gem 'ffaker'
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
 end

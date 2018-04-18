@@ -110,6 +110,14 @@ zh-Hans:
       even: 
       required: 
       taken: 
+      already_confirmed: 
+      confirmation_period_expired: 
+      expired: 
+      not_found: 
+      not_locked: 
+      not_saved:
+        one: 
+        other: 
     unavailable_session: 
     unacceptable_request: 
     connection_refused: 
@@ -207,6 +215,7 @@ zh-Hans:
         all: 
         state: 州属
         seat: 席位
+        bank: 
       random: 随意
       highest_balance: 余额从高到低
       lowest_balance: 余额从低到高
@@ -240,12 +249,12 @@ zh-Hans:
       travel_company: 
       transport_type: 
       description: 
-      return_user_term: 
-      term_and_condition1: 
-      term_and_condition2: 
-      term_and_condition3: 
-      term_and_condition4: 
-      term_and_condition5: 
+      return_user_term: 我们已更新条规。欲继续使用此平台，请您勘察并接受此更新条款。若您拒绝或对于新条款无从回应，我们将把你的资料于我们的平台上删除。谢谢。
+      term_and_condition1: PulangMengundi.com 在此取得您的许可，以收集，使用及共享您的个人资料。
+      term_and_condition2: 在使用此网站或应用程序前，您务必了解我们所收集的个人资料类别。这些资料可以是必须性或可选性的。
+      term_and_condition3: 目前，我们只收集您在此网页所填写的资料。我们将会使用这些资料来处理您的请求。在特定情况下，我们可能得将您的资料透露于我们的合作伙伴，以促成捐助和/或拼车的安排工作。
+      term_and_condition4: Pulangmengundi.com将采取一切合理的措施来确保您所提供的个人资料获得保密。
+      term_and_condition5: 如果您认为我们所保存的您的个人资料并不准确，不完整，误导或没有及时更新，请即可联系我们。
     show:
       why_i_am: 为什么我需要捐助？
       mode_of_transport: 交通模式
@@ -263,6 +272,9 @@ zh-Hans:
       report: 
       disputes: 
       not_provider: 
+      info_hidden_for_completed_requests: 
+      connect_fb_acc: 
+      connect_tw_acc: 
     new:
       reminder: 
       missing_ic: 
@@ -355,6 +367,8 @@ zh-Hans:
       upload_receipt: 
       choose_file: 
       upload: 
+      delete: 
+      delete_confirm: 
     new:
       perform_checks_before_sponsoring: 在捐助前请进行以下检查
       talk_to_voter: 与选民交谈
@@ -443,7 +457,7 @@ zh-Hans:
     index:
       total_amount_pledged: 认捐总额
       no_of_completed_sponsorships: 
-      funded: 已受资助 %{percentage}
+      funded: 已受资助 %{percentage}%
   thank_you_screens:
     for_pledging:
       thank_you_for: 
@@ -488,3 +502,65 @@ zh-Hans:
       profile: 
       log_out: 
       log_in: 
+      terms: 
+      privacy_policy: 
+  flash:
+    actions:
+      create:
+        notice: 
+      update:
+        notice: 
+      destroy:
+        notice: 
+        alert: 
+  devise:
+    confirmations:
+      confirmed: 
+      send_instructions: 
+      send_paranoid_instructions: 
+    failure:
+      already_authenticated: 
+      inactive: 
+      invalid: 
+      locked: 
+      last_attempt: 
+      not_found_in_database: 
+      timeout: 
+      unauthenticated: 
+      unconfirmed: 
+    mailer:
+      confirmation_instructions:
+        subject: 
+      reset_password_instructions:
+        subject: 
+      unlock_instructions:
+        subject: 
+      email_changed:
+        subject: 
+      password_change:
+        subject: 
+    omniauth_callbacks:
+      failure: 
+      success: 
+    passwords:
+      no_token: 
+      send_instructions: 
+      send_paranoid_instructions: 
+      updated: 
+      updated_not_active: 
+    registrations:
+      destroyed: 
+      signed_up: 
+      signed_up_but_inactive: 
+      signed_up_but_locked: 
+      signed_up_but_unconfirmed: 
+      update_needs_confirmation: 
+      updated: 
+    sessions:
+      signed_in: 
+      signed_out: 
+      already_signed_out: 
+    unlocks:
+      send_instructions: 
+      send_paranoid_instructions: 
+      unlocked: 

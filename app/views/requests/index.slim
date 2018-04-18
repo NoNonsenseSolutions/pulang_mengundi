@@ -77,7 +77,7 @@
               select.mt-3.selectpicker.form-control data-live-search="true" title="Filter by bank" name="search[bank_name]"
                 optgroup label=t('.form.all')
                   option
-                optgroup label=t('.form.state')
+                optgroup label=t('.form.bank')
                   = Bank::NAMES.each do |bank_name|
                     option selected=(bank_name==@bank_name)
                       = bank_name

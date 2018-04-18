@@ -60,12 +60,12 @@ class RequestsController < ApplicationController
       store_location
       redirect_to terms_and_conditions_path and return
     end
-    
+
     unless @user.eligible_to_vote?
       flash[:danger] = t('.not_eligible')
       redirect_to root_path and return
     end
-    
+
     @request = Request.new
     authorize @request
   end
@@ -110,9 +110,9 @@ class RequestsController < ApplicationController
 
   private
     def request_params
-      params.require(:request).permit(:bank_name, :account_number, 
-        :account_name, :transport_type, :to_state, :to_city, 
-        :description, :travelling_fees, :target_amount, :itinerary, 
+      params.require(:request).permit(:bank_name, :account_number,
+        :account_name, :transport_type, :to_state, :to_city,
+        :description, :travelling_fees, :target_amount, :itinerary,
         :travel_company, :read_terms, supporting_documents: [])
     end
 end

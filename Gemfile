@@ -13,6 +13,7 @@ gem 'bootstrap-select-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'counter_culture', '~> 1.8'
 gem 'countupjs-rails'
+gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -51,4 +52,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'spring-commands-rspec'
 end

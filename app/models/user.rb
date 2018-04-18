@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include EmailConfirmation
-  has_many :linked_accounts, dependent: :destroy  
+  has_many :linked_accounts, dependent: :destroy
   has_one :request, foreign_key: :requester_id, class_name: 'Request', dependent: :destroy
   has_many :reports, foreign_key: :reported_id, class_name: 'Report'
   has_many :pledges, foreign_key: :donor_id, class_name: 'Pledge'
@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }, on: :tnc_prompt
 
   EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
-  validates :email, format: { with: EMAIL_REGEX, message: 'invalid email' }, 
+  validates :email, format: { with: EMAIL_REGEX, message: 'invalid email' },
     uniqueness: true,
     allow_nil: true
 

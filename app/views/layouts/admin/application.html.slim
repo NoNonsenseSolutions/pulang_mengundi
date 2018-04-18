@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title PulangMengundi
+    meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" /
+    = csrf_meta_tags
+    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand href="#" PulangMengundi
+        - if current_admin
+          #navbar.navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                = current_admin.name
+              li
+                = link_to 'Sign out', destroy_admin_session_path, method: :delete, data: { confirm: "Sign out?" }
+    .container-fluid
+      .row
+        - if current_admin
+          .col-sm-3.col-md-2.sidebar
+            ul.nav.nav-sidebar
+              li class=('active' if request.path.include?('administrator/users'))
+                a href=administrator_users_path Users
+              li class=('active' if request.path.include?('administrator/admins'))
+                a href=administrator_admins_path Admins
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          - flash.each do |key, value|
+            div class=("alert alert-#{key}")
+              = value
+          = yield

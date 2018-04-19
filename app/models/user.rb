@@ -35,10 +35,6 @@ class User < ApplicationRecord
     email.present? && ic.present?
   end
 
-  def eligible_to_vote?
-    21.years.ago > DateTime.parse(self.ic.first(6))
-  end
-
   def profile_incomplete?
     missing_social_link? || emails.empty?
   end
@@ -70,7 +66,7 @@ class User < ApplicationRecord
 
 
   def phone
-    phone_area_code + phone_number
+    "#{phone_area_code}#{phone_number}"
   end
 
   private

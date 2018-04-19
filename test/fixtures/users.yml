@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  hashed_phone: MyString
-  phone_verified_at: 2018-04-11 01:26:24
-
-two:
-  hashed_phone: MyString
-  phone_verified_at: 2018-04-11 01:26:24

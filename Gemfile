@@ -41,14 +41,9 @@ gem 'jquery-datatables'
 gem 'jquery-turbolinks'
 
 group :development, :test do
-  gem 'capybara', '~> 2.15'
-  gem 'chromedriver-helper'
-  gem 'factory_bot_rails'
-  gem 'ffaker'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.7'
-  gem 'selenium-webdriver'
+  gem 'rubocop-rails'
 end
 
 group :development do
@@ -59,6 +54,13 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 2.15'
+  gem 'chromedriver-helper'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'selenium-webdriver'
+  gem 'ffaker'
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
+  gem 'simplecov'
 end

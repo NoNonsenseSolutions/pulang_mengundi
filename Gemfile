@@ -64,4 +64,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
   gem 'simplecov'
+  gem 'launchy'
 end

@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def eligible_to_vote?
-    21.years.ago > DateTime.parse(self.ic.first(6))
+    21.years.ago > DateTime.parse("19"+self.ic.first(6))
   end
 
   def profile_incomplete?

@@ -1,0 +1,70 @@
+h1.page-header= "Request for #{@request.requester.name}"
+.row.placeholders
+table.table.table-striped.table-bordered
+  thead
+    tr
+      td.col-md-2
+        strong ID
+      td.col-10= @request.id
+    tr
+      td.col-md-2
+        strong User name
+      td.col-10= @request.requester.name
+    tr
+      td.col-md-2
+        strong Account name
+      td.col-10= @request.account_name
+    tr
+      td.col-md-2
+        strong Account number
+      td.col-10= @request.account_number
+    tr
+      td.col-md-2
+        strong Description
+      td.col-10= @request.description
+    tr
+      td.col-md-2
+        strong Transport type
+      td.col-10= @request.transport_type
+    tr
+      td.col-md-2
+        strong To state
+      td.col-10= @request.to_city
+    tr
+      td.col-md-2
+        strong To state
+      td.col-10= @request.to_state
+    tr
+      td.col-md-2
+        strong Target amount
+      td.col-10= @request.target_amount
+    tr
+      td.col-md-2
+        strong Travelling fees
+      td.col-10= @request.travelling_fees
+    tr
+      td.col-md-2
+        strong Total received
+      td.col-10= @request.total_received
+    tr
+      td.col-md-2
+        strong Itinerary
+      td.col-10= @request.itinerary
+    tr
+      td.col-md-2
+        strong Travel company
+      td.col-10= @request.travel_company
+    tr
+      td.col-md-2
+        strong Remaining balance
+      td.col-10= @request.remaining_balance
+    tr
+      td.col-md-2
+        strong Disabled
+      td.col-10= @request.disabled? ? 'Yes' : 'No'
+
+br
+h3.page-header Supporting documents
+- @request.supporting_documents.each do |document|
+  p
+    = link_to((image_tag document, style: 'height: 300px; width: 300px;'), document, target: :_blank)

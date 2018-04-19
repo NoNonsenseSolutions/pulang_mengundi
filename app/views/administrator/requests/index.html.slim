@@ -1,0 +1,32 @@
+h1.page-header Requests
+.row.placeholders
+.table-responsive
+  table#dttb.table.table-striped
+    thead
+      tr
+        th #
+        th Name
+        th To city
+        th To state
+        th Travelling fees
+        th Target amount
+        th Total received
+        th Disabled
+        th Created at
+        th
+        th
+    tbody
+      - @requests.each_with_index do |request, index|
+        tr
+          td= index + 1
+          td= request.requester.name
+          td= request.to_city
+          td= request.to_state
+          td= request.travelling_fees
+          td= request.target_amount
+          td= request.total_received
+          td= request.disabled? ? 'Yes' : 'No'
+          td= l request.created_at
+          td= link_to('View', administrator_request_path(request))
+          td= link_to('Edit', edit_administrator_request_path(request))
+    = will_paginate @requests

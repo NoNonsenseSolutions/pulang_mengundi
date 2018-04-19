@@ -1,0 +1,36 @@
+h1.page-header Edit Request
+.row.placeholders
+= simple_form_for [:administrator, @request] do |f|
+  .row
+    = f.input :bank_name, collection: Bank::NAMES.sort, include_blank: false
+    = f.input :account_name
+    = f.input :account_number
+    = f.input :description, label: 'Tell us why'
+    = f.input :transport_type, collection: Request::TRANSPORT_TYPES.sort, include_blank: false
+    .row
+      .col-xs-6
+        = f.input :to_state, collection: ElectoralDistrict::STATES, include_blank: false
+      .col-xs-6 data-admin='yes' data-constituency-list=ElectoralDistrict::PARLIAMENTARY_CONSTITUENCIES.to_json
+        = f.input :to_city, collection: []
+    = f.input :itinerary
+    = f.input :travel_company
+    = f.input :remaining_balance
+    = f.input :is_disabled, as: :boolean, label: 'Disable', input_html: { checked: @request.disabled? }
+
+    br
+    h4 Supporting documents
+    br
+    - @request.supporting_documents.each do |document|
+      = link_to((image_tag document, style: 'height: 300px; width: 300px;'), document, target: :_blank)
+      = f.fields_for :supporting_documents_attachments, document do |fields|
+        = fields.label 'Delete'
+        = fields.check_box :_destroy
+        br
+    br
+    label.btn.btn-default.btn-responsive for="custom-file-input"
+      = f.file_field :supporting_documents, id: 'custom-file-input', style: 'display: none', multiple: true
+      = 'Add documents'
+    #file-name-box
+    br
+    br
+    = f.submit 'Update request', class: 'btn btn-primary'

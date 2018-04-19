@@ -30,6 +30,6 @@ class ProfilesController < ApplicationController
 
   private
     def profile_params
-      params.require(:user).permit(:phone_area_code, :phone_number, :email_public, :ic)
+      params.require(:user).permit(:phone_area_code, :phone_number, :email_public, :ic, :flagged)
     end
 end

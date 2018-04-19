@@ -8,10 +8,12 @@ h1.page-header Users
         th Name
         th Email
         th IC
+        th Flagged
     tbody
       - @users.each do |user|
         tr
           td= user.id
           td= user.name || '-'
           td= user.email || '-'
-          td= click_to_edit user, path: profiles_path(user.id, locale: 'en', user_id: user.id), attribute: :ic, buttonless: true
+          td= click_to_edit user, path: profiles_path(user, locale: 'en', user_id: user.id), attribute: :ic, buttonless: true || '-'
+          td= click_to_edit user, path: profiles_path(user, locale: 'en', user_id: user.id), attribute: :flagged, buttonless: true || '-'

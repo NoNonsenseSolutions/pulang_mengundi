@@ -48,6 +48,7 @@ en:
       success: You have successfully reported this user
   sessions:
     create:
+      flagged_account: Account error. Contact customer support
       failed_to_link_account: Failed to link account. The account was used to login
         before and is linked to another user
     destroy:

@@ -12,7 +12,7 @@ a.btn.btn-info.active href=new_administrator_admin_path role="button" New admin
     tbody
       - @admins.each_with_index do |admin, index|
         tr
-          td= index + 1
+          td= admin.id
           td= admin.name || '-'
           td= admin.email || '-'
           td= l admin.created_at

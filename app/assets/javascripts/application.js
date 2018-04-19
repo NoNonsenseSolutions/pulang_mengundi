@@ -19,7 +19,7 @@
 //= require bootstrap-select
 //= require requests
 //= require home
-
+//= require abracadabra
 
 document.addEventListener("turbolinks:load", function(){
   $('.selectpicker').selectpicker('render');

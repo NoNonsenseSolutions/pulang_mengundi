@@ -70,7 +70,7 @@ class User < ApplicationRecord
 
 
   def phone
-    phone_area_code + phone_number
+    "#{phone_area_code}#{phone_number}"
   end
 
   private

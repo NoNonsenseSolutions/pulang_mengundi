@@ -38,6 +38,7 @@ gem 'will_paginate'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'abracadabra'
 gem 'jquery-datatables'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'capybara', '~> 2.15'

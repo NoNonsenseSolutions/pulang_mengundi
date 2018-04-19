@@ -10,15 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require countUp
 //= require jquery
+//= require jquery_ujs
+//= require jquery.turbolinks
+//= require rails-ujs
 //= require bootstrap-sprockets
 //= require bootstrap-select
+//= require turbolinks
+//= require turbolinks-compatibility
 //= require requests
 //= require home
+//= require countUp
 //= require abracadabra
 //= require datatables
 
@@ -106,7 +109,7 @@ function renderTweetButtons() {
 };
 
 function loadDataTable() {
-  $("#dttb").dataTable();
+ $("#dttb").dataTable();
 };
 
 document.addEventListener('turbolinks:load', renderTweetButtons)

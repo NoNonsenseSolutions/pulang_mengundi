@@ -16,25 +16,31 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand href="#" PulangMengundi
+          a.navbar-brand href="#" PulangMengundi Admin
         - if current_admin
           #navbar.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
-              li
-                = current_admin.name
-              li
-                = link_to 'Sign out', destroy_admin_session_path, method: :delete, data: { confirm: "Sign out?" }
+              li.dropdown
+                a.dropdown-toggle data-toggle="dropdown" href="#" 
+                  = current_admin.name
+                  span.caret 
+                ul.dropdown-menu
+                  li
+                    = link_to 'Sign out', destroy_admin_session_path, method: :delete, data: { confirm: "Sign out?" }
+
+              li.dropdown
+                a.dropdown-toggle data-toggle="dropdown" href="#" 
+                  | More
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    = link_to 'Users', administrator_users_path 
+                  li
+                    = link_to 'Admins', administrator_admins_path
+
     .container-fluid
-      .row
-        - if current_admin
-          .col-sm-3.col-md-2.sidebar
-            ul.nav.nav-sidebar
-              li class=('active' if request.path.include?('administrator/users'))
-                a href=administrator_users_path Users
-              li class=('active' if request.path.include?('administrator/admins'))
-                a href=administrator_admins_path Admins
-        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-          - flash.each do |key, value|
-            div class=("alert alert-#{key}")
-              = value
-          = yield
+      .main
+        - flash.each do |key, value|
+          div class=("alert alert-#{key}")
+            = value
+        = yield

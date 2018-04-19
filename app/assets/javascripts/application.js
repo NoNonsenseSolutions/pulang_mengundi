@@ -20,6 +20,7 @@
 //= require requests
 //= require home
 //= require abracadabra
+//= require datatables
 
 document.addEventListener("turbolinks:load", function(){
   $('.selectpicker').selectpicker('render');
@@ -104,4 +105,9 @@ function renderTweetButtons() {
   return twttr.widgets.load();
 };
 
+function loadDataTable() {
+  $("#dttb").dataTable();
+};
+
 document.addEventListener('turbolinks:load', renderTweetButtons)
+document.addEventListener('turbolinks:load', loadDataTable)

@@ -37,6 +37,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'abracadabra'
+gem 'jquery-datatables'
 
 group :development, :test do
   gem 'capybara', '~> 2.15'

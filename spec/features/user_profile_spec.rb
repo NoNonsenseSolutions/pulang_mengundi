@@ -24,20 +24,14 @@ describe 'User Profile Page', type: :feature, js: true do
   context 'newly logged in & created user' do
     let(:user) { create(:user, :no_ic) }
 
-    it 'shows IC field editable & working with or without dashes' do
+    it 'shows IC field editable & working' do
       expect(user.ic).to be_nil
 
       within('form.simple_form') do
         expect(find_field('user[email]').value).to eq(user.email)
         expect(find_field('user[ic]').value).to eq('')
 
-        fill_in 'user[ic]', with: ic_number.gsub('-','')
-        expect(find_field('user[ic]').value).to eq(ic_number)
-
-        fill_in 'user[ic]', with: ''
-        expect(find_field('user[ic]').value).to eq('')
-
-        fill_in 'user[ic]', with: ic_number
+        find_field('user[ic]').send_keys ic_number
         expect(find_field('user[ic]').value).to eq(ic_number)
 
         click_on 'Save'

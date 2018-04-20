@@ -43,7 +43,7 @@ describe 'sponsorship requests', type: :feature, js: true do
       let(:to_city) { ElectoralDistrict::PARLIAMENTARY_CONSTITUENCIES[to_state].sample }
       let(:description) { FFaker::HipsterIpsum.sentences.join(' ') }
       let(:travelling_fees) { rand(10 ** 3).to_f }
-      let(:target_amount) { travelling_fees * 0.6 }
+      let(:target_amount) { (travelling_fees * 0.6).round(2) }
       let(:bank_name) { Bank::NAMES.sample }
       let(:account_number) { random_digit(12) }
       let(:account_name) { user.name }

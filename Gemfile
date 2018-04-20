@@ -53,14 +53,17 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+  gem 'annotate'
 end
 
 group :test do
   gem 'capybara', '~> 2.15'
+  gem 'capybara-screenshot'
   gem 'chromedriver-helper'
   gem 'rspec-rails', '~> 3.7'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
   gem 'simplecov'
+  gem 'launchy'
 end

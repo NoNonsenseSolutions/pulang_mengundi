@@ -7,6 +7,7 @@ require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+require 'capybara-screenshot/rspec'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -24,6 +25,10 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+def random_digit(digit)
+  format("%0#{digit}d", rand(10**digit))
 end
 
 Capybara.javascript_driver = :selenium_chrome_headless

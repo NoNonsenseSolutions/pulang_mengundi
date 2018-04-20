@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe User do
-  subject { build :user }
+  subject { build :user, :no_ic, :no_phone }
 
   context '#phone' do
     it 'should have area code and number' do

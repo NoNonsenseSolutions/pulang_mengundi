@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                   :integer          not null, primary key
+#  hashed_phone         :string
+#  phone_verified_at    :datetime
+#  name                 :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  profile_pic          :string
+#  unconfirmed_email    :string
+#  email                :string
+#  phone_number         :string
+#  phone_area_code      :string
+#  confirmation_token   :string
+#  confirmation_sent_at :datetime
+#  confirmed_at         :datetime
+#  email_public         :boolean          default(FALSE)
+#  ic                   :string
+#  read_terms           :boolean          default(FALSE)
+#
+
 class User < ApplicationRecord
   include EmailConfirmation
   has_many :linked_accounts, dependent: :destroy

@@ -3,9 +3,6 @@
 require 'rails_helper'
 
 describe 'User Profile Page', type: :feature, js: true do
-  def random_digit(digit)
-    "%0#{digit}d" % rand(10 ** digit)
-  end
   let(:ic_number) { "#{20.years.ago.strftime('%y%m%d')}-#{random_digit(2)}-#{random_digit(4)}" }
   let(:user) do
     create(:user, name: FFaker::Name.name,

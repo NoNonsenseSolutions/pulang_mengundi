@@ -110,7 +110,7 @@ function renderTweetButtons() {
 };
 
 function loadDataTable() {
- $("#dttb").dataTable();
+ $("#dttb").dataTable({ "oLanguage": {"sSearch": "Search: "}});
 };
 
 document.addEventListener('turbolinks:load', renderTweetButtons)

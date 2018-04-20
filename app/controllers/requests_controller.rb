@@ -38,7 +38,7 @@ class RequestsController < ApplicationController
         @requests = @requests.order("RANDOM()")
       end
     else
-      @requests = @requests.order("RANDOM()")
+      @requests = @requests.order(Arel.sql('RANDOM()'))
     end
 
     @requests = @requests.paginate(:page => params[:page], :per_page => 50)
@@ -60,7 +60,7 @@ class RequestsController < ApplicationController
       store_location
       redirect_to terms_and_conditions_path and return
     end
-    
+
     @request = Request.new
     authorize @request
   end

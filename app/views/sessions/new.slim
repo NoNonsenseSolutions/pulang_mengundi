@@ -7,10 +7,10 @@
         h2.text-center.mb-5.mt-5
           = t('.please_login')
         .login-box
-          .social-media-icons
+          .social-media-icons.facebook
             = link_to omniauth_localized_path(:facebook) do
               = image_tag 'icon_facebook.svg', class: 'img-responsive'
-          .social-media-icons
+          .social-media-icons.twitter
             = link_to omniauth_localized_path(:twitter) do
               = image_tag 'icon_twitter.svg', class: 'img-responsive'
     div.text-center

@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery.maskedinput.min
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require bootstrap-select

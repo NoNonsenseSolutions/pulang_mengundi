@@ -11,4 +11,4 @@ en:
       save: Save
       ic_number: IC Number
       check_email_to_confirm: Check your email to confirm %{unconfirmed_email} belongs to you.
-      include_dash_in_ic: Include dash "-" in the IC Number. IC Number can not be updated once saved. Contact customer service if changes need to be done.
+      include_dash_in_ic: IC Number can not be updated once saved. Contact customer service if changes need to be done.

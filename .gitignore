@@ -38,3 +38,9 @@ dump.rdb
 
 # simplecov
 coverage
+
+# dotenv
+.env*
+
+# Ignore others
+.DS_Store

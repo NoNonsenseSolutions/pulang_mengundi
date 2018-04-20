@@ -8,7 +8,7 @@ describe 'social login', type: :feature, js: true do
     visit root_path(locale: :en)
   end
 
-  [:facebook, :twitter].each do |provider|
+  %i[facebook twitter].each do |provider|
     context provider do
       let(:name) { FFaker::Name.name }
       let(:email) { FFaker::Internet.safe_email }

@@ -28,7 +28,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 def random_digit(digit)
-    "%0#{digit}d" % rand(10 ** digit)
+  format("%0#{digit}d", rand(10**digit))
 end
 
 Capybara.javascript_driver = :selenium_chrome_headless

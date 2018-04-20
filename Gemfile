@@ -36,7 +36,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
 gem "recaptcha", require: "recaptcha/rails"
-gem 'abracadabra'
+gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
 gem 'jquery-datatables'
 gem 'jquery-turbolinks'
 

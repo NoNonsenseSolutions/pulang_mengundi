@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   include EmailConfirmation
+  devise :authenticatable
+
   has_many :linked_accounts, dependent: :destroy
   has_one :request, foreign_key: :requester_id, class_name: 'Request', dependent: :destroy
   has_many :reports, foreign_key: :reported_id, class_name: 'Report'

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     sessions: 'administrator/sessions',
     passwords: 'administrator/passwords',
   }
+  devise_for :users, skip: :all
 
   namespace :administrator do
     root 'users#index'
@@ -78,7 +79,7 @@ Rails.application.routes.draw do
 
 
 
-  get '/*path', to: redirect("/#{I18n.default_locale}/%{path}", status: 302), 
-    constraints: { path: /(?!(#{RouteConstraint::EXCLUDED_ROUTES.join("|")})\/).*/ }, 
+  get '/*path', to: redirect("/#{I18n.default_locale}/%{path}", status: 302),
+    constraints: { path: /(?!(#{RouteConstraint::EXCLUDED_ROUTES.join("|")})\/).*/ },
     format: false
 end

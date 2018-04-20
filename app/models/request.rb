@@ -1,13 +1,40 @@
+# == Schema Information
+#
+# Table name: requests
+#
+#  id                :integer          not null, primary key
+#  bank_name         :string
+#  account_number    :string
+#  account_name      :string
+#  description       :text
+#  transport_type    :string
+#  to_city           :string
+#  to_state          :string
+#  travelling_fees   :decimal(8, 2)    default(0.0)
+#  target_amount     :decimal(8, 2)    default(0.0)
+#  requester_id      :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  itinerary         :text
+#  travel_company    :string
+#  remaining_balance :decimal(8, )
+#  disabled_at       :datetime
+#  total_received    :decimal(8, 3)    default(0.0)
+#
+
 class Request < ApplicationRecord
   TRANSPORT_TYPES = ["FLIGHT", "BUS", "TRAIN"]
+
   belongs_to :requester, class_name: 'User'
   has_many :pledges, dependent: :destroy
-
   has_many_attached :supporting_documents
 
+  attr_accessor :is_disabled
+  accepts_nested_attributes_for :supporting_documents_attachments, allow_destroy: true
+
   validates :bank_name, presence: true, inclusion: { in: Bank::NAMES, message: 'must be in the list of banks' }
-  validates :account_number, 
-    presence: true, uniqueness: { scope: :bank_name }, 
+  validates :account_number,
+    presence: true, uniqueness: { scope: :bank_name },
     format: { with: /\A\d+\z/, message: "can only contain numbers" }
   validates :account_name, presence: true
   validates :transport_type, inclusion: {in: TRANSPORT_TYPES}
@@ -20,12 +47,13 @@ class Request < ApplicationRecord
   validate :cap_target_amount
 
   before_save :update_remaining_balance!
+  before_update :purge_supporting_documents
 
   scope :without_disabled, -> { where(disabled_at: nil) }
 
   def disputes
     Dispute.where(pledge_id: self.pledges.pluck(:id))
-  end 
+  end
 
   def display_pic
     requester.profile_pic
@@ -95,5 +123,13 @@ class Request < ApplicationRecord
 
     def user_has_read_terms
       errors.add(:requester, 'has not agreed to the terms and conditions') unless requester.read_terms?
+    end
+
+    def purge_supporting_documents
+      supporting_documents.each do |supporting_document|
+        if supporting_document.marked_for_destruction?
+          supporting_document.blob.purge_later
+        end
+      end
     end
 end

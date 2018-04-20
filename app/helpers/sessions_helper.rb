@@ -19,9 +19,14 @@ module SessionsHelper
   end
 
   def authenticate_user!
-    unless user_logged_in?
+    unless user_logged_in? || current_admin
       store_location
       redirect_to new_sessions_path
+    end
+
+    if user_logged_in? && current_user.flagged
+      flash[:danger] = t('sessions.create.flagged_account')
+      session.clear
     end
   end
 end

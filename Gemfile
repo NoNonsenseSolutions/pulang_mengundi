@@ -36,8 +36,13 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
 gem "recaptcha", require: "recaptcha/rails"
+gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
+gem 'jquery-datatables'
+gem 'jquery-turbolinks'
 
 group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'ffaker'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop-rails'
@@ -48,16 +53,17 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+  gem 'annotate'
 end
 
 group :test do
   gem 'capybara', '~> 2.15'
+  gem 'capybara-screenshot'
   gem 'chromedriver-helper'
-  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.7'
   gem 'selenium-webdriver'
-  gem 'ffaker'
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
   gem 'simplecov'
+  gem 'launchy'
 end

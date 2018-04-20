@@ -1,18 +1,19 @@
 h1.page-header Users
 .row.placeholders
 .table-responsive
-  table.table.table-striped
+  table#dttb.table.table-striped
     thead
       tr
         th #
         th Name
         th Email
-        th Created at
+        th IC
+        th Flagged
     tbody
-      - @users.each_with_index do |user, index|
+      - @users.each do |user|
         tr
-          td= index + 1
+          td= user.id
           td= user.name || '-'
           td= user.email || '-'
-          td= l user.created_at
-    = will_paginate @users
+          td= click_to_edit user, path: profiles_path(user, locale: 'en', user_id: user.id), attribute: :ic, buttonless: true || '-'
+          td= click_to_edit user, path: profiles_path(user, locale: 'en', user_id: user.id), attribute: :flagged, buttonless: true || '-'

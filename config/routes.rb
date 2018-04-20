@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   namespace :administrator do
     root 'users#index'
 
-    resources :users, only: %i[index]
     resources :admins, only: %i[new create index]
+    resources :requests, only: %i[index edit update show]
+    resources :users, only: %i[index]
   end
 
   scope '/:locale', locale: /#{I18n.available_locales.join("|")}/ do
@@ -78,7 +79,7 @@ Rails.application.routes.draw do
 
 
 
-  get '/*path', to: redirect("/#{I18n.default_locale}/%{path}", status: 302), 
-    constraints: { path: /(?!(#{RouteConstraint::EXCLUDED_ROUTES.join("|")})\/).*/ }, 
+  get '/*path', to: redirect("/#{I18n.default_locale}/%{path}", status: 302),
+    constraints: { path: /(?!(#{RouteConstraint::EXCLUDED_ROUTES.join("|")})\/).*/ },
     format: false
 end

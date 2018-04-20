@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'social login', type: :feature do
+describe 'social login', type: :feature, js: true do
   before do
     OmniAuth.config.test_mode = true
     visit root_path(locale: :en)

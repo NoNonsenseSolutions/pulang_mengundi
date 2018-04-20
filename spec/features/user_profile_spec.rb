@@ -4,13 +4,7 @@ require 'rails_helper'
 
 describe 'User Profile Page', type: :feature, js: true do
   let(:ic_number) { "#{20.years.ago.strftime('%y%m%d')}-#{random_digit(2)}-#{random_digit(4)}" }
-  let(:user) do
-    create(:user, name: FFaker::Name.name,
-                  email: FFaker::Internet.safe_email,
-                  ic: ic_number,
-                  phone_area_code: '60',
-                  phone_number: '123456789')
-  end
+  let(:user) { create(:user) }
   let(:auth_hash) { create(:auth_hash, :facebook, name: user.name, email: user.email) }
 
   before do
@@ -28,7 +22,7 @@ describe 'User Profile Page', type: :feature, js: true do
   end
 
   context 'newly logged in & created user' do
-    let(:user) { create(:user, name: FFaker::Name.name, email: FFaker::Internet.safe_email) }
+    let(:user) { create(:user, :no_ic) }
 
     it 'shows IC field editable & working with or without dashes' do
       expect(user.ic).to be_nil

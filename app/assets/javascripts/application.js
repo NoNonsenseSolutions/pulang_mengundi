@@ -12,7 +12,6 @@
 //
 //= require activestorage
 //= require jquery
-//= require jquery_ujs
 //= require jquery.turbolinks
 //= require jquery.maskedinput.min
 //= require rails-ujs

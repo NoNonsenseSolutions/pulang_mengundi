@@ -15,5 +15,10 @@ h1.page-header Users
           td= user.id
           td= user.name || '-'
           td= user.email || '-'
-          td= click_to_edit user, path: profiles_path(user, locale: 'en', user_id: user.id), attribute: :ic, buttonless: true || '-'
-          td= click_to_edit user, path: profiles_path(user, locale: 'en', user_id: user.id), attribute: :flagged, buttonless: true || '-'
+          td= click_to_edit user, path: profiles_path(locale: 'en', user_id: user.id, format: 'json'), attribute: :ic, buttonless: true || '-'
+          td= click_to_edit user, path: profiles_path(locale: 'en', user_id: user.id, format: 'json'), attribute: :flagged, buttonless: true || '-'
+
+javascript:
+  $("body").on("ajax:error", ".abracadabra-form", function(e){
+    alert("Error: " + e.detail[0].message)
+  });

@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require countUp
 //= require jquery
+//= require jquery.maskedinput.min
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require requests

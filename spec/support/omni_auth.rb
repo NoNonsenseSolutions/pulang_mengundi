@@ -37,6 +37,15 @@ module OmniAuth
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[credentials[:provider]] = credentials[:invalid]
   end
+
+  def login_omniauth(auth_hash, name)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[auth_hash.provider.to_sym] = auth_hash
+    visit root_path(locale: :en)
+    page.find(".login-box .social-media-icons.#{auth_hash.provider}").click
+    expect(page).to have_content("Signed in as #{name}")
+    expect(page.current_path).to eq(root_path(locale: :en))
+  end
 end
 
 RSpec.configure do |config|

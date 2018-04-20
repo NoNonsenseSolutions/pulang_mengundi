@@ -1,0 +1,30 @@
+h1.page-header Requests
+.row.placeholders
+.table-responsive
+  table#dttb.table.table-striped
+    thead
+      tr
+        th Request ID
+        th Name
+        th To city
+        th To state
+        th Target amount
+        th Disabled
+        th Transport type
+        th Supporting documents
+        th
+        th
+    tbody
+      - @requests.each do |request|
+        tr
+          td= request.id
+          td= request.requester.name
+          td= request.to_city
+          td= request.to_state
+          td= request.target_amount
+          td= request.disabled? ? 'Yes' : 'No'
+          td= request.transport_type
+          td= request.supporting_documents.present? ? 'Yes' : 'No'
+          td= link_to('View', administrator_request_path(request))
+          td= link_to('Edit', edit_administrator_request_path(request))
+    = will_paginate @requests

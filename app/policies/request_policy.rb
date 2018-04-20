@@ -20,7 +20,7 @@ class RequestPolicy
   end
 
   def new?
-    user.request.nil?
+    user.request.nil? || !user.request.persisted?
   end
 
   def create?

@@ -21,22 +21,23 @@ html
           #navbar.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
               li.dropdown
-                a.dropdown-toggle data-toggle="dropdown" href="#" 
-                  | More 
+                a.dropdown-toggle data-toggle="dropdown" href="#"
+                  | More
                   span.caret
                 ul.dropdown-menu
                   li
-                    = link_to 'Users List', administrator_users_path 
+                    = link_to 'Users List', administrator_users_path
                   li
                     = link_to 'Admins List', administrator_admins_path
+                  li
+                    = link_to 'Requests List', administrator_requests_path
               li.dropdown
-                a.dropdown-toggle data-toggle="dropdown" href="#" 
-                  = current_admin.name 
-                  span.caret 
+                a.dropdown-toggle data-toggle="dropdown" href="#"
+                  = current_admin.name
+                  span.caret
                 ul.dropdown-menu
                   li
                     = link_to 'Sign out', destroy_admin_session_path, method: :delete, data: { confirm: "Sign out?" }
-
     .container-fluid
       .main
         - flash.each do |key, value|

@@ -2,7 +2,7 @@ function updateConstituencyList() {
   var stateSelect = $('#request_to_state'),
     selectedState = stateSelect.val(),
     constituencySelect = $('#request_to_city');
-  if(selectedState){      
+  if(selectedState){
     var constituencyList = $('[data-constituency-list]').data('constituency-list')
     var currentConstituencyList = constituencyList[selectedState]
     constituencySelect.children('option').remove()
@@ -17,7 +17,10 @@ function updateConstituencyList() {
   } else {
     constituencySelect.children('option').remove()
   }
-  constituencySelect.selectpicker('refresh');
+
+  if($('[data-admin]').data('admin').val() !== undefined) {
+    constituencySelect.selectpicker('refresh');
+  }
 }
 
 

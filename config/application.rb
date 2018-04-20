@@ -12,6 +12,7 @@ module PulangMengundi
     config.load_defaults 5.2
 
     config.active_job.queue_adapter = :sidekiq
+    config.time_zone = 'Asia/Kuala_Lumpur'
 
     config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
   end

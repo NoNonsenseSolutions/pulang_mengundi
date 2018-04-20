@@ -14,3 +14,9 @@ en:
     pledge_policy:
       new?: You cannot pledge to yourself
       create?: You cannot pledge to yourself
+  date:
+    formats:
+      default: "%d %B %Y"
+  time:
+    formats:
+      default: '%I:%M %p %d %B %Y'

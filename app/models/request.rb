@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: requests
+#
+#  id                :integer          not null, primary key
+#  bank_name         :string
+#  account_number    :string
+#  account_name      :string
+#  description       :text
+#  transport_type    :string
+#  to_city           :string
+#  to_state          :string
+#  travelling_fees   :decimal(8, 2)    default(0.0)
+#  target_amount     :decimal(8, 2)    default(0.0)
+#  requester_id      :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  itinerary         :text
+#  travel_company    :string
+#  remaining_balance :decimal(8, )
+#  disabled_at       :datetime
+#  total_received    :decimal(8, 3)    default(0.0)
+#
+
 class Request < ApplicationRecord
   TRANSPORT_TYPES = ["FLIGHT", "BUS", "TRAIN"]
   belongs_to :requester, class_name: 'User'

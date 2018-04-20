@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: pledges
+#
+#  id           :integer          not null, primary key
+#  amount       :decimal(8, 2)
+#  donor_id     :integer
+#  status       :integer          default("waiting_for_transfer")
+#  request_id   :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  read_terms   :boolean          default(FALSE)
+#  confirmed_at :datetime
+#
+
 class Pledge < ApplicationRecord
   EXPIRY_TIME = 2.hours.ago
   belongs_to :donor, class_name: 'User'

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: linked_accounts
+#
+#  id          :integer          not null, primary key
+#  provider    :string
+#  uid         :string
+#  link        :string
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  profile_pic :string
+#  email       :string
+#
+
 class LinkedAccount < ApplicationRecord
   belongs_to :user
  

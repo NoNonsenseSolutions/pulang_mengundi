@@ -53,6 +53,9 @@ GEM
     after_commit_action (1.1.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
+    annotate (2.7.2)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -393,6 +396,7 @@ PLATFORMS
 
 DEPENDENCIES
   abracadabra!
+  annotate
   aws-sdk-s3
   bcrypt
   bootsnap (>= 1.1.0)

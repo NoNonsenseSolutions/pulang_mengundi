@@ -4,29 +4,27 @@ h1.page-header Requests
   table#dttb.table.table-striped
     thead
       tr
-        th #
+        th Request ID
         th Name
         th To city
         th To state
-        th Travelling fees
         th Target amount
-        th Total received
         th Disabled
-        th Created at
+        th Transport type
+        th Supporting documents
         th
         th
     tbody
-      - @requests.each_with_index do |request, index|
+      - @requests.each do |request|
         tr
-          td= index + 1
+          td= request.id
           td= request.requester.name
           td= request.to_city
           td= request.to_state
-          td= request.travelling_fees
           td= request.target_amount
-          td= request.total_received
           td= request.disabled? ? 'Yes' : 'No'
-          td= l request.created_at
+          td= request.transport_type
+          td= request.supporting_documents.present? ? 'Yes' : 'No'
           td= link_to('View', administrator_request_path(request))
           td= link_to('Edit', edit_administrator_request_path(request))
     = will_paginate @requests

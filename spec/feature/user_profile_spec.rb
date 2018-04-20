@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'User Profile Page', type: :feature do
+describe 'User Profile Page', type: :feature, js: true do
   def random_digit(digit)
     "%0#{digit}d" % rand(10 ** digit)
   end

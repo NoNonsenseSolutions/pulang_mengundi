@@ -10,21 +10,13 @@ module SessionsHelper
     session[:forwarding_url] = request.original_url if request.get?
   end
 
-  def user_logged_in?
-    session[:user_id] && current_user
-  end
-
-  def current_user
-    User.find_by id: session[:user_id]
-  end
-
   def authenticate_user!
-    unless user_logged_in? || current_admin
+    unless current_user || current_admin
       store_location
       redirect_to new_sessions_path
     end
 
-    if user_logged_in? && current_user.flagged
+    if current_user && current_user.flagged
       flash[:danger] = t('sessions.create.flagged_account')
       session.clear
     end

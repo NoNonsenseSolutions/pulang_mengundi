@@ -8,12 +8,11 @@ class SessionsController < ApplicationController
     if request.env['omniauth.auth']
       begin
         user = LinkedAccount.create_with_omniauth(request.env['omniauth.auth'], current_user)
-      
         if user.flagged
           flash[:danger] = t('.flagged_account')
           redirect_to root_path
         else
-          session[:user_id] = user.id
+          sign_in(:user, user)
           # Change to last path
           flash["success"] = "Signed in as #{user.name}"
           redirect_back_or(root_path)
@@ -32,16 +31,15 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    sign_out(current_user) if current_user
     flash[:success] = t('.logged_out')
     redirect_to root_path
   end
 
   private
     def check_logged_in
-      if user_logged_in?
-        flash[:danger] = t('sessions.already_logged_in')
-        redirect_to root_path
-      end
+      return unless current_user
+      flash[:danger] = t('sessions.already_logged_in')
+      redirect_to root_path
     end
 end

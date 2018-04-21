@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     sessions: 'administrator/sessions',
     passwords: 'administrator/passwords',
   }
+  devise_for :users, skip: :all
 
   namespace :administrator do
     root 'users#index'

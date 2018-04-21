@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TermsAndConditionsController < ApplicationController
-  skip_before_action :prompt_tnc, only: [:show, :update]
+  skip_before_action :prompt_tnc, only: %i[show update]
   def show
     @user = current_user
   end
@@ -16,7 +18,8 @@ class TermsAndConditionsController < ApplicationController
   end
 
   private
-    def terms_and_conditions_params
-      params.require(:user).permit(:read_terms)
-    end
+
+  def terms_and_conditions_params
+    params.require(:user).permit(:read_terms)
+  end
 end

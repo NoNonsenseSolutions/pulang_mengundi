@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RequestPolicy
   class Scope
     attr_reader :user, :scope
@@ -36,7 +38,7 @@ class RequestPolicy
     return true if user.present? && request.pledges.pluck(:donor_id).include?(user.id)
     return false if @request.disabled?
     return false if @request.completed?
-    return true
+    true
   end
 
   def update?

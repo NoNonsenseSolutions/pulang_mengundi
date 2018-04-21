@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class DocumentsController < ApplicationController
   def destroy
-
     document = ActiveStorage::Attachment.find_by(id: params[:id])
     if document
       authorize document

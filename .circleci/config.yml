@@ -8,6 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.0-node-browsers
+        environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: root
@@ -55,7 +56,7 @@ jobs:
           key: dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: RAILS_ENV=test bundle exec rake db:setup
+      - run: bundle exec rake db:setup
 
       # run tests!
       - run:

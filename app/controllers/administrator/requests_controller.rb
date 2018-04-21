@@ -3,7 +3,8 @@ module Administrator
     before_action :set_request, only: %i[edit update show]
 
     def index
-      @requests = Request.order(:created_at).page(params[:page])
+      @query = Administrator::RequestIndexQuery.new params: params
+      @requests = @query.results
     end
 
     def edit

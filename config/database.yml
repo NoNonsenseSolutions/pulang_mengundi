@@ -23,7 +23,8 @@ default: &default
 
 development:
   <<: *default
-  database: pulang_mengundi_development
+  # database: pulang_mengundi_development
+  url: postgres://nyilvckivlanxk:b4050f86f809d346de00851a370eb7310e14af0c59d873bc0e7da1a6b53db5e5@ec2-54-235-193-34.compute-1.amazonaws.com:5432/dcol1hu6kobqg5
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

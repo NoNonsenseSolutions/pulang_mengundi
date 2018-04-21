@@ -37,9 +37,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
-gem 'jquery-datatables'
 gem 'jquery-turbolinks'
 gem 'koala'
+gem 'searchkick'
 
 group :development, :test do
   gem 'factory_bot_rails'

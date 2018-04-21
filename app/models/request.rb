@@ -51,6 +51,29 @@ class Request < ApplicationRecord
 
   scope :without_disabled, -> { where(disabled_at: nil) }
 
+  # Searchkick
+  searchkick
+
+  scope :search_import, -> { includes(:requester) }
+  def search_data
+    {
+      id: id,
+      requester_name: requester.name,
+      bank_name: bank_name,
+      description: description,
+      transport_type: transport_type,
+      to_city: to_city,
+      to_state: to_state,
+      target_amount: target_amount,
+      requester_id: requester_id,
+      travel_company: travel_company,
+      remaining_balance: remaining_balance,
+      created_at: created_at,
+      disabled_at:  disabled_at,
+      total_received: total_received
+    }
+  end
+
   def disputes
     Dispute.where(pledge_id: self.pledges.pluck(:id))
   end

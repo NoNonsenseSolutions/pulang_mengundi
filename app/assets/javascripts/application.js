@@ -12,7 +12,6 @@
 //
 //= require activestorage
 //= require jquery
-//= require jquery_ujs
 //= require jquery.turbolinks
 //= require jquery.maskedinput.min
 //= require rails-ujs
@@ -110,7 +109,7 @@ function renderTweetButtons() {
 };
 
 function loadDataTable() {
- $("#dttb").dataTable();
+ $("#dttb").dataTable({ "oLanguage": {"sSearch": "Search: "}});
 };
 
 document.addEventListener('turbolinks:load', renderTweetButtons)

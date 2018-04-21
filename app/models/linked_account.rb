@@ -23,7 +23,7 @@ class LinkedAccount < ApplicationRecord
     @oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], 'https://localhost:3000/auth/facebook/callback')
     access_token = @oauth.get_app_access_token
     @graph = Koala::Facebook::API.new(access_token)
-    self.all.find_each do |la|
+    self.where(provider: 'facebook').find_each do |la|
       user_object = @graph.get_object(la.uid)
       la.name = user_object["name"]
       la.save

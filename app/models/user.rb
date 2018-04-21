@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -38,13 +40,13 @@ class User < ApplicationRecord
 
   EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
   validates :email, format: { with: EMAIL_REGEX, message: 'invalid email' },
-    uniqueness: true,
-    allow_nil: true
+                    uniqueness: true,
+                    allow_nil: true
 
   IC_REGEX = /([0-9][0-9])((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\-([0-9][0-9])\-([0-9][0-9][0-9][0-9])/
-  validates :ic, format: { with: IC_REGEX, message: 'invalid '},
-    uniqueness: true,
-    allow_nil: true
+  validates :ic, format: { with: IC_REGEX, message: 'invalid ' },
+                 uniqueness: true,
+                 allow_nil: true
 
   validates :unconfirmed_email, format: { with: EMAIL_REGEX, message: 'invalid email' }, allow_blank: true
 
@@ -72,7 +74,6 @@ class User < ApplicationRecord
     facebook_link.nil? || twitter_link.nil?
   end
 
-
   def reported?(user)
     Report.where(reporter: self, reported: user).exists?
   end
@@ -82,32 +83,32 @@ class User < ApplicationRecord
   end
 
   def pending_requests
-    Request.joins(:pledges).where(pledges: {donor: self, status: Pledge.statuses[:waiting_for_transfer]})
+    Request.joins(:pledges).where(pledges: { donor: self, status: Pledge.statuses[:waiting_for_transfer] })
   end
 
   def waiting_for_transfer_pledge_for(request)
     request.pledges.waiting_for_transfer.where(donor: self).first
   end
 
-
   def phone
     "#{phone_area_code}#{phone_number}"
   end
 
   private
-    def facebook
-      linked_accounts.find_by(provider: 'facebook')
-    end
 
-    def twitter
-      linked_accounts.find_by(provider: 'twitter')
-    end
+  def facebook
+    linked_accounts.find_by(provider: 'facebook')
+  end
 
-    def phone_is_valid
-      if phone_number.present?
-        unless TelephoneNumber.parse(phone).valid?
-          errors.add(:phone_number, 'is invalid')
-        end
+  def twitter
+    linked_accounts.find_by(provider: 'twitter')
+  end
+
+  def phone_is_valid
+    if phone_number.present?
+      unless TelephoneNumber.parse(phone).valid?
+        errors.add(:phone_number, 'is invalid')
       end
     end
+  end
 end

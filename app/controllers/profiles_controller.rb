@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
   def edit
     @user = current_user
@@ -18,17 +20,18 @@ class ProfilesController < ApplicationController
         flash[:success] = t('.success') if request.format.html?
       end
     else
-      flash[:danger] = @user.errors.full_messages.join("; ") if request.format.html?
+      flash[:danger] = @user.errors.full_messages.join('; ') if request.format.html?
     end
 
     respond_to do |format|
-      format.json { render json: { message: @user.errors.full_messages.join("; ") }, status: @user.valid? ? :accepted : :bad_request }
+      format.json { render json: { message: @user.errors.full_messages.join('; ') }, status: @user.valid? ? :accepted : :bad_request }
       format.html { redirect_back_or(edit_profiles_path) }
     end
   end
 
   private
-    def profile_params
-      params.require(:user).permit(:phone_area_code, :phone_number, :email_public, :ic, :flagged)
-    end
+
+  def profile_params
+    params.require(:user).permit(:phone_area_code, :phone_number, :email_public, :ic, :flagged)
+  end
 end

@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/pulang-mengundi/pulang_mengundi/tree/master.svg?style=svg)](https://circleci.com/gh/pulang-mengundi/pulang_mengundi/tree/master)
+
 # README
 
 ## Setup

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administrator
   class AdminsController < Administrator::ApplicationController
     def index

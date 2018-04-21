@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Pledges::DisputesController < ApplicationController
   def create
     @pledge = Pledge.find(params[:pledge_id])
@@ -7,7 +9,7 @@ class Pledges::DisputesController < ApplicationController
 
     if @dispute.save
       @pledge.requester_disputed!
-      flash[:success] = t ('.disputed')
+      flash[:success] = t '.disputed'
     else
       flash[:danger] = @dispute.errors.full_messages.join('; ')
     end
@@ -15,7 +17,8 @@ class Pledges::DisputesController < ApplicationController
   end
 
   private
-    def dispute_params
-      params.require(:dispute).permit(:comment)
-    end
+
+  def dispute_params
+    params.require(:dispute).permit(:comment)
+  end
 end

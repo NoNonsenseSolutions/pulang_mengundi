@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: linked_accounts
@@ -15,7 +17,7 @@
 
 class LinkedAccount < ApplicationRecord
   belongs_to :user
- 
+
   class UserOverwrittenError < StandardError
   end
 
@@ -23,15 +25,15 @@ class LinkedAccount < ApplicationRecord
     @oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], 'https://localhost:3000/auth/facebook/callback')
     access_token = @oauth.get_app_access_token
     @graph = Koala::Facebook::API.new(access_token)
-    self.where(provider: 'facebook').find_each do |la|
+    where(provider: 'facebook').find_each do |la|
       user_object = @graph.get_object(la.uid)
-      la.name = user_object["name"]
+      la.name = user_object['name']
       la.save
     end
   end
 
   def self.create_with_omniauth(auth, current_user)
-    linked_account = find_or_initialize_by(uid: auth['uid'], provider:  auth['provider'])
+    linked_account = find_or_initialize_by(uid: auth['uid'], provider: auth['provider'])
 
     auth_info = extract_info(auth)
 
@@ -52,21 +54,21 @@ class LinkedAccount < ApplicationRecord
       end
     else
       # new linked account
-      if current_user
-        # assign current user
-        linked_account.user = current_user
-        
-      else
-        if auth_info[:email].present? && user = User.find_by(email: auth_info[:email])
-          #linked in sometimes returns email as an emptry string, presumably because users signed up with phone
-          linked_account.user = user
-        else
-          # if there's no existing user, Create a user
-          linked_account.user = User.create!(name: auth_info[:name], 
-            profile_pic: auth_info[:profile_pic],
-            email: auth_info[:email])
-        end
-      end
+      linked_account.user = if current_user
+                              # assign current user
+                              current_user
+
+                            else
+                              linked_account.user = if auth_info[:email].present? && user = User.find_by(email: auth_info[:email])
+                                                      # linked in sometimes returns email as an emptry string, presumably because users signed up with phone
+                                                      user
+                                                    else
+                                                      # if there's no existing user, Create a user
+                                                      User.create!(name: auth_info[:name],
+                                                                   profile_pic: auth_info[:profile_pic],
+                                                                   email: auth_info[:email])
+                                                    end
+                            end
 
       linked_account.save
       linked_account.user
@@ -74,37 +76,38 @@ class LinkedAccount < ApplicationRecord
   end
 
   def search_link
-    return nil unless provider == 'facebook' && self.name.present?
-    "https://www.facebook.com/search/people/?q=#{URI.escape(self.name)}"
+    return nil unless provider == 'facebook' && name.present?
+    "https://www.facebook.com/search/people/?q=#{URI.escape(name)}"
   end
 
   private
-    def self.extract_info(auth)
-      if auth['provider'] == "facebook"
-        facebook_details(auth)
-      elsif auth['provider'] == "twitter"
-        twitter_details(auth)
-      else
-        raise "not implemented"
-      end
-    end
 
-    def self.facebook_details(auth)
-      {
-        link: auth.dig('extra', 'raw_info', 'link'),
-        profile_pic: auth.dig('info', 'image'),
-        name: auth.dig('extra', 'raw_info', 'name'),
-        email: auth.dig('info', 'email')
-      }
+  def self.extract_info(auth)
+    if auth['provider'] == 'facebook'
+      facebook_details(auth)
+    elsif auth['provider'] == 'twitter'
+      twitter_details(auth)
+    else
+      raise 'not implemented'
     end
+  end
 
-    def self.twitter_details(auth)
-      email = auth.dig('info', 'email')
-      {
-        link: auth.dig('info', 'urls', 'Twitter'),
-        profile_pic: auth.dig('info', 'image'),
-        name: auth.dig('info', 'name'),
-        email: email.present? ? email : nil
-      }
-    end
+  def self.facebook_details(auth)
+    {
+      link: auth.dig('extra', 'raw_info', 'link'),
+      profile_pic: auth.dig('info', 'image'),
+      name: auth.dig('extra', 'raw_info', 'name'),
+      email: auth.dig('info', 'email')
+    }
+  end
+
+  def self.twitter_details(auth)
+    email = auth.dig('info', 'email')
+    {
+      link: auth.dig('info', 'urls', 'Twitter'),
+      profile_pic: auth.dig('info', 'image'),
+      name: auth.dig('info', 'name'),
+      email: email.present? ? email : nil
+    }
+  end
 end

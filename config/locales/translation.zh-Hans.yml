@@ -222,6 +222,8 @@ zh-Hans:
       search: 
       newest_created: 
       oldest_created: 
+      yes_document_provided: 
+      no_document_provided: 
     disables:
       create:
         already_disabled: 
@@ -277,6 +279,8 @@ zh-Hans:
       info_hidden_for_completed_requests: 
       connect_fb_acc: 
       connect_tw_acc: 
+      no_supporting_document: 
+      search_on_facebook: 
     new:
       reminder: 
       missing_ic: 
@@ -328,6 +332,7 @@ zh-Hans:
       please_login: 
     create:
       failed_to_link_account: 
+      flagged_account: 
     destroy:
       logged_out: 
     already_logged_in: 
@@ -465,6 +470,10 @@ zh-Hans:
       thank_you_for: 
       your_random_act: 
       sponsor_others: 捐助他人
+      fine_print_1: 
+      fine_print_2: 
+      fine_print_3: 
+      fine_print_4: 
     show:
       thank_you_for: 
       back_to_home: 

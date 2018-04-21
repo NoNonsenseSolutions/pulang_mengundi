@@ -34,12 +34,12 @@
         br
 
     section.social-media-details.mt-5.text-center
-      - if @requester.facebook_link
+      - if @requester.facebook_search_link
         div
-          = link_to @requester.facebook_link, target: '_blank' do
+          = link_to @requester.facebook_search_link, target: '_blank' do
             div.text-facebook-blue
               = image_tag 'icon_facebook.svg', style: 'height: 14px'
-              span.ml-3 #{@requester.name}'s facebook profile
+              span.ml-3 = t('.search_on_facebook', name: @requester.name)
               = image_tag 'icon_external_link.svg', style: 'height: 16px', class: 'ml-3'
       - elsif @requester == current_user
         div

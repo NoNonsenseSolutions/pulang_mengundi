@@ -30,7 +30,7 @@ class User < ApplicationRecord
   has_many :reports, foreign_key: :reported_id, class_name: 'Report'
   has_many :pledges, foreign_key: :donor_id, class_name: 'Pledge'
 
-  delegate :link, :email, to: :facebook, prefix: true, allow_nil: true
+  delegate :link, :email, :search_link, to: :facebook, prefix: true, allow_nil: true
   delegate :link, :email, to: :twitter, prefix: true, allow_nil: true
 
   validate :phone_is_valid

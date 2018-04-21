@@ -231,6 +231,8 @@ ms:
       search: Cari
       newest_created: 
       oldest_created: 
+      yes_document_provided: 
+      no_document_provided: 
     disables:
       create:
         already_disabled: Permintaan telah dilumpuhkan
@@ -300,6 +302,8 @@ ms:
       info_hidden_for_completed_requests: 
       connect_fb_acc: 
       connect_tw_acc: 
+      no_supporting_document: 
+      search_on_facebook: 
     new:
       reminder: 'PERINGATAN: Anda hanya boleh membuat satu permintaan bagi setiap
         pengguna'
@@ -355,6 +359,7 @@ ms:
     create:
       failed_to_link_account: Gagal untuk memautkan akaun. Akaun itu digunakan untuk
         log masuk sebelumnya dan ia dihubungkan kepada pengguna lain
+      flagged_account: 
     destroy:
       logged_out: Log keluar
     already_logged_in: Sudah mendaftar masuk
@@ -512,6 +517,10 @@ ms:
       your_random_act: 'Sumbangan anda membantu rakyat Malaysia melakukan tugas sivik
         mereka. #pulangmengundi'
       sponsor_others: Taja orang lain
+      fine_print_1: 
+      fine_print_2: 
+      fine_print_3: 
+      fine_print_4: 
     show:
       thank_you_for: 'Terima kasih kerana menyertai GE14 #pulangmengundi'
       back_to_home: Kembali ke halaman utama

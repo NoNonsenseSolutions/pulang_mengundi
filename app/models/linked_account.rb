@@ -19,6 +19,17 @@ class LinkedAccount < ApplicationRecord
   class UserOverwrittenError < StandardError
   end
 
+  def self.sync_facebook_linked_account_name
+    @oauth = Koala::Facebook::OAuth.new(ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], 'https://localhost:3000/auth/facebook/callback')
+    access_token = @oauth.get_app_access_token
+    @graph = Koala::Facebook::API.new(access_token)
+    self.all.find_each do |la|
+      user_object = @graph.get_object(la.uid)
+      la.name = user_object["name"]
+      la.save
+    end
+  end
+
   def self.create_with_omniauth(auth, current_user)
     linked_account = find_or_initialize_by(uid: auth['uid'], provider:  auth['provider'])
 
@@ -27,6 +38,7 @@ class LinkedAccount < ApplicationRecord
     linked_account.link = auth_info[:link] unless linked_account.link
     linked_account.profile_pic = auth_info[:profile_pic] unless linked_account.profile_pic
     linked_account.email = auth_info[:email] unless linked_account.email
+    linked_account.name = auth_info[:name] unless linked_account.name
 
     if linked_account.user
       # if there's already a user to this account(previously persisted)
@@ -59,6 +71,11 @@ class LinkedAccount < ApplicationRecord
       linked_account.save
       linked_account.user
     end
+  end
+
+  def search_link
+    return nil unless provider == 'facebook' && self.name.present?
+    "https://www.facebook.com/search/people/?q=#{URI.escape(self.name)}"
   end
 
   private

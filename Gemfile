@@ -39,6 +39,7 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
 gem 'jquery-datatables'
 gem 'jquery-turbolinks'
+gem 'koala'
 
 group :development, :test do
   gem 'factory_bot_rails'

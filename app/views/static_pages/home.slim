@@ -17,6 +17,11 @@
       = link_to t('.need_a_sponsor'), home_path, class: "switch-items active"
 
     h3.mb-5.mt-5.text-center = t('.need_a_sponsor')
+
+    = image_tag('need_a_sponsor_a.png', class: 'img-responsive')
+    hr
+    = image_tag('need_a_sponsor_b.png', class: 'img-responsive')
+
     - if current_user
       - if current_user.request
         = link_to request_manage_pledges_path(current_user.request) do

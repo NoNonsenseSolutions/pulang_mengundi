@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
     get 'sponsor_someone', to: 'static_pages#home', as: :home
     get 'contact', to: 'static_pages#contact', as: :contact
+    get 'how_to_sponsor', to: 'static_pages#how_to_sponsor', as: :how_to_sponsor
     get 'faq', to: 'static_pages#faq', as: :faq
 
     get 'auth/:provider/localized', to: 'sessions#localized', as: :omniauth_localized

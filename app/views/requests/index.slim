@@ -22,10 +22,15 @@
     .text-center
       = link_to t('.filter_requests'), 'javascript:;', id: 'filters-toggle', class: 'btn btn-primary', data: {toggle: "modal", target: "#filterModal"}
 
-
-
-
     div.mt-5
+      = link_to how_to_sponsor_path, class: 'no-style' do
+        .request-card style='margin-bottom: 50px'
+          div.text-primary-orange.p-5.pb-3.text-center
+            div
+              h3.mb-0.mt-0.center-block.font-weight-bold How to sponsor others?
+            div.mt-3
+              p Click me for tips!
+
       - @requests.each do |request|
         = link_to request, class: 'no-style' do
           .request-card

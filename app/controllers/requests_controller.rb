@@ -28,6 +28,21 @@ class RequestsController < ApplicationController
       end
     end
 
+    @search_document_provided = params.dig(:search, :document_provided)
+    if @search_document_provided.present?
+      request_ids = ActiveStorageAttachment.where(record_type: "Request").pluck(:record_id).uniq
+      
+      if request_ids.empty?
+        request_ids = [0]
+      end
+
+      if @search_document_provided == 'Yes'
+        @requests = @requests.where("id IN (?)", request_ids)
+      elsif @search_document_provided == 'No'
+        @requests = @requests.where("id NOT IN (?)", request_ids)
+      end
+    end
+
     @search_date_created = params.dig(:search, :date_created)
     if @search_date_created.present?
       if @search_date_created == 'Newest'

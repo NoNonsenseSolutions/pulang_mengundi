@@ -90,6 +90,15 @@
                 option selected=('Lowest Balance'==@search_order) 
                   = t('.lowest_balance')
 
+              // Supporting document
+              select.mt-3.selectpicker.form-control title="Document Provided" name="search[document_provided]"
+                optgroup label="None"
+                  option 
+                option selected=('Yes'==@search_document_provided) 
+                  = t('.yes_document_provided')
+                option selected=('No'==@search_document_provided) 
+                  = t('.no_document_provided')
+
               // Date
               select.mt-3.selectpicker.form-control title="Date Created" name="search[date_created]"
                 optgroup label="None"
@@ -100,6 +109,6 @@
                   = t('.newest_created')
                 option selected=('Oldest'==@search_date_created) 
                   = t('.oldest_created')
-
+              
               button.mt-3.btn.btn-primary 
                 | Search

@@ -21,6 +21,8 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_DB: pulang_mengundi_test
 
+      - image: redis
+
     working_directory: ~/app
 
     steps:

@@ -79,8 +79,7 @@ describe 'sponsorship requests', type: :feature, js: true do
           page.find('button[data-id=request_to_state]').click
           page.find('ul.dropdown-menu li a', text: to_state).click
 
-          page.find('button[data-id=request_to_city').click
-          page.find('ul.dropdown-menu li a', text: to_city).click
+          select to_city, from: 'Constituency'
 
           fill_in 'Tell Us Why', with: description
           fill_in 'Total ticket amount (RM)', with: travelling_fees

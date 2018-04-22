@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/pulang-mengundi/pulang_mengundi/tree/master.svg?style=svg)](https://circleci.com/gh/pulang-mengundi/pulang_mengundi/tree/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e09a5504797192cd6b77/maintainability)](https://codeclimate.com/github/pulang-mengundi/pulang_mengundi/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e09a5504797192cd6b77/test_coverage)](https://codeclimate.com/github/pulang-mengundi/pulang_mengundi/test_coverage) [![CircleCI](https://circleci.com/gh/pulang-mengundi/pulang_mengundi/tree/master.svg?style=svg)](https://circleci.com/gh/pulang-mengundi/pulang_mengundi/tree/master)
 
 # README
 

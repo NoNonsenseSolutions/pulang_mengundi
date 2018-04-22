@@ -18,9 +18,8 @@ module SessionsHelper
       redirect_to new_sessions_path
     end
 
-    if current_user&.flagged
-      flash[:danger] = t('sessions.create.flagged_account')
-      session.clear
-    end
+    return unless current_user&.flagged
+    flash[:danger] = t('sessions.create.flagged_account')
+    session.clear
   end
 end

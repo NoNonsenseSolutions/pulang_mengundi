@@ -44,14 +44,8 @@ class LinkedAccount < ApplicationRecord
 
     if linked_account.user
       # if there's already a user to this account(previously persisted)
-      if current_user && current_user != linked_account.user
-        # if it's not, it means that linked account is tied to another user, throw erro
-        raise UserOverwrittenError
-      else
-        # if there's no current user, log in linked account user
-        linked_account.save
-        linked_account.user
-      end
+      # if it's not, it means that linked account is tied to another user, throw erro
+      raise UserOverwrittenError if current_user && current_user != linked_account.user
     else
       # new linked account
       linked_account.user = if current_user
@@ -70,10 +64,10 @@ class LinkedAccount < ApplicationRecord
                                                     end
                             end
 
-      linked_account.save
-      linked_account.user
     end
-  end
+    linked_account.save
+    linked_account.user
+end
 
   def search_link
     return nil unless provider == 'facebook' && name.present?

@@ -1,7 +1,6 @@
 h1.page-header Requests
 .row.placeholders
-  = simple_form_for :filter, url: administrator_requests_path, method: :get do |f|
-    / Should make a form object?
+  = simple_form_for '', url: administrator_requests_path, method: :get do |f|
     .row
       .col-xs-12.col-sm-4.col-md-3.col-lg-2
         = f.input :search_term, input_html: { value: @query.search_term }
@@ -13,8 +12,21 @@ h1.page-header Requests
         = f.input :selected_order, collection: @query.order_options, selected: @query.selected_order
       .col-xs-12.col-sm-4.col-md-3.col-lg-2
         = f.input :transport_type, collection: Request::TRANSPORT_TYPES, include_blank: true, selected: @query.transport_type
-
-      = f.submit 'Search'
+      .col-xs-12.col-sm-4.col-md-3.col-lg-2
+        = f.input :has_itinerary, collection: [true, false], include_blank: true, selected: @query.has_itinerary
+      .col-xs-12.col-sm-4.col-md-3.col-lg-2
+        = f.input :has_supporting_documents, collection: [true, false], include_blank: true, selected: @query.has_supporting_documents
+      .col-xs-12.col-sm-4.col-md-3.col-lg-2
+        = f.input :is_disabled, collection: [true, false], include_blank: true, selected: @query.is_disabled
+      .col-xs-12.col-sm-4.col-md-3.col-lg-2
+        = f.input :is_completed, collection: [true, false], include_blank: true, selected: @query.is_completed
+      .col-xs-12.col-sm-4.col-md-3.col-lg-2
+        = f.input :min_age, input_html: { value: @query.min_age, placeholder: 'Fill in BOTH min and max to get range' }
+      .col-xs-12.col-sm-4.col-md-3.col-lg-2
+        = f.input :max_age, input_html: { value: @query.max_age, placeholder: 'Fill in BOTH min and max to get range' }
+      
+    .row
+      = f.submit 'Search', class: 'btn btn-default center-block'
 
 = will_paginate @requests, params: { page: params.dig(:filter, :page), per_page: params.dig(:filter, :per_page) }
 .table-responsive
@@ -45,3 +57,6 @@ h1.page-header Requests
           td= link_to('View', administrator_request_path(request))
           td= link_to('Edit', edit_administrator_request_path(request))
 = will_paginate @requests, params: { page: params.dig(:filter, :page), per_page: params.dig(:filter, :per_page) }
+
+div
+  = link_to "CSV", administrator_requests_path(params: params.to_unsafe_hash, format: "csv"), class: 'btn btn-default'

@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:user_id]) || current_user
+    @user = current_user
     if @user.update(profile_params)
       if params.dig(:user, :email).present? && (@user.email != params.dig(:user, :email))
         @user.unconfirmed_email = params.dig(:user, :email)
@@ -21,10 +21,7 @@ class ProfilesController < ApplicationController
       flash[:danger] = @user.errors.full_messages.join("; ") if request.format.html?
     end
 
-    respond_to do |format|
-      format.json { render json: { message: @user.errors.full_messages.join("; ") }, status: @user.valid? ? :accepted : :bad_request }
-      format.html { redirect_back_or(edit_profiles_path) }
-    end
+    redirect_back_or edit_profiles_path
   end
 
   private

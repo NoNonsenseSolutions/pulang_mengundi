@@ -9,6 +9,8 @@ describe 'sponsorship requests', type: :feature, js: true do
   before do
     login_omniauth(auth_hash, user.name)
     visit home_path(locale: :en)
+    # visit '#need-a-sponsor'
+    # save_and_open_page
     click_button 'SUBMIT MY REQUEST'
   end
 

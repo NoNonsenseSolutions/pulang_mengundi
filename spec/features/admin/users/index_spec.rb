@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'users', type: :feature do
   let(:admin) { create(:admin) }
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, :reindex) }
 
   before do
     login_as(admin)

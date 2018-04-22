@@ -54,10 +54,10 @@ class Request < ApplicationRecord
   # Searchkick
   searchkick
 
-  scope :search_import, -> { includes(:requester) }
+  scope :search_import, -> { includes(:requester).with_attached_supporting_documents }
   def search_data
     {
-      id: id,
+      id_string: id.to_s,
       requester_name: requester.name,
       bank_name: bank_name,
       description: description,
@@ -70,7 +70,12 @@ class Request < ApplicationRecord
       remaining_balance: remaining_balance,
       created_at: created_at,
       disabled_at:  disabled_at,
-      total_received: total_received
+      total_received: total_received,
+      requester_age: requester.estimated_age,
+      is_disabled: disabled_at.present?,
+      has_itinerary: itinerary.present?,
+      has_supporting_documents: supporting_documents.present?,
+      is_completed: completed?
     }
   end
 

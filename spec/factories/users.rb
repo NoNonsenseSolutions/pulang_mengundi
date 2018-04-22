@@ -21,5 +21,11 @@ FactoryBot.define do
     trait :not_read_terms do
       read_terms false
     end
+
+    trait :reindex do
+      after(:create) do |product, _evaluator|
+        product.reindex(refresh: true)
+      end
+    end
   end
 end

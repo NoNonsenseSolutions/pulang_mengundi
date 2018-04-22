@@ -5,7 +5,16 @@ module Administrator
     before_action :set_request, only: %i[edit update show]
 
     def index
-      @requests = Request.order(:created_at).page(params[:page])
+      respond_to do |format|
+        format.html do
+          @query = Administrator::RequestsQuery.new params: params
+          @requests = @query.results
+        end
+        format.csv do
+          @query = Administrator::RequestsQuery.new params: params.merge(page: 1, per_page: 10_000) # large page number.
+          send_data ExportRequestsCsv.new(@query.results).generated_file
+        end
+      end
     end
 
     def edit; end

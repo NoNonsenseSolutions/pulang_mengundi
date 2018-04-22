@@ -24,6 +24,7 @@
 #  total_received    :decimal(8, 3)    default(0.0)
 #
 
+# rubocop:disable Metrics/ClassLength
 class Request < ApplicationRecord
   TRANSPORT_TYPES = %w[FLIGHT BUS TRAIN].freeze
 
@@ -35,23 +36,46 @@ class Request < ApplicationRecord
   accepts_nested_attributes_for :supporting_documents_attachments, allow_destroy: true
 
   validates :bank_name, presence: true, inclusion: { in: Bank::NAMES, message: 'must be in the list of banks' }
-  validates :account_number,
-            presence: true, uniqueness: { scope: :bank_name },
-            format: { with: /\A\d+\z/, message: 'can only contain numbers' }
+  validates :account_number, presence: true, uniqueness: { scope: :bank_name }, format: { with: /\A\d+\z/, message: 'can only contain numbers' }
   validates :account_name, presence: true
   validates :transport_type, inclusion: { in: TRANSPORT_TYPES }
   validates :target_amount, inclusion: { in: 10..5000, message: 'has to be between 10 to 5000' }
   validates :requester_id, uniqueness: true
   validates :travelling_fees, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
   validate :user_has_read_terms, on: :create
-
   validate :cap_target_amount
 
   before_save :update_remaining_balance!
   before_update :purge_supporting_documents
 
   scope :without_disabled, -> { where(disabled_at: nil) }
+
+  # Searchkick
+  searchkick
+  scope :search_import, -> { includes(:requester).with_attached_supporting_documents }
+  def search_data
+    {
+      id_string: id.to_s,
+      requester_name: requester.name,
+      bank_name: bank_name,
+      description: description,
+      transport_type: transport_type,
+      to_city: to_city,
+      to_state: to_state,
+      target_amount: target_amount,
+      requester_id: requester_id,
+      travel_company: travel_company,
+      remaining_balance: remaining_balance,
+      created_at: created_at,
+      disabled_at:  disabled_at,
+      total_received: total_received,
+      requester_age: requester.estimated_age,
+      is_disabled: disabled_at.present?,
+      has_itinerary: itinerary.present?,
+      has_supporting_documents: supporting_documents.present?,
+      is_completed: completed?
+    }
+  end
 
   def disputes
     Dispute.where(pledge_id: pledges.pluck(:id))
@@ -119,9 +143,8 @@ class Request < ApplicationRecord
   private
 
   def cap_target_amount
-    if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
-      errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
-    end
+    return unless target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
+    errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
   end
 
   def user_has_read_terms
@@ -130,9 +153,8 @@ class Request < ApplicationRecord
 
   def purge_supporting_documents
     supporting_documents.each do |supporting_document|
-      if supporting_document.marked_for_destruction?
-        supporting_document.blob.purge_later
-      end
+      supporting_document.blob.purge_later if supporting_document.marked_for_destruction?
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

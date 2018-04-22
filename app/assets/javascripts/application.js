@@ -22,8 +22,6 @@
 //= require requests
 //= require home
 //= require countUp
-//= require abracadabra
-//= require datatables
 
 document.addEventListener("turbolinks:load", function(){
   $('.selectpicker').selectpicker('render');
@@ -95,6 +93,9 @@ window.twttr = (function(d, s, id) {
 
 
 function renderTweetButtons() {
+  if($('.twitter-share-button').length === 0){
+    return
+  }
   $('.twitter-share-button').each(function() {
     var button;
     button = $(this);
@@ -108,9 +109,4 @@ function renderTweetButtons() {
   return twttr.widgets.load();
 };
 
-function loadDataTable() {
- $("#dttb").dataTable({ "oLanguage": {"sSearch": "Search: "}});
-};
-
 document.addEventListener('turbolinks:load', renderTweetButtons)
-document.addEventListener('turbolinks:load', loadDataTable)

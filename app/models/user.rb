@@ -50,6 +50,20 @@ class User < ApplicationRecord
 
   validates :unconfirmed_email, format: { with: EMAIL_REGEX, message: 'invalid email' }, allow_blank: true
 
+  # Searchkick
+  searchkick
+
+  def search_data
+    {
+      id_string: id.to_s,
+      name: name,
+      email: email,
+      phone: phone,
+      ic: ic,
+      created_at: created_at
+    }
+  end
+
   def expired_request_pledges
     request&.pledges&.has_expired || []
   end
@@ -92,6 +106,13 @@ class User < ApplicationRecord
 
   def phone
     "#{phone_area_code}#{phone_number}"
+  end
+
+  def estimated_age
+    return nil unless ic
+    now = Time.zone.now
+    dob = Date.parse("19#{ic.first(7)}")
+    now.year - dob.year - (now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1)
   end
 
   private

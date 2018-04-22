@@ -22,7 +22,6 @@
 //= require requests
 //= require home
 //= require countUp
-//= require abracadabra
 
 document.addEventListener("turbolinks:load", function(){
   $('.selectpicker').selectpicker('render');

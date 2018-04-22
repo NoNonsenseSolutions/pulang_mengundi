@@ -1,4 +1,3 @@
-//= require activestorage
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery.maskedinput.min

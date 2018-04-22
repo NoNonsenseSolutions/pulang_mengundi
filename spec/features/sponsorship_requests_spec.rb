@@ -9,8 +9,6 @@ describe 'sponsorship requests', type: :feature, js: true do
   before do
     login_omniauth(auth_hash, user.name)
     visit home_path(locale: :en)
-    # visit '#need-a-sponsor'
-    # save_and_open_page
     click_button 'SUBMIT MY REQUEST'
   end
 
@@ -81,8 +79,7 @@ describe 'sponsorship requests', type: :feature, js: true do
           page.find('button[data-id=request_to_state]').click
           page.find('ul.dropdown-menu li a', text: to_state).click
 
-          page.find('button[data-id=request_to_city').click
-          page.find('ul.dropdown-menu li a', text: to_city).click
+          select to_city, from: 'Constituency'
 
           fill_in 'Tell Us Why', with: description
           fill_in 'Total ticket amount (RM)', with: travelling_fees

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Requests::DisablesController < ApplicationController
   def create
     @request = Request.find(params[:request_id])

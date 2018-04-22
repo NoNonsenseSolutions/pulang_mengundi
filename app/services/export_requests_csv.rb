@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 class ExportRequestsCsv
@@ -8,9 +10,10 @@ class ExportRequestsCsv
 
   def generated_file
     CSV.generate do |csv|
-      csv << ["id", "link", "name", "facebook_search", "twitter_link", "why_am_i_seeking", "email"]
+      csv << %w[id link name facebook_search twitter_link why_am_i_seeking email]
       @results.each do |request|
-        csv << [request.id, 
+        csv << [
+          request.id,
           request_url(request, locale: I18n.locale),
           request.requester.name,
           request.requester.facebook_search_link,

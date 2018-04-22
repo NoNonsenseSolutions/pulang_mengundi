@@ -1,5 +1,6 @@
-class PledgesController < ApplicationController
+# frozen_string_literal: true
 
+class PledgesController < ApplicationController
   def index
     @pledges = policy_scope(Pledge)
   end
@@ -9,7 +10,7 @@ class PledgesController < ApplicationController
     @user = current_user
     unless @user.read_terms?
       store_location
-      redirect_to terms_and_conditions_path and return
+      redirect_to(terms_and_conditions_path) && return
     end
 
     @pledge = @request.pledges.new
@@ -24,7 +25,7 @@ class PledgesController < ApplicationController
       flash[:success] = t('.success')
       redirect_to @pledge
     else
-      flash[:danger] = @pledge.errors.full_messages.join("; ")
+      flash[:danger] = @pledge.errors.full_messages.join('; ')
       redirect_to new_request_pledge_path(@request)
     end
   end
@@ -36,7 +37,8 @@ class PledgesController < ApplicationController
   end
 
   private
-    def pledge_params
-      params.require(:pledge).permit(:amount)
-    end
+
+  def pledge_params
+    params.require(:pledge).permit(:amount)
+  end
 end

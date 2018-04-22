@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SessionsHelper
   # Redirects to stored location (or to the default).
   def redirect_back_or(default)
@@ -16,7 +18,7 @@ module SessionsHelper
       redirect_to new_sessions_path
     end
 
-    if current_user && current_user.flagged
+    if current_user&.flagged
       flash[:danger] = t('sessions.create.flagged_account')
       session.clear
     end

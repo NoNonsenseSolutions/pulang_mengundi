@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :check_logged_in, only: :new
-  def new
-  end
+  def new; end
 
   def create
     if request.env['omniauth.auth']
@@ -14,12 +15,12 @@ class SessionsController < ApplicationController
         else
           sign_in(:user, user)
           # Change to last path
-          flash["success"] = "Signed in as #{user.name}"
+          flash['success'] = "Signed in as #{user.name}"
           redirect_back_or(root_path)
         end
       rescue LinkedAccount::UserOverwrittenError
         flash[:danger] = t('.failed_to_link_account')
-        redirect_back_or(root_path) and return
+        redirect_back_or(root_path) && return
       end
     end
   end
@@ -37,9 +38,10 @@ class SessionsController < ApplicationController
   end
 
   private
-    def check_logged_in
-      return unless current_user
-      flash[:danger] = t('sessions.already_logged_in')
-      redirect_to root_path
-    end
+
+  def check_logged_in
+    return unless current_user
+    flash[:danger] = t('sessions.already_logged_in')
+    redirect_to root_path
+  end
 end

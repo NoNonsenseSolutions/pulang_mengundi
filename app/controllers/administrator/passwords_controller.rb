@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administrator
   class PasswordsController < Devise::PasswordsController
     layout 'admin/application'

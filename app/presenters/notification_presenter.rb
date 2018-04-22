@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationPresenter < ApplicationPresenter
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::UrlHelper
@@ -5,7 +7,6 @@ class NotificationPresenter < ApplicationPresenter
   include ActionView::Helpers::TextHelper
   include ActionView::Context
   attr_reader :user
-
 
   def initialize(user)
     @user = user
@@ -36,7 +37,7 @@ class NotificationPresenter < ApplicationPresenter
     when :complete_profile_suggestion
       t('notification.text.complete_profile_suggestion')
     else
-      ""
+      ''
     end
   end
 
@@ -66,19 +67,17 @@ class NotificationPresenter < ApplicationPresenter
           t('notification.button.complete_profile_suggestion')
         end
       end
-    else
-      nil
     end
   end
 
   def container_class
     case category
     when :pending_donor_transfer, :pending_received_confirmation
-      "alert alert-info"
+      'alert alert-info'
     when :can_be_expired, :complete_profile_suggestion
-      "alert alert-warning"
+      'alert alert-warning'
     else
-      "hidden"
+      'hidden'
     end
   end
 end

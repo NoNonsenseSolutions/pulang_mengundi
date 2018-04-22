@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: requests
@@ -22,8 +24,9 @@
 #  total_received    :decimal(8, 3)    default(0.0)
 #
 
+# rubocop:disable Metrics/ClassLength
 class Request < ApplicationRecord
-  TRANSPORT_TYPES = ["FLIGHT", "BUS", "TRAIN"]
+  TRANSPORT_TYPES = %w[FLIGHT BUS TRAIN].freeze
 
   belongs_to :requester, class_name: 'User'
   has_many :pledges, dependent: :destroy
@@ -33,17 +36,13 @@ class Request < ApplicationRecord
   accepts_nested_attributes_for :supporting_documents_attachments, allow_destroy: true
 
   validates :bank_name, presence: true, inclusion: { in: Bank::NAMES, message: 'must be in the list of banks' }
-  validates :account_number,
-    presence: true, uniqueness: { scope: :bank_name },
-    format: { with: /\A\d+\z/, message: "can only contain numbers" }
+  validates :account_number, presence: true, uniqueness: { scope: :bank_name }, format: { with: /\A\d+\z/, message: 'can only contain numbers' }
   validates :account_name, presence: true
-  validates :transport_type, inclusion: {in: TRANSPORT_TYPES}
-  validates :target_amount, inclusion: {in: 10..5000, message: 'has to be between 10 to 5000'}
+  validates :transport_type, inclusion: { in: TRANSPORT_TYPES }
+  validates :target_amount, inclusion: { in: 10..5000, message: 'has to be between 10 to 5000' }
   validates :requester_id, uniqueness: true
-  validates :travelling_fees, presence: true, numericality: {greater_than_or_equal_to: 0}
-
+  validates :travelling_fees, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :user_has_read_terms, on: :create
-
   validate :cap_target_amount
 
   before_save :update_remaining_balance!
@@ -53,7 +52,6 @@ class Request < ApplicationRecord
 
   # Searchkick
   searchkick
-
   scope :search_import, -> { includes(:requester).with_attached_supporting_documents }
   def search_data
     {
@@ -80,7 +78,7 @@ class Request < ApplicationRecord
   end
 
   def disputes
-    Dispute.where(pledge_id: self.pledges.pluck(:id))
+    Dispute.where(pledge_id: pledges.pluck(:id))
   end
 
   def display_pic
@@ -96,7 +94,7 @@ class Request < ApplicationRecord
   end
 
   def remaining_balance_percentage
-    (remaining_balance / self.target_amount.to_f * 100).to_i
+    (remaining_balance / target_amount.to_f * 100).to_i
   end
 
   def successful_pledges_amount
@@ -108,15 +106,15 @@ class Request < ApplicationRecord
   end
 
   def successful_pledges_percentage
-    (pledges.requester_received.sum(:amount) / self.target_amount.to_f * 100).to_i
+    (pledges.requester_received.sum(:amount) / target_amount.to_f * 100).to_i
   end
 
   def disputed_pledges_percentage
-    (pledges.requester_disputed.sum(:amount) / self.target_amount.to_f * 100).to_i
+    (pledges.requester_disputed.sum(:amount) / target_amount.to_f * 100).to_i
   end
 
   def pending_pledges_percentage
-    (pledges.pending.sum(:amount) / self.target_amount.to_f * 100).to_i
+    (pledges.pending.sum(:amount) / target_amount.to_f * 100).to_i
   end
 
   def update_remaining_balance!
@@ -139,25 +137,24 @@ class Request < ApplicationRecord
   end
 
   def disabled?
-    !self.disabled_at.nil?
+    !disabled_at.nil?
   end
 
   private
-    def cap_target_amount
-      if target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
-        errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
-      end
-    end
 
-    def user_has_read_terms
-      errors.add(:requester, 'has not agreed to the terms and conditions') unless requester.read_terms?
-    end
+  def cap_target_amount
+    return unless target_amount && travelling_fees && target_amount > (0.9 * travelling_fees)
+    errors.add(:target_amount, "- Cannot request more than 90\% of travelling fees")
+  end
 
-    def purge_supporting_documents
-      supporting_documents.each do |supporting_document|
-        if supporting_document.marked_for_destruction?
-          supporting_document.blob.purge_later
-        end
-      end
+  def user_has_read_terms
+    errors.add(:requester, 'has not agreed to the terms and conditions') unless requester.read_terms?
+  end
+
+  def purge_supporting_documents
+    supporting_documents.each do |supporting_document|
+      supporting_document.blob.purge_later if supporting_document.marked_for_destruction?
     end
+  end
 end
+# rubocop:enable Metrics/ClassLength

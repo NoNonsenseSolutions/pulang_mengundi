@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
   def edit
     @user = current_user
@@ -18,14 +20,15 @@ class ProfilesController < ApplicationController
         flash[:success] = t('.success') if request.format.html?
       end
     else
-      flash[:danger] = @user.errors.full_messages.join("; ") if request.format.html?
+      flash[:danger] = @user.errors.full_messages.join('; ') if request.format.html?
     end
 
     redirect_back_or edit_profiles_path
   end
 
   private
-    def profile_params
-      params.require(:user).permit(:phone_area_code, :phone_number, :email_public, :ic, :flagged)
-    end
+
+  def profile_params
+    params.require(:user).permit(:phone_area_code, :phone_number, :email_public, :ic, :flagged)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PledgePolicy
   class Scope
     attr_reader :user, :scope
@@ -11,7 +13,6 @@ class PledgePolicy
       scope.where(donor: user)
     end
   end
-
 
   attr_reader :user, :pledge
 

@@ -1,5 +1,6 @@
-class ManagePledgesController < ApplicationController
+# frozen_string_literal: true
 
+class ManagePledgesController < ApplicationController
   def index
     @request = Request.find(params[:request_id])
     authorize @request, :manage?

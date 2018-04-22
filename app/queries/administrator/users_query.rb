@@ -1,7 +1,9 @@
-class Administrator::UsersQuery
-  attr_reader :search_term, :selected_order
+# frozen_string_literal: true
 
-  def initialize params: params, relation: User.all
+class Administrator::UsersQuery
+  attr_reader :selected_order
+
+  def initialize(params: {}, relation: User.all)
     @relation       = relation
     @search_term    = params[:search_term]
     @page           = params[:page]
@@ -41,16 +43,17 @@ class Administrator::UsersQuery
   end
 
   private
-    def order_column
-      case selected_order
-      when /^created_at/
-        :created_at
-      else
-        raise(ArgumentError, "Invalid sort option: #{ selected_order }")
-      end
-    end
 
-    def order_direction
-      direction = (selected_order =~ /desc$/) ? 'desc' : 'asc'
+  def order_column
+    case selected_order
+    when /^created_at/
+      :created_at
+    else
+      raise(ArgumentError, "Invalid sort option: #{selected_order}")
     end
+  end
+
+  def order_direction
+    /desc$/.match?(selected_order) ? 'desc' : 'asc'
+  end
 end

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Requests::EnablesController < ApplicationController
   def create
     @request = Request.find(params[:request_id])
     authorize(@request, :destroy?)
     if @request.disabled?
       @request.enable!
-      flash[:success] = t(".enabled")
+      flash[:success] = t('.enabled')
     else
       flash[:danger] = t('.not_disabled')
     end

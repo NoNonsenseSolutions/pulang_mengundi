@@ -18,7 +18,7 @@ function updateConstituencyList() {
     constituencySelect.children('option').remove()
   }
 
-  if($('[data-admin]').data('admin').val() !== undefined) {
+  if($('[data-admin]').data('admin') && $('[data-admin]').data('admin').val() !== undefined) {
     constituencySelect.selectpicker('refresh');
   }
 }

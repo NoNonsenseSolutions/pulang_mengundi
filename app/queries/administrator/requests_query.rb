@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Administrator::RequestsQuery
   attr_reader :to_state, :to_city, :selected_order, :transport_type, :min_age, :max_age, :has_itinerary, :has_supporting_documents, :is_disabled, :is_completed
 
-  def initialize params: params, relation: Request.all
+  def initialize(params: {}, relation: Request.all)
     @relation                 = relation
     @search_term              = params[:search_term]
     @to_state                 = params[:to_state]
@@ -14,22 +16,22 @@ class Administrator::RequestsQuery
     @max_age                  = params[:max_age]
     @has_itinerary            = params[:has_itinerary]
     @has_supporting_documents = params[:has_supporting_documents]
-    @is_disabled              = params[:is_disabled].nil? ? "false" : params[:is_disabled]
-    @is_completed             = params[:is_completed].nil? ? "false" : params[:is_completed]
+    @is_disabled              = params[:is_disabled].nil? ? 'false' : params[:is_disabled]
+    @is_completed             = params[:is_completed].nil? ? 'false' : params[:is_completed]
   end
 
   def order_options
     [
       ['Relevance', ''],
       ['Newest First', 'created_at_desc'],
-      ['Oldest First', 'created_at_asc'],    
-      ['Highest target amount', 'target_amount_desc'], 
-      ['Lowest target amount', 'target_amount_asc'], 
+      ['Oldest First', 'created_at_asc'],
+      ['Highest target amount', 'target_amount_desc'],
+      ['Lowest target amount', 'target_amount_asc']
     ]
   end
 
   def results
-    where_hash = Hash.new
+    where_hash = {}
 
     where_hash[:to_state] = to_state if to_state.present?
     where_hash[:to_city] = to_city if to_city.present?
@@ -38,18 +40,16 @@ class Administrator::RequestsQuery
     where_hash[:has_supporting_documents] = has_supporting_documents if has_supporting_documents.present?
     where_hash[:is_completed] = is_completed if is_completed.present?
 
-    #FFFFFF
+    # FFFFFF
 
-    if min_age.present? && max_age.present?
-      where_hash[:requester_age] = min_age..max_age
-    end
+    where_hash[:requester_age] = min_age..max_age if min_age.present? && max_age.present?
 
     order_hash = { order_column => order_direction } if selected_order.present?
 
     Request.search(
-      search_term, 
+      search_term,
       where: where_hash,
-      includes: [requester: :linked_accounts], 
+      includes: [requester: :linked_accounts],
       scope_results: ->(r) { r.with_attached_supporting_documents },
       page: page,
       per_page: per_page,
@@ -70,18 +70,19 @@ class Administrator::RequestsQuery
   end
 
   private
-    def order_column
-      case selected_order
-      when /^created_at/
-        :created_at
-      when /^target_amount/
-        :target_amount
-      else
-        raise(ArgumentError, "Invalid sort option: #{ selected_order }")
-      end
-    end
 
-    def order_direction
-      direction = (selected_order =~ /desc$/) ? 'desc' : 'asc'
+  def order_column
+    case selected_order
+    when /^created_at/
+      :created_at
+    when /^target_amount/
+      :target_amount
+    else
+      raise(ArgumentError, "Invalid sort option: #{selected_order}")
     end
+  end
+
+  def order_direction
+    /desc$/.match?(selected_order) ? 'desc' : 'asc'
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include Pundit
@@ -17,25 +19,25 @@ class ApplicationController < ActionController::Base
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
 
-    flash[:danger] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+    flash[:danger] = t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
     redirect_to(request.referrer || root_path)
   end
 
   def prompt_tnc
-    if current_user && current_user.request && !current_user.read_terms
+    if current_user&.request && !current_user.read_terms
       store_location
       redirect_to terms_and_conditions_path
     end
   end
 
-  def default_url_options(options = {})
+  def default_url_options(_options = {})
     { locale: I18n.locale }
   end
 
   def set_locale
     I18n.locale = params[:locale] if params[:locale].present?
     # redirect back to home page if user typed in URL such as /my
-    rescue
+  rescue StandardError
     redirect_to root_path(locale: :en)
   end
 end

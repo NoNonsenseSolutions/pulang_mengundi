@@ -1,0 +1,13 @@
+en:
+  buses:
+    index:
+      to: To
+      from: From
+      available_seats: Available Seats
+      get_more_info: Get More Info
+      bus_route_from: Bus routes from UndiRabu.com
+      more_info_available: To obtain more information regarding the bus route or reservation, please visit the link provided. Please come back again if there route that you are planning to take has been sold out. Seats are usually added when they run out.
+      all: All
+      city: City
+      none: None
+      filter_routes: Filter Routes

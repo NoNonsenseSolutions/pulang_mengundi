@@ -1,0 +1,55 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    h2.text-center = link_to(t('.bus_route_from'), "http://www.undirabu.com")
+    p.text-left = t('.more_info_available')
+    .text-center
+      = link_to t('.filter_routes'), 'javascript:;', id: 'filters-toggle', class: 'btn btn-primary', data: {toggle: "modal", target: "#filterModal"}
+
+    div.mt-5
+      - @buses.each do |data|
+        = link_to data.link, class: 'no-style' do
+          .request-card
+            .request-card-body
+              .space-out-column
+                = image_tag(data.image_link, height: "80", width: "80")
+              div.space-out-column.ml-3
+                div
+                  big #{data.depart_city} to #{data.arrive_city}
+                  div.font-size-tiny style='font-weight: 300'
+                div
+                  div.font-size-tiny style='font-weight: 300' Date: #{data.date}
+                  div.font-size-tiny style='font-weight: 300' Time: #{data.time}
+              div.space-out-column.ml-3
+                div.text-right
+                  small 
+                div.text-right
+                  u.small More Info
+                  br
+                  p.font-weight-bold.m-0 #{data.seat}
+
+= content_for :modal do
+  #filterModal.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+    .modal-dialog.modal-sm role="document" style="top: 25%;"
+      .modal-content.bg-primary-orange
+        .modal-body
+          div#filters.text-center
+            = simple_form_for :search, url: buses_path, method: :get do
+              // City
+              select.mt-3.selectpicker.form-control data-live-search="true" title="City" name="search[city]"
+                optgroup label=t('.none')
+                  option
+                optgroup label=t('.city')
+                  = @all_cities.each do |name|
+                    option selected=(name==@city_name)
+                      = name                    
+              // Date
+              select.mt-3.selectpicker.form-control title="Departing Date" name="search[departing_date]"
+                optgroup label=t('.none')
+                  option
+                option selected=('8 May 2018'==@departing_date) 
+                  | 8 May 2018
+                option selected=('9 May 2018'==@departing_date) 
+                  | 9 May 2018
+
+              button.mt-3.btn.btn-primary 
+                | Search

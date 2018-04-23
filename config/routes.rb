@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     resources :email_confirmations, only: [:show]
 
     resource :terms_and_conditions, only: [:show, :update]
+
+    resources :buses, only: [:index]
   end
 
   # omniauth out of scope, as omniauth does not support dynamic paths
@@ -84,4 +86,4 @@ Rails.application.routes.draw do
   get '/*path', to: redirect("/#{I18n.default_locale}/%{path}", status: 302),
     constraints: { path: /(?!(#{RouteConstraint::EXCLUDED_ROUTES.join("|")})\/).*/ },
     format: false
-end
+  end

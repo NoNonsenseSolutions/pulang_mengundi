@@ -3,6 +3,7 @@ en:
     navbar:
       carpool: Carpool
       subsidy: Subsidy
+      bus: Bus
       my_request: My Request
       completed_sponsorships: Completed Sponsorships
       my_sponsorships: My Sponsorships

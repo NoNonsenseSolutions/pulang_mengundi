@@ -10,10 +10,7 @@ class ActiveStorage::AttachmentPolicy
 
   def destroy?
     record = document.record
-    if record.is_a? Request
-      return record.requester == user
-    elsif record.is_a? Pledge
-      return record.donor == user
-    end
+    return record.requester == user if record.is_a? Request
+    return record.donor == user if record.is_a? Pledge
   end
 end

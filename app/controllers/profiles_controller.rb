@@ -12,15 +12,15 @@ class ProfilesController < ApplicationController
         @user.unconfirmed_email = params.dig(:user, :email)
         if @user.save
           UserMailer.with(user_id: @user.id).confirmation_email.deliver_later
-          flash[:success] = t('.check_email') if request.format.html?
+          flash[:success] = t('.check_email')
         else
-          flash[:danger] = t('.invalid_email') if request.format.html?
+          flash[:danger] = t('.invalid_email')
         end
       else
-        flash[:success] = t('.success') if request.format.html?
+        flash[:success] = t('.success')
       end
     else
-      flash[:danger] = @user.errors.full_messages.join('; ') if request.format.html?
+      flash[:danger] = @user.errors.full_messages.join('; ')
     end
 
     redirect_back_or edit_profiles_path

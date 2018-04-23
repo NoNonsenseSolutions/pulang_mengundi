@@ -24,7 +24,6 @@
 #  total_received    :decimal(8, 3)    default(0.0)
 #
 
-# rubocop:disable Metrics/ClassLength
 class Request < ApplicationRecord
   TRANSPORT_TYPES = %w[FLIGHT BUS TRAIN].freeze
 
@@ -157,4 +156,3 @@ class Request < ApplicationRecord
     end
   end
 end
-# rubocop:enable Metrics/ClassLength

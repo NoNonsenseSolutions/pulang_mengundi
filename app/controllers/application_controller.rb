@@ -24,10 +24,9 @@ class ApplicationController < ActionController::Base
   end
 
   def prompt_tnc
-    if current_user&.request && !current_user.read_terms
-      store_location
-      redirect_to terms_and_conditions_path
-    end
+    return unless current_user&.request && !current_user.read_terms
+    store_location
+    redirect_to terms_and_conditions_path
   end
 
   def default_url_options(_options = {})

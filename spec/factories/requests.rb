@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-include ActionDispatch::TestProcess
-
 FactoryBot.define do
   factory :request do
     requester { build(:user) }
@@ -12,9 +10,5 @@ FactoryBot.define do
     travelling_fees { 100 }
     target_amount { 30 }
     to_state { ElectoralDistrict::STATES.sample }
-
-    trait :with_documents do
-      supporting_documents { [fixture_file_upload(Rails.root.join('spec', 'photos', 'test.jpg'), 'image/jpg')] }
-    end
   end
 end

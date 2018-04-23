@@ -23,7 +23,7 @@ class PledgePresenter < ApplicationPresenter
              t('pledge.humanize_status_for_donor.expired')
            else
              raise InvalidStatusError, pledge.status
-    end
+           end
     text.upcase
   end
 
@@ -41,7 +41,7 @@ class PledgePresenter < ApplicationPresenter
              t('pledge.humanize_status_for_requester.expired')
            else
              raise InvalidStatusError, pledge.status
-    end
+           end
     text.upcase
   end
 
@@ -59,7 +59,7 @@ class PledgePresenter < ApplicationPresenter
               'text-danger'
             else
               raise InvalidStatusError, pledge.status
-    end
+            end
     klass
   end
 

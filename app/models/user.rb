@@ -127,10 +127,8 @@ class User < ApplicationRecord
   end
 
   def phone_is_valid
-    if phone_number.present?
-      unless TelephoneNumber.parse(phone).valid?
-        errors.add(:phone_number, 'is invalid')
-      end
-    end
+    return unless phone_number.present?
+    return if TelephoneNumber.parse(phone).valid?
+    errors.add(:phone_number, 'is invalid')
   end
 end

@@ -51,9 +51,6 @@
     "REDIS_PROVIDER": {
       "required": true
     },
-    "REDISTOGO_URL": {
-      "required": true
-    },
     "RECAPTCHA_SITE_KEY": {
       "required": true
     },
@@ -64,7 +61,8 @@
   "formation": {
   },
   "addons": [
-
+    "bonsai:sandbox-6",
+    "redistogo:nano"
   ],
   "buildpacks": [
 

@@ -25,13 +25,61 @@ function updateConstituencyList() {
 
 
 
+function updateDistrictList() {
+  var stateSelect = $('#request_from_state'),
+    selectedState = stateSelect.val(),
+    districtSelect = $('#request_from_city');
+  if(selectedState){
+    var districtList = $('[data-district-list]').data('district-list')
+    var currentDistrictList = districtList[selectedState]
+    districtSelect.children('option').remove()
+    $.each(currentDistrictList, function(index, value){
+      districtSelect
+        .append(
+          $('<option></option>')
+            .attr('value', value)
+            .text(value)
+        );
+    })
+  } else {
+    districtSelect.children('option').remove()
+  }
+}
+
+function toggleFromDetails() {
+  if($('#request_from_country').val() === 'Others') {
+    $('#from-state-city').hide()
+    $('#from-details').show()
+  } else {
+    $('#from-state-city').show()
+    $('#from-details').hide()
+  }
+}
+
+
+$(document).on('change', '#request_from_state', function(){
+  updateDistrictList()
+})
+
 $(document).on('change', '#request_to_state', function(){
   updateConstituencyList()
+})
+
+$(document).on('change', '#request_from_country', function(){
+  toggleFromDetails()
 })
 
 document.addEventListener("turbolinks:load", function(){
   if($('#request_to_state').length > 0){
     updateConstituencyList()
+  }
+
+  if($('#request_from_state').length > 0){
+    updateDistrictList()
+  }
+
+  if($('#request_from_details').length > 0){
+    toggleFromDetails()
   }
 
   if($('.requests.new').length > 0){

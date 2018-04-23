@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_21_094525) do
+ActiveRecord::Schema.define(version: 2018_04_22_125407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,18 @@ ActiveRecord::Schema.define(version: 2018_04_21_094525) do
     t.index ["user_id"], name: "index_linked_accounts_on_user_id"
   end
 
+  create_table "phone_verifications", force: :cascade do |t|
+    t.string "phone_area_code"
+    t.string "phone_subscriber_number"
+    t.datetime "last_sent_at"
+    t.bigint "user_id"
+    t.integer "number_of_times_sent", default: 0
+    t.string "verification_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_phone_verifications_on_user_id"
+  end
+
   create_table "pledges", force: :cascade do |t|
     t.decimal "amount", precision: 8, scale: 2
     t.bigint "donor_id"
@@ -125,12 +137,15 @@ ActiveRecord::Schema.define(version: 2018_04_21_094525) do
     t.decimal "remaining_balance", precision: 8
     t.datetime "disabled_at"
     t.decimal "total_received", precision: 8, scale: 3, default: "0.0"
+    t.string "from_country"
+    t.string "from_state"
+    t.string "from_city"
+    t.string "from_details"
     t.index ["disabled_at"], name: "index_requests_on_disabled_at"
     t.index ["requester_id"], name: "index_requests_on_requester_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "hashed_phone"
     t.datetime "phone_verified_at"
     t.string "name"
     t.datetime "created_at", null: false
@@ -147,6 +162,7 @@ ActiveRecord::Schema.define(version: 2018_04_21_094525) do
     t.string "ic"
     t.boolean "read_terms", default: false
     t.boolean "flagged", default: false
+    t.datetime "ic_verified_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["ic"], name: "index_users_on_ic", unique: true
@@ -154,5 +170,6 @@ ActiveRecord::Schema.define(version: 2018_04_21_094525) do
 
   add_foreign_key "disputes", "pledges"
   add_foreign_key "linked_accounts", "users"
+  add_foreign_key "phone_verifications", "users"
   add_foreign_key "pledges", "requests"
 end

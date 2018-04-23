@@ -42,6 +42,15 @@ en:
       check_email: Please check your email to verify your email.
       invalid_email: Email is not valid
       success: Profile updated!
+    ic_details:
+      update: Cannot edit IC. Please contact customer support.
+      ic_updated: Your IC has been updated.
+    phone_verifications:
+      create:
+        verification_code_sent: A verification code has been sent to your phone number.
+      update:
+        phone_verified: 'Your phone number has been verified'
+        verification_code_not_match: 'You entered the wrong verification code'
   reports:
     create:
       success: You have successfully reported this user

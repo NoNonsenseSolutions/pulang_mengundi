@@ -12,12 +12,19 @@ describe 'sponsorship requests', type: :feature, js: true do
     click_button 'SUBMIT MY REQUEST'
   end
 
-  context 'user missing mandatory information' do
-    let(:user) { create(:user, :no_ic) }
+  context 'user missing email' do
+    let(:user) { create(:user, :no_email) }
+    it 'redirects to edit email profile page' do
+      expect(page).to have_content(I18n.t('profiles.emails.edit.email_public_label'))
+      expect(page.current_path).to eq(edit_profiles_emails_path(locale: :en))
+    end
+  end
 
-    it 'redirects to edit profile page' do
-      expect(page).to have_content(I18n.t('requests.new.missing_ic'))
-      expect(page.current_path).to eq(edit_profiles_path(locale: :en))
+  context 'user missing ic' do
+    let(:user) { create(:user, :no_ic) }
+    it 'redirects to edit ic profile page' do
+      expect(page).to have_content(I18n.t('profiles.ic_details.edit.include_dash_in_ic'))
+      expect(page.current_path).to eq(edit_profiles_ic_details_path(locale: :en))
     end
   end
 

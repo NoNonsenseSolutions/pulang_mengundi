@@ -19,7 +19,7 @@ class ExportRequestsCsv
           request.requester.facebook_search_link,
           request.requester.twitter_link,
           request.description,
-          request.user.email_public ? request.user.email : nil
+          request.requester.email_public ? request.requester.email : nil
         ]
       end
     end

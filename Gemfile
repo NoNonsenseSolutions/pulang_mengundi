@@ -7,6 +7,7 @@ ruby '2.5.0'
 
 gem 'abracadabra', git: 'https://github.com/melvinchng/abracadabra.git'
 gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-sns'
 gem 'bcrypt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '~> 3.3.7'

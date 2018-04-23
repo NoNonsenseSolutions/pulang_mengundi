@@ -1,0 +1,58 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    .profile-card.mt-3
+      .profile-card-body
+        .space-out-column.ml-3
+          big Email
+        .space-out-column.ml-3
+          small.p-0 = @user.email
+        .space-out-column.ml-3
+          .text-right
+            - if @user.email
+              big.text-success Verified ✔
+            - else
+              = link_to t('.edit_email'), [:edit, :profiles, :emails], class: 'text-link'
+    .profile-card.mt-3
+      .profile-card-body
+        .space-out-column.ml-3
+          big Phone
+        .space-out-column.ml-3
+          - if @user.phone_verified?
+            small.p-0 = @user.phone
+          - else
+            small = link_to t('.verify_phone'), [:new, :profiles, :phone_verifications], class: 'text-link'
+        .space-out-column.ml-3
+          .text-right
+            - if @user.phone_verified?
+              big.text-success Verified ✔
+            - else
+              big.text-danger Unverified ✖
+    .profile-card.mt-3
+      .profile-card-body
+        .space-out-column.ml-3
+          big IC No.
+        .space-out-column.ml-3
+          - if @user.ic.present? && @user.ic_picture.attached?
+            small.p-0 = @user.ic
+          - else
+            small = link_to t('.add_ic_and_pic') , [:edit, :profiles, :ic_details], class: 'text-link mr-3'
+        .space-out-column.ml-3
+          div.text-right
+            - if @user.ic.nil?
+              big.text-danger 
+                | Missing
+            - elsif !@user.ic_picture.attached?
+              big.text-warning Ic picture missing
+            - elsif !@user.ic_verified?
+              big.text-warning Uploaded
+            - elsif @user.ic_verified?
+              big.text-success Verified ✔
+
+    - if @user.request
+      = link_to request_manage_pledges_path(@user.request) do
+        = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+          strong = t('.manage_my_request')
+    - else
+      = link_to new_request_path do
+        = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+          strong = t('.submit_my_request')

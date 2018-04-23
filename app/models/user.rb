@@ -31,11 +31,13 @@ class User < ApplicationRecord
   has_one :request, foreign_key: :requester_id, class_name: 'Request', dependent: :destroy
   has_many :reports, foreign_key: :reported_id, class_name: 'Report'
   has_many :pledges, foreign_key: :donor_id, class_name: 'Pledge'
+  has_one :phone_verification, dependent: :destroy
+
+  has_one_attached :ic_picture
 
   delegate :link, :email, :search_link, to: :facebook, prefix: true, allow_nil: true
   delegate :link, :email, to: :twitter, prefix: true, allow_nil: true
 
-  validate :phone_is_valid
   validates :read_terms, inclusion: { in: [true], message: '- please confirm that you have read the T&C' }, on: :tnc_prompt
 
   EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
@@ -78,7 +80,7 @@ class User < ApplicationRecord
   end
 
   def profile_incomplete?
-    missing_social_link? || emails.empty?
+    emails.empty? || !phone_verified? || !ic_verified?
   end
 
   def emails
@@ -116,6 +118,14 @@ class User < ApplicationRecord
     now.year - dob.year - (now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1)
   end
 
+  def phone_verified?
+    phone_verified_at.present?
+  end
+
+  def ic_verified?
+    ic_verified_at.present?
+  end
+
   private
 
   def facebook
@@ -124,11 +134,5 @@ class User < ApplicationRecord
 
   def twitter
     linked_accounts.find_by(provider: 'twitter')
-  end
-
-  def phone_is_valid
-    return unless phone_number.present?
-    return if TelephoneNumber.parse(phone).valid?
-    errors.add(:phone_number, 'is invalid')
   end
 end

@@ -1,0 +1,13 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    div.text-center
+      = simple_form_for @verification, url: profiles_phone_verifications_path, method: :post, html: { class: 'mt-5' } do |f|
+        div.row.mt-5
+          div.col-xs-4
+            = f.input :phone_area_code, collection: PhoneAreaCode.list, selected: f.object.phone_area_code || '60', input_html: { class: 'selectpicker pr-0', data: { 'live-search' => true }}, label: t('.area')
+          div.col-xs-8
+            = f.input :phone_subscriber_number, label: t('.phone_number'), placeholder: '99-9999-9999'
+        = f.submit t('.save'), class: 'btn btn-primary btn-responsive'
+
+      .mt-3
+        = link_to t('.verify_page'), profiles_phone_verifications_path, class: 'text-link'

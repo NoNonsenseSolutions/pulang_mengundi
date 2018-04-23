@@ -1,14 +1,17 @@
 en:
   profiles:
-    edit:
+    show:
       connect_fb_acc: Click here to connect your facebook account
       connect_tw_acc: Click here to connect your twitter account.
       email: Email
+      edit_email: Edit Email
+      verify_phone: Verify your phone number
+      add_ic_and_pic: add ic and picture
       resend_email: Resend Email
       email_public_label: Set email to public. (Helps donors to contact you if your social media is private)
       area: Area
-      phone_number_optional: Phone Number (Optional)
       save: Save
       ic_number: IC Number
       check_email_to_confirm: Check your email to confirm %{unconfirmed_email} belongs to you.
       include_dash_in_ic: IC Number can not be updated once saved. Contact customer service if changes need to be done.
+      verifying_ic_will_help_you_get_donors: Allowing us to verify your IC will help more donors to reach you

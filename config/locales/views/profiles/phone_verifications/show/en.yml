@@ -1,0 +1,6 @@
+en:
+  profiles:
+    phone_verifications:
+      show:
+        type_in_verification_code: Please type in the verification code you received at %{phone}
+        submit: Submit

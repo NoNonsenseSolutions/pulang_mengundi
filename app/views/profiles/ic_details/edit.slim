@@ -1,0 +1,25 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+    = simple_form_for @user, url: profiles_ic_details_path, html: {class: 'mt-5'} do |f|
+
+    
+      = f.input :ic, label: t('.ic_number'), disabled: @user.ic.present?, wrapper_html: { class: 'mb-0'}, placeholder: '999999-99-9999'
+
+      p.mb-0
+        = t('.include_dash_in_ic')
+
+      .mt-5
+        label = t('.upload_ic_picture')
+        label.btn.btn-default.btn-responsive for="custom-file-input"
+          = f.file_field :ic_picture, id: 'custom-file-input', style: 'display: none'
+          = t('.choose_file')
+        #file-name-box
+        = t('.verifying_ic_will_help_you_get_donors')
+      
+      .mt-5
+        = f.submit t('.save'), class: 'btn btn-primary btn-responsive'
+
+javascript:
+  jQuery(function(){
+    jQuery("#user_ic").mask("999999-99-9999");
+  });

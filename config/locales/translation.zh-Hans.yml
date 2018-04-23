@@ -435,6 +435,53 @@ zh-Hans:
       ic_number: 
       check_email_to_confirm: 
       include_dash_in_ic: 
+    ic_details:
+      update: 
+      ic_updated: 
+      edit:
+        ic_number: 
+        include_dash_in_ic: 
+        save: 
+        cannot_edit_ic: 
+        upload_ic_picture: 
+        choose_file: 
+        verifying_ic_will_help_you_get_donors: 
+        ic_updated: 
+    phone_verifications:
+      create:
+        verification_code_sent: 
+      update:
+        phone_verified: 
+        verification_code_not_match: 
+      show:
+        type_in_verification_code: 
+        submit: 
+      new:
+        area: 
+        phone_number: 
+        save: 
+    emails:
+      edit:
+        email: 
+        resend_email: 
+        email_public_label: 
+        check_email_to_confirm: 
+        save: 
+    show:
+      connect_fb_acc: 
+      connect_tw_acc: 
+      email: 
+      edit_email: 
+      verify_phone: 
+      add_ic_and_pic: 
+      resend_email: 
+      email_public_label: 
+      area: 
+      save: 
+      ic_number: 
+      check_email_to_confirm: 
+      include_dash_in_ic: 
+      verifying_ic_will_help_you_get_donors: 
   static_pages:
     home:
       submit_my_request: 
@@ -578,6 +625,10 @@ zh-Hans:
   services:
     phone_verification:
       message: 
+    send_phone_verification_code_service:
+      your_verification_code_is: 
+      wait_five_minutes: 
+      limit_exceeded: 
   default:
     disclaimer:
       reminder: 

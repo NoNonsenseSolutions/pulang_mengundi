@@ -4,8 +4,6 @@ class RouteConstraint
   EXCLUDED_ROUTES = I18n.available_locales + [:rails]
 end
 
-
-
 Rails.application.routes.default_url_options[:host] = ENV['HOST_URL']
 
 Rails.application.routes.draw do
@@ -61,7 +59,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :profiles, only: %i[edit update]
+    resource :profiles, only: %i[show] do
+      resource :emails, only: %i[edit update], module: :profiles
+      resource :ic_details, only: %i[edit update], module: :profiles
+      resource :phone_verifications, only: %i[new create show edit update], module: :profiles
+    end
 
     resources :users, only: [] do
       resources :reports, only: [:create]

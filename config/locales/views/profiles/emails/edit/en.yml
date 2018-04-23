@@ -1,0 +1,9 @@
+en:
+  profiles:
+    emails:
+      edit:
+        email: Email
+        resend_email: Resend Email
+        email_public_label: Set email to public. (Helps donors to contact you if your social media is private)
+        check_email_to_confirm: Check your email to confirm %{unconfirmed_email} belongs to you.
+        save: Save

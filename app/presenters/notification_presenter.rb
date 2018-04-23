@@ -62,7 +62,7 @@ class NotificationPresenter < ApplicationPresenter
         end
       end
     when :complete_profile_suggestion
-      link_to(edit_profiles_path) do
+      link_to(profiles_path) do
         content_tag(:button, class: 'btn btn-default btn-sm ml-3') do
           t('notification.button.complete_profile_suggestion')
         end

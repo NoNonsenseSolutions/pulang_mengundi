@@ -1,0 +1,7 @@
+en:
+  profiles:
+    phone_verifications:
+      new:
+        area: Area
+        phone_number: Phone Number
+        save: Save

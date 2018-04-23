@@ -1,4 +1,6 @@
 en:
   services:
-    phone_verification:
-      message: Your pulangmengundi.com verification code is %{verification_code}
+    send_phone_verification_code_service:
+      wait_five_minutes: Please wait five minutes before requesting for another sms.
+      limit_exceeded: You have requested for too many resends of a verification code. Please contact customer support.
+      your_verification_code_is: Your PulangMengundi verification code is %{code}

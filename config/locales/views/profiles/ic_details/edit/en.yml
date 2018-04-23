@@ -1,0 +1,12 @@
+en:
+  profiles:
+    ic_details:
+      edit:
+        ic_number: IC Number
+        include_dash_in_ic: IC Number can not be updated once saved. Contact customer service if changes need to be done.
+        save: Save
+        cannot_edit_ic: IC cannot be edited. Please contact customer support.
+        upload_ic_picture: Upload a picture of your IC for verification
+        choose_file: Choose File
+        verifying_ic_will_help_you_get_donors: Allowing us to verify your IC will help more donors to reach you
+        ic_updated: 'Your IC has been updated'

@@ -63,23 +63,19 @@ class RequestsController < ApplicationController
   def new
     @user = current_user
 
-    unless @user.mandatory_information_for_request_complete?
-      flash[:danger] = t('.missing_ic')
-      store_location
-      redirect_to(edit_profiles_path) && return
-    end
-
-    unless @user.read_terms?
-      store_location
-      redirect_to(terms_and_conditions_path) && return
-    end
+    store_location
+    redirect_if_user_information_incomplete
 
     @request = Request.new
     authorize @request
   end
 
   def create
-    @request = current_user.build_request(request_params)
+    @user = current_user
+
+    redirect_if_user_information_incomplete
+
+    @request = @user.build_request(request_params)
     authorize @request
 
     if verify_recaptcha(model: @request) && @request.save
@@ -119,10 +115,27 @@ class RequestsController < ApplicationController
 
   private
 
+  def redirect_if_user_information_incomplete
+    redirect_to(edit_profiles_emails_path) && return unless @user.email.present?
+    redirect_to(edit_profiles_ic_details_path) && return unless @user.ic.present?
+    redirect_to(new_profiles_phone_verifications_path) && return unless @user.phone_verified?
+    redirect_to(terms_and_conditions_path) && return unless @user.read_terms?
+  end
+
   def request_params
-    params.require(:request).permit(:bank_name, :account_number,
-                                    :account_name, :transport_type, :to_state, :to_city,
-                                    :description, :travelling_fees, :target_amount, :itinerary,
-                                    :travel_company, :read_terms, supporting_documents: [])
+    params
+      .require(:request)
+      .permit(:bank_name, :account_number, :account_name, :transport_type,
+              :from_country, :from_state, :from_city, :from_details, :to_state, :to_city,
+              :description, :travelling_fees, :target_amount, :itinerary,
+              :travel_company, :read_terms, supporting_documents: [])
+      .tap do |whitelist|
+        if whitelist[:from_country] == 'Malaysia'
+          whitelist.delete(:from_details)
+        else
+          whitelist.delete(:from_state)
+          whitelist.delete(:from_city)
+        end
+      end
   end
 end

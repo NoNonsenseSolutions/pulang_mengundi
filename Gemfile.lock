@@ -74,6 +74,9 @@ GEM
       aws-sdk-core (~> 3)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
+    aws-sdk-sns (1.1.0)
+      aws-sdk-core (~> 3)
+      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -428,6 +431,7 @@ DEPENDENCIES
   abracadabra!
   annotate
   aws-sdk-s3
+  aws-sdk-sns
   bcrypt
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.3.7)

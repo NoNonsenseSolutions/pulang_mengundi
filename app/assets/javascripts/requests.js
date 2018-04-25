@@ -89,7 +89,18 @@ document.addEventListener("turbolinks:load", function(){
 
 $(document).on('change', '#custom-file-input', function(){
   $('#file-name-box').empty()
+  $('#preview_uploads').empty()
   $.each(this.files, function(i, val){
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const uploadedImage = $("<img class='img-responsive' />")
+      uploadedImage.attr('src', e.target.result)
+      $('#preview_uploads')
+        .append('<li>')
+        .append(uploadedImage[0])
+        .append('</li>');
+    }
+    reader.readAsDataURL(val);
     var label = $("<span>", {"class": "label label-info"}).text(val.name)
     $("#file-name-box").append(label)
   })

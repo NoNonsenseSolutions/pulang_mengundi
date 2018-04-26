@@ -44,6 +44,8 @@ module Administrator
                                           @user.ic_verified_at || Time.zone.now
                                         end
           parameters.delete(:is_ic_verified)
+
+          parameters.delete(:ic) unless parameters[:ic].present?
         end
     end
   end

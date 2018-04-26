@@ -26,9 +26,9 @@
             <%= link_to 'EN', root_path(locale: :en), class: 'font-weight-semibold' %>
           </li>
         <% end %>
-        <% if params[:locale] != 'zh' %>
+        <% if params[:locale] != 'zh-Hans' %>
           <li class="nav-item">
-            <%= link_to '中文', root_path(locale: :zh), class: 'font-weight-semibold' %>
+            <%= link_to '中文', root_path(locale: "zh-Hans"), class: 'font-weight-semibold' %>
           </li>
         <% end %>
         <li class="nav-item">

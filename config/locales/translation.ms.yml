@@ -110,14 +110,15 @@ ms:
       even: mesti genap
       required: mesti wujud
       taken: telah digunakan
-      already_confirmed: 
-      confirmation_period_expired: 
-      expired: 
-      not_found: 
-      not_locked: 
+      already_confirmed: telah pun disahkan, sila cuba masuk
+      confirmation_period_expired: perlu disahkan dalam %{period}, sila minta yang
+        baru
+      expired: telah luput, sila minta yang baru
+      not_found: Fail tidak dijumpai
+      not_locked: tidak terkunci
       not_saved:
-        one: 
-        other: 
+        one: '1 kesalahan melarang %{resource} ini daripada disimpan:'
+        other: "%{count} kesalahan melarang %{resource} ini daripada disimpan:"
     unavailable_session: |
       Sesi %{id} tidak lagi berada dalam memori.
 
@@ -224,16 +225,16 @@ ms:
         all: Semua
         state: Negeri
         seat: Tempat duduk
-        bank: 
+        bank: Bank
       random: Rawak
       highest_balance: Jumlah tertinggi
       lowest_balance: Jumlah terendah
       search: Cari
-      newest_created: 
-      oldest_created: 
-      yes_document_provided: 
-      no_document_provided: 
-      unauth_access: 
+      newest_created: Terbaru
+      oldest_created: Paling lama
+      yes_document_provided: Ya
+      no_document_provided: Tidak
+      unauth_access: Akses tidak dibenarkan!
     disables:
       create:
         already_disabled: Permintaan telah dilumpuhkan
@@ -281,8 +282,8 @@ ms:
       term_and_condition5: Jika anda percaya data yang diperolehi kami tidak tepat,
         tidak lengkap, mengelirukan atau bukan yang terkini, sila hubungi kami untuk
         tindakan selanjutnya.
-      acknowledge: 
-      full_terms: 
+      acknowledge: Saya mengakui dan bersetuju dengan perkara di atas.
+      full_terms: Saya juga membaca syarat penuh di pulangmengundi.com/terms.html.
     show:
       why_i_am: Mengapa saya mencari penaja?
       mode_of_transport: Jenis Pengangkutan
@@ -300,16 +301,17 @@ ms:
       report: Lapor
       disputes: Pertikaian
       not_provider: Tidak disediakan
-      info_hidden_for_completed_requests: 
-      connect_fb_acc: 
-      connect_tw_acc: 
-      no_supporting_document: 
-      search_on_facebook: 
+      info_hidden_for_completed_requests: Maklumat tersembunyi untuk permintaan yang
+        lengkap
+      connect_fb_acc: Sambungkan akaun facebook anda
+      connect_tw_acc: Sambungkan akaun twitter anda
+      no_supporting_document: Tidak disediakan
+      search_on_facebook: Cari %{name} di facebook
     new:
       reminder: 'PERINGATAN: Anda hanya boleh membuat satu permintaan bagi setiap
         pengguna'
-      missing_ic: 
-      not_eligible: 
+      missing_ic: Maklumat IC atau E-mel yang hilang.
+      not_eligible: Tidak layak! Sila hubungi perkhidmatan pelanggan
   simple_form:
     'yes': Ya
     'no': Tidak
@@ -360,7 +362,7 @@ ms:
     create:
       failed_to_link_account: Gagal untuk memautkan akaun. Akaun itu digunakan untuk
         log masuk sebelumnya dan ia dihubungkan kepada pengguna lain
-      flagged_account: 
+      flagged_account: Kesalahan akaun. Hubungi sokongan pelanggan
     destroy:
       logged_out: Log keluar
     already_logged_in: Sudah mendaftar masuk
@@ -404,8 +406,8 @@ ms:
       upload_receipt: Muat naik resit
       choose_file: Pilih fail
       upload: Muat naik
-      delete: 
-      delete_confirm: 
+      delete: Padam
+      delete_confirm: Adakah anda pasti mahu memadamkan fail ini?
     new:
       perform_checks_before_sponsoring: Lakukan pemeriksaan berikut sebelum anda teruskan
         tajaan anda!
@@ -482,52 +484,61 @@ ms:
       include_dash_in_ic: Sertakan tanda "-" dalam Nombor IC. Nombor IC tidak dapat
         dikemas kini setelah disimpan. Hubungi khidmat pelanggan jika perubahan diperlukan.
     ic_details:
-      update: 
-      ic_updated: 
+      update: Tidak dapat mengedit IC. Sila hubungi sokongan pelanggan.
+      ic_updated: IC anda telah dikemas kini.
       edit:
-        ic_number: 
-        include_dash_in_ic: 
-        save: 
-        cannot_edit_ic: 
-        upload_ic_picture: 
-        choose_file: 
-        verifying_ic_will_help_you_get_donors: 
-        ic_updated: 
+        ic_number: Nombor IC
+        include_dash_in_ic: Nombor IC tidak dapat dikemas kini setelah disimpan. Hubungi
+          khidmat pelanggan jika perubahan perlu dilakukan.
+        save: Simpan
+        cannot_edit_ic: IC tidak dapat diedit. Sila hubungi sokongan pelanggan.
+        upload_ic_picture: Muat naik gambar IC anda untuk pengesahan
+        choose_file: Pilih fail
+        verifying_ic_will_help_you_get_donors: Membenarkan kami untuk mengesahkan
+          IC anda akan membantu lebih banyak penderma untuk menghubungi anda
+        ic_updated: IC anda telah dikemas kini
     phone_verifications:
       create:
-        verification_code_sent: 
+        verification_code_sent: Kod pengesahan telah dihantar ke nombor telefon anda.
       update:
-        phone_verified: 
-        verification_code_not_match: 
+        phone_verified: Nombor telefon anda telah disahkan
+        verification_code_not_match: Anda memasuki kod pengesahan yang salah
       show:
-        type_in_verification_code: 
-        submit: 
+        type_in_verification_code: Sila ketikkan kod pengesahan yang anda terima di
+          %{phone}
+        submit: Hantar
       new:
-        area: 
-        phone_number: 
-        save: 
+        area: Kawasan
+        phone_number: Nombor telefon
+        save: Simpan
     emails:
       edit:
-        email: 
-        resend_email: 
-        email_public_label: 
-        check_email_to_confirm: 
-        save: 
+        email: E-mel
+        resend_email: Menghantar semula e-mel
+        email_public_label: Tetapkan e-mel kepada umum. (Membantu penderma untuk menghubungi
+          anda jika media sosial anda bersifat peribadi)
+        check_email_to_confirm: Semak e-mel anda untuk mengesahkan %{unconfirmed_email}
+          milik anda.
+        save: Simpan
     show:
-      connect_fb_acc: 
-      connect_tw_acc: 
-      email: 
-      edit_email: 
-      verify_phone: 
-      add_ic_and_pic: 
-      resend_email: 
-      email_public_label: 
-      area: 
-      save: 
-      ic_number: 
-      check_email_to_confirm: 
-      include_dash_in_ic: 
-      verifying_ic_will_help_you_get_donors: 
+      connect_fb_acc: Klik di sini untuk menyambung akaun facebook anda
+      connect_tw_acc: Klik di sini untuk menyambung akaun twitter anda.
+      email: E-mel
+      edit_email: Edit E-mel
+      verify_phone: Sahkan nombor telefon anda
+      add_ic_and_pic: tambah ikon dan gambar
+      resend_email: Menghantar semula e-mel
+      email_public_label: Tetapkan e-mel kepada umum. (Membantu penderma untuk menghubungi
+        anda jika media sosial anda bersifat peribadi)
+      area: Kawasan
+      save: Simpan
+      ic_number: Nombor IC
+      check_email_to_confirm: Semak e-mel anda untuk mengesahkan %{unconfirmed_email}
+        milik anda.
+      include_dash_in_ic: Nombor IC tidak dapat dikemas kini setelah disimpan. Hubungi
+        khidmat pelanggan jika perubahan perlu dilakukan.
+      verifying_ic_will_help_you_get_donors: Membenarkan kami untuk mengesahkan IC
+        anda akan membantu lebih banyak penderma untuk menghubungi anda
   static_pages:
     home:
       submit_my_request: HANTAR PERMINTAAN SAYA
@@ -565,22 +576,22 @@ ms:
       your_random_act: 'Sumbangan anda membantu rakyat Malaysia melakukan tugas sivik
         mereka. #pulangmengundi'
       sponsor_others: Taja orang lain
-      fine_print_1: 
-      fine_print_2: 
-      fine_print_3: 
-      fine_print_4: 
-      promo_1_fine_print_1: 
-      promo_1_fine_print_2: 
-      promo_1_fine_print_3: 
-      promo_1_fine_print_4: 
-      unauth_access: 
-      promo_2_fine_print_1: 
-      promo_2_fine_print_2: 
-      promo_2_fine_print_3: 
-      promo_2_fine_print_4: 
-      promo_2_fine_print_5: 
-      promo_2_fine_print_6: 
-      promo_2_fine_print_7: 
+      fine_print_1: Boleh digunakan untuk FavePay dan FaveDeal
+      fine_print_2: Promo tunai balik 10%, cap RM10
+      fine_print_3: Penggunaan sekali sahaja
+      fine_print_4: Tamat pada 9 Mei 2018
+      promo_1_fine_print_1: Boleh digunakan untuk FavePay dan FaveDeal
+      promo_1_fine_print_2: Promo tunai balik 10%, cap RM10
+      promo_1_fine_print_3: Penggunaan sekali sahaja
+      promo_1_fine_print_4: Tamat pada 9 Mei 2018
+      unauth_access: Akses tidak dibenarkan!
+      promo_2_fine_print_1: Sah di honestbee.my atau melalui aplikasi honestbee
+      promo_2_fine_print_2: RM10 off dengan tiada minima
+      promo_2_fine_print_3: Penggunaan sekali sahaja
+      promo_2_fine_print_4: Sah sehingga 13hb Mei 2018
+      promo_2_fine_print_5: Sah hanya untuk kawasan yang boleh diservis oleh honestbee
+      promo_2_fine_print_6: Honestbee berhak membatalkan sebarang perintah penipuan
+      promo_2_fine_print_7: Tidak sah dengan kod kupon lain melainkan dinyatakan sebaliknya
     show:
       thank_you_for: 'Terima kasih kerana menyertai GE14 #pulangmengundi'
       back_to_home: Kembali ke halaman utama
@@ -625,91 +636,109 @@ ms:
       profile: Profil
       log_out: Log keluar
       log_in: Log masuk
-      terms: 
-      privacy_policy: 
-      bus: 
-      thank_you_promo: 
+      terms: Terma & Syarat
+      privacy_policy: Dasar Privasi
+      bus: Bas
+      thank_you_promo: Hadiah Ganjaran
   flash:
     actions:
       create:
-        notice: 
+        notice: "%{resource_name} berjaya dicipta."
       update:
-        notice: 
+        notice: "%{resource_name} berjaya dikemas kini."
       destroy:
-        notice: 
-        alert: 
+        notice: "%{resource_name} berjaya dimusnahkan."
+        alert: "%{resource_name} tidak boleh dimusnahkan."
   devise:
     confirmations:
       confirmed: E-mel anda telah disahkan.
       send_instructions: Anda akan menerima e-mel dengan arahan untuk mengesahkan
         alamat e-mel anda dalam beberapa minit.
-      send_paranoid_instructions: 
+      send_paranoid_instructions: Jika alamat e-mel anda wujud dalam pangkalan data
+        kami, anda akan menerima e-mel dengan arahan untuk cara mengesahkan alamat
+        e-mel anda dalam beberapa minit.
     failure:
-      already_authenticated: 
-      inactive: 
-      invalid: 
-      locked: 
-      last_attempt: 
-      not_found_in_database: 
-      timeout: 
-      unauthenticated: 
-      unconfirmed: 
+      already_authenticated: Anda sudah log masuk.
+      inactive: Akaun anda masih belum diaktifkan.
+      invalid: "%{authentication_keys} atau kata laluan tidak sah."
+      locked: Akaun anda telah dikunci.
+      last_attempt: Anda mempunyai satu percubaan sebelum akaun anda dikunci.
+      not_found_in_database: "%{authentication_keys} atau kata laluan tidak sah."
+      timeout: Sesi anda tamat tempoh. Sila log masuk semula untuk meneruskan.
+      unauthenticated: Anda perlu log masuk atau mendaftar sebelum meneruskan.
+      unconfirmed: Anda perlu mengesahkan alamat e-mel anda sebelum meneruskan.
     mailer:
       confirmation_instructions:
-        subject: 
+        subject: Arahan pengesahan
       reset_password_instructions:
-        subject: 
+        subject: Tetapkan semula arahan kata laluan
       unlock_instructions:
-        subject: 
+        subject: Arahan untuk buka kunci
       email_changed:
-        subject: 
+        subject: E-mel telah diubah
       password_change:
-        subject: 
+        subject: Kata Laluan Diubah
     omniauth_callbacks:
-      failure: 
-      success: 
+      failure: Tidak dapat mengesahkan anda dari %{kind} kerana "%{reason}".
+      success: Berjaya disahkan dari akaun %{kind}.
     passwords:
-      no_token: 
-      send_instructions: 
-      send_paranoid_instructions: 
-      updated: 
-      updated_not_active: 
+      no_token: Anda tidak boleh mengakses halaman ini tanpa mendapat e-mel set semula
+        kata laluan. Jika anda datang dari e-mel set semula kata laluan, sila pastikan
+        anda menggunakan URL penuh yang disediakan.
+      send_instructions: Anda akan menerima e-mel dengan arahan untuk mengesahkan
+        alamat e-mel anda dalam beberapa minit.
+      send_paranoid_instructions: Jika alamat e-mel anda wujud dalam pangkalan data
+        kami, anda akan menerima e-mel dengan arahan untuk cara mengesahkan alamat
+        e-mel anda dalam beberapa minit.
+      updated: Kata laluan anda telah berjaya diubah. Anda kini dilog masuk.
+      updated_not_active: Kata laluan anda telah berjaya diubah.
     registrations:
-      destroyed: 
-      signed_up: 
-      signed_up_but_inactive: 
-      signed_up_but_locked: 
-      signed_up_but_unconfirmed: 
-      update_needs_confirmation: 
-      updated: 
+      destroyed: Bye! Akaun anda telah berjaya dibatalkan. Kami berharap dapat melihat
+        anda tidak lama lagi.
+      signed_up: Selamat datang! Anda telah berjaya mendaftar.
+      signed_up_but_inactive: Anda telah berjaya mendaftar. Walau bagaimanapun, kami
+        tidak dapat melog masuk anda kerana akaun anda belum diaktifkan.
+      signed_up_but_locked: Anda telah berjaya mendaftar. Walau bagaimanapun, kami
+        tidak dapat melog masuk anda kerana akaun anda dikunci.
+      signed_up_but_unconfirmed: Mesej dengan pautan pengesahan telah dihantar ke
+        alamat e-mel anda. Sila ikut pautan untuk mengaktifkan akaun anda.
+      update_needs_confirmation: Anda berkaya mengemas kini akaun anda, tetapi kami
+        perlu mengesahkan alamat e-mel baru anda. Sila periksa e-mel anda dan ikuti
+        pautan sah untuk mengesahkan alamat e-mel baru anda.
+      updated: Akaun anda telah berjaya dikemas kini.
     sessions:
-      signed_in: 
-      signed_out: 
-      already_signed_out: 
+      signed_in: Berjaya log masuk
+      signed_out: Berjaya log keluar.
+      already_signed_out: Berjaya log keluar.
     unlocks:
-      send_instructions: 
-      send_paranoid_instructions: 
-      unlocked: 
+      send_instructions: Anda akan menerima e-mel dengan arahan untuk membuka kunci
+        akaun anda dalam beberapa minit.
+      send_paranoid_instructions: Sekiranya akaun anda wujud, anda akan menerima e-mel
+        dengan arahan untuk membukanya dalam beberapa minit.
+      unlocked: Akaun anda telah berjaya dikunci. Sila log masuk untuk meneruskan.
   services:
     phone_verification:
-      message: 
+      message: Kod pengesahan redmengundi.com anda ialah %{verification_code}
     send_phone_verification_code_service:
-      your_verification_code_is: 
-      wait_five_minutes: 
-      limit_exceeded: 
+      your_verification_code_is: Kod pengesahan PulangMengundi anda ialah %{code}
+      wait_five_minutes: Sila tunggu lima minit sebelum meminta sms lain.
+      limit_exceeded: Anda telah meminta untuk terlalu banyak menghantar kod pengesahan.
+        Sila hubungi sokongan pelanggan.
   default:
     disclaimer:
-      reminder: 
+      reminder: PERINGATAN!
       text: 
   buses:
     index:
-      to: 
-      from: 
-      available_seats: 
-      get_more_info: 
-      bus_route_from: 
-      more_info_available: 
-      all: 
-      city: 
-      none: 
-      filter_routes: 
+      to: Ke
+      from: Dari
+      available_seats: Kerusi
+      get_more_info: Dapatkan Maklumat Lanjut
+      bus_route_from: Laluan bas dari UndiRabu.com
+      more_info_available: Untuk mendapatkan maklumat lanjut tentang laluan bas atau
+        tempahan, sila lawati laman web. Sila kembali lagi jika laluan yang anda hendak
+        sudah habis dijual. Kerusi ditambah apabila mereka kehabisan.
+      all: Semua
+      city: City
+      none: Tiada
+      filter_routes: Menapis Laluan

@@ -219,7 +219,7 @@ zh-Hans:
       no_of_voter_requests: 选民请求数量
       sponsor_others: 捐助他人
       need_a_sponsor: 需要赞助
-      voter_requests: 选民请求
+      voter_requests: 选民请求认捐
       filter_requests: 筛选请求
       seat: 席位
       state: 州属
@@ -582,7 +582,7 @@ zh-Hans:
       faq: 常问问题
       contact: 联系
       my_request: 我的请求
-      completed_sponsorships: 完成赞助
+      completed_sponsorships: 已完成赞助
       my_sponsorships: 我的赞助
       profile: 帐户
       log_out: 登出
@@ -670,7 +670,7 @@ zh-Hans:
       from: 出发地
       available_seats: 座位
       get_more_info: 更多详情
-      bus_route_from: UndiRabu.com 的巴士路线
+      bus_route_from: UndiRabu.com 巴士路线
       more_info_available: |2-
 
         更多有关巴士路线或预订的信息，请参阅该巴士网站。 如果您打算购买的路线已经卖光了，请再回来。 该路线的座位可能会被添加。

@@ -9,6 +9,7 @@ FactoryBot.define do
     transport_type { Request::TRANSPORT_TYPES.sample }
     travelling_fees { 100 }
     target_amount { 30 }
+    remaining_balance { target_amount }
     to_state { ElectoralDistrict::STATES.sample }
   end
 end

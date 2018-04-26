@@ -70,7 +70,8 @@ class Pledge < ApplicationRecord
   end
 
   def cannot_have_more_than_two_pending_pledge
-    return if donor.can_pledge?
+    return if donor.verified_donor?
+    return if donor.pledges.pending.count < 2
     errors.add(:donor, "cannot have more than two pending pledges. If you've uploaded the receipt, please get the requester to confirm receipt")
   end
 

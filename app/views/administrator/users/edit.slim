@@ -1,0 +1,19 @@
+h3.page-header Edit User
+.row.placeholders
+= simple_form_for [:administrator, @user] do |f|
+  = f.input :name
+  = f.input :email
+  = f.input :ic
+  .row
+    .col-xs-6
+      - if @user.ic_picture.attached?
+        = image_tag url_for(@user.ic_picture), class: 'img-responsive'
+      - else
+        p No IC picture
+
+  = f.input :is_ic_verified, as: :boolean, label: 'IC verified', input_html: { checked: @user.ic_verified? }
+
+  = f.input :verified_donor
+
+
+  = f.submit

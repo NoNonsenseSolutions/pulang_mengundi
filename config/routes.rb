@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     resources :admins, only: %i[new create index]
     resources :requests, only: %i[index edit update show]
-    resources :users, only: %i[index update]
+    resources :users, only: %i[index edit update]
   end
 
   scope '/:locale', locale: /#{I18n.available_locales.join("|")}/ do

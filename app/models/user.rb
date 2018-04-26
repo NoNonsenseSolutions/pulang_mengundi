@@ -95,10 +95,6 @@ class User < ApplicationRecord
     Report.where(reporter: self, reported: user).exists?
   end
 
-  def can_pledge?
-    pledges.pending.count < 2
-  end
-
   def pending_requests
     Request.joins(:pledges).where(pledges: { donor: self, status: Pledge.statuses[:waiting_for_transfer] })
   end

@@ -40,4 +40,8 @@ class PledgePolicy
   def requester_status_update?
     pledge.request.requester == user
   end
+
+  def sponsor_rewards?
+    user.pledges.where(status: [10, 20]).present?
+  end
 end

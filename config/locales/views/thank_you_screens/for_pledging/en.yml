@@ -2,9 +2,17 @@ en:
   thank_you_screens:
     for_pledging:
       thank_you_for: Thank You for Your Sponsorship.
-      your_random_act: Your random act of kindness has helped Malaysians come home for GE14. Here's a Fave promo code to thank you for your support!
-      fine_print_1: Usable for FavePay and FaveDeal
-      fine_print_2: 10% cashback promo, cap of RM10
-      fine_print_3: Single use
-      fine_print_4: Expire 9 May 2018
+      your_random_act: Your random act of kindness has helped Malaysians come home for GE14. Here's a Fave and honestbee promo code to thank you for your support!
+      promo_1_fine_print_1: Usable for FavePay and FaveDeal
+      promo_1_fine_print_2: 10% cashback promo, cap of RM10
+      promo_1_fine_print_3: Single use
+      promo_1_fine_print_4: Expire 9 May 2018
       sponsor_others: Sponsor Others
+      unauth_access: Unauthorized Access!
+      promo_2_fine_print_1: Valid at honestbee.my or via honestbee app
+      promo_2_fine_print_2: RM10 off with no  min. spend
+      promo_2_fine_print_3: Single use
+      promo_2_fine_print_4: Valid till 13th May 2018
+      promo_2_fine_print_5: Valid only for the areas which are serviceable by honestbee
+      promo_2_fine_print_6: Honestbee reserves the right to cancel any fraud order
+      promo_2_fine_print_7: Not valid with other coupon codes unless otherwise stated

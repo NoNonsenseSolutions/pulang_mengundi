@@ -22,3 +22,4 @@ en:
       yes_document_provided: "Yes"
       no_document_provided: "No"
       search: Search
+      unauth_access: Unauthorized Access!

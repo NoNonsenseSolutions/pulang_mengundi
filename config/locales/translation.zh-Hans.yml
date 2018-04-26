@@ -224,6 +224,7 @@ zh-Hans:
       oldest_created: 
       yes_document_provided: 
       no_document_provided: 
+      unauth_access: 
     disables:
       create:
         already_disabled: 
@@ -521,6 +522,18 @@ zh-Hans:
       fine_print_2: 
       fine_print_3: 
       fine_print_4: 
+      promo_1_fine_print_1: 
+      promo_1_fine_print_2: 
+      promo_1_fine_print_3: 
+      promo_1_fine_print_4: 
+      unauth_access: 
+      promo_2_fine_print_1: 
+      promo_2_fine_print_2: 
+      promo_2_fine_print_3: 
+      promo_2_fine_print_4: 
+      promo_2_fine_print_5: 
+      promo_2_fine_print_6: 
+      promo_2_fine_print_7: 
     show:
       thank_you_for: 
       back_to_home: 
@@ -562,6 +575,8 @@ zh-Hans:
       log_in: 
       terms: 
       privacy_policy: 
+      bus: 
+      thank_you_promo: 
   flash:
     actions:
       create:
@@ -633,3 +648,15 @@ zh-Hans:
     disclaimer:
       reminder: 
       text: 
+  buses:
+    index:
+      to: 
+      from: 
+      available_seats: 
+      get_more_info: 
+      bus_route_from: 
+      more_info_available: 
+      all: 
+      city: 
+      none: 
+      filter_routes: 

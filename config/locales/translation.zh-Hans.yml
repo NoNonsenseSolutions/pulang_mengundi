@@ -8,392 +8,404 @@
 zh-Hans:
   reports:
     create:
-      success: 
+      success: 您已成功举报此用户
   date:
     day_names:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - 星期天
+    - 星期一
+    - 星期二
+    - 星期三
+    - 星期四
+    - 星期五
+    - 星期六
     abbr_day_names:
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - 星期天
+    - 星期一
+    - 星期二
+    - 星期三
+    - 星期四
+    - 星期五
+    - 星期六
     month_names:
     - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - 一月
+    - 二月
+    - 三月
+    - 四月
+    - 五月
+    - 六月
+    - 七月
+    - 八月
+    - 九月
+    - 十月
+    - 十一月
+    - 十二月
     abbr_month_names:
     - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - 一月
+    - 二月
+    - 三月
+    - 四月
+    - 五月
+    - 六月
+    - 七月
+    - 八月
+    - 九月
+    - 十月
+    - 十一月
+    - 十二月
   time:
-    am: 
-    pm: 
+    am: 早上
+    pm: 下午
   number:
     human:
       storage_units:
         units:
           byte:
-            one: 
-            other: 
-          kb: 
-          mb: 
-          gb: 
-          tb: 
-          pb: 
-          eb: 
+            one: Byte
+            other: Bytes
+          kb: KB
+          mb: MB
+          gb: GB
+          tb: TB
+          pb: PB
+          eb: EB
       decimal_units:
         units:
-          thousand: 
-          million: 
-          billion: 
-          trillion: 
-          quadrillion: 
+          thousand: 千
+          million: 百万
+          billion: 十亿
+          trillion: 兆
+          quadrillion: 万亿
   errors:
     format: 
     messages:
-      model_invalid: 
-      inclusion: 
-      exclusion: 
-      invalid: 
-      confirmation: 
-      accepted: 
-      empty: 
-      blank: 
-      present: 
+      model_invalid: '验证失败: %{errors}'
+      inclusion: 不在列表中
+      exclusion: 被预定了
+      invalid: '是无效的
+
+'
+      confirmation: 不匹配 %{attribute}
+      accepted: 必须接受
+      empty: 不能做空
+      blank: 不能做空
+      present: 必须放空
       too_long:
-        one: 
-        other: 
+        one: 太长（最多1个字母）
+        other: 太长（最多%{count}个字母）
       too_short:
-        one: 
-        other: 
+        one: 太短（最少1个字母）
+        other: 太短（最少%{count} characters)个字母）
       wrong_length:
-        one: 
-        other: 
-      not_a_number: 
-      not_an_integer: 
-      greater_than: 
-      greater_than_or_equal_to: 
-      equal_to: 
-      less_than: 
-      less_than_or_equal_to: 
-      other_than: 
-      odd: 
-      even: 
-      required: 
-      taken: 
-      already_confirmed: 
-      confirmation_period_expired: 
-      expired: 
-      not_found: 
-      not_locked: 
+        one: 是错误的长度（应该是1个字母）
+        other: 是错误的长度（应该是%{count}个字母）
+      not_a_number: 不是一个数字
+      not_an_integer: 一定是数字
+      greater_than: 必须超越%{count}
+      greater_than_or_equal_to: 必须等于或超越%{count}
+      equal_to: 必须等于%{count}
+      less_than: 必须少过%{count}
+      less_than_or_equal_to: 必须等于或少于%{count}
+      other_than: 必须不是%{count}
+      odd: 必须是单数
+      even: 必须是双数
+      required: 必须存在
+      taken: 已被使用
+      already_confirmed: 已经确认，请尝试登录
+      confirmation_period_expired: 请再申请一个。申请后必须在%{period}内确认。
+      expired: 已过期，请申请新的。
+      not_found: 无法寻获
+      not_locked: 没有封锁
       not_saved:
-        one: 
-        other: 
-    unavailable_session: 
-    unacceptable_request: 
-    connection_refused: 
+        one: 1个错误禁止%{resource}被保存：
+        other: "%{count}错误禁止%{resource}保存："
+    unavailable_session: |
+      Session %{id} is no longer available in memory.
+
+      If you happen to run on a multi-process server (like Unicorn or Puma) the process
+      this request hit doesn't store %{id} in memory. Consider turning the number of
+      processes/workers to one (1) or using a different server in development.
+    unacceptable_request: A supported version is expected in the Accept header.
+    connection_refused: |
+      Oops! Failed to connect to the Web Console middleware.
+      Please make sure a rails development server is running.
   activerecord:
     errors:
       messages:
-        record_invalid: 
+        record_invalid: '验证失败: %{errors}'
         restrict_dependent_destroy:
-          has_one: 
-          has_many: 
+          has_one: 无法删除记录，因为%{record}记录存在
+          has_many: 无法删除记录，因为%{record}记录存在
   datetime:
     distance_in_words:
-      half_a_minute: 
+      half_a_minute: 半分钟
       less_than_x_seconds:
-        one: 
-        other: 
+        one: 少于一秒钟
+        other: 少于%{count}秒钟
       x_seconds:
-        one: 
-        other: 
+        one: 一秒钟
+        other: "%{count}秒钟"
       less_than_x_minutes:
-        one: 
-        other: 
+        one: 少于半分钟
+        other: 少于%{count}分钟
       x_minutes:
-        one: 
-        other: 
+        one: 一分钟
+        other: "%{count}分钟"
       about_x_hours:
-        one: 
-        other: 
+        one: 大约一小时
+        other: 大约%{count}小时
       x_days:
-        one: 
-        other: 
+        one: 一天
+        other: "%{count}天"
       about_x_months:
-        one: 
-        other: 
+        one: 大约一个月
+        other: 大约%{count}个月
       x_months:
-        one: 
-        other: 
+        one: 一个月
+        other: "%{count}个月"
       about_x_years:
-        one: 
-        other: 
+        one: 大约一年
+        other: 大约%{count}年
       over_x_years:
-        one: 
-        other: 
+        one: 一年以上
+        other: "%{count}年以上"
       almost_x_years:
-        one: 
-        other: 
+        one: 大约一年
+        other: 大约%{count}年
     prompts:
-      year: 
-      month: 
-      day: 
-      hour: 
-      minute: 
-      second: 
+      year: 年
+      month: 月
+      day: 天
+      hour: 小时
+      minute: 分钟
+      second: 秒钟
   helpers:
     select:
-      prompt: 
+      prompt: '请选择
+
+'
     submit:
-      create: 
-      update: 
-      submit: 
+      create: 创建%{model}
+      update: 更新%{model}
+      submit: 保存%{model}
   will_paginate:
-    previous_label: 
-    next_label: 
-    page_gap: 
+    previous_label: "&#8592; 上一页"
+    next_label: 下一页
+    page_gap: "&hellip;"
     page_entries_info:
       single_page:
-        zero: 
-        one: 
-        other: 
+        zero: 找不到%{model}
+        one: 显示1%{model}
+        other: 显示全部 %{count} %{model}
       single_page_html:
-        zero: 
-        one: 
-        other: 
-      multi_page: 
-      multi_page_html: 
+        zero: 找不到 %{model}
+        one: 显示 <b>1</b> %{model}
+        other: 显示 <b>all&nbsp;%{count}</b> %{model}
+      multi_page: 显示%{model} %{from} - %{to} 至 %{count} 总额
+      multi_page_html: 显示%{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> 至 <b>%{count}</b>
+        总额
   pundit:
-    default: 
+    default: 您无法执行此操作。
     request_policy:
-      new?: 
-      create?: 
+      new?: 您只能创建一个请求！
+      create?: 您只能创建一个请求！
     pledge_policy:
-      new?: 
-      create?: 
+      new?: 你不能认捐自己
+      create?: 你不能认捐自己
   requests:
     index:
       total_amount_pledged: 认捐总额
       no_of_voter_requests: 选民请求数量
       sponsor_others: 捐助他人
-      need_a_sponsor: 
+      need_a_sponsor: 需要赞助
       voter_requests: 选民请求
       filter_requests: 筛选请求
       seat: 席位
       state: 州属
       form:
-        all: 
+        all: 全都
         state: 州属
         seat: 席位
-        bank: 
+        bank: 银行
       random: 随意
       highest_balance: 余额从高到低
       lowest_balance: 余额从低到高
-      search: 
-      newest_created: 
-      oldest_created: 
-      yes_document_provided: 
-      no_document_provided: 
-      unauth_access: 
+      search: 寻找
+      newest_created: 最新
+      oldest_created: 最旧
+      yes_document_provided: 已提供
+      no_document_provided: 没有提供
+      unauth_access: Unauthorized Access!
     disables:
       create:
-        already_disabled: 
-        disabled: 
+        already_disabled: 请求已被禁用
+        disabled: 请求已禁用
     enables:
       create:
-        enabled: 
-        not_disabled: 
+        enabled: 请求已启用
+        not_disabled: 请求未被禁用
     create:
-      success: 
+      success: 您的请求已成功创建
     update:
-      success: 
+      success: 请求已成功更新
     form:
-      tell_us_why: 
+      tell_us_why: 告诉我们为什么你需要赞助
       total_ticket_amount: 总票价 (RM)
-      sponsorship_requests: 
-      bank: 
-      choose_file: 
+      sponsorship_requests: 赞助请求（RM）
+      bank: 银行
+      choose_file: 选择档案
       supporting_documents: 证明文件
-      uploaded_documents: 
-      delete: 
-      delete_confirm: 
-      please_make_sure_all_your: 
-      itinerary: 
-      travel_company: 
-      transport_type: 
-      description: 
+      uploaded_documents: 上传的文件
+      delete: 删除
+      delete_confirm: 你确定要删除这个文件吗？
+      please_make_sure_all_your: 请确保您的所有资料正确，尤其是银行资料。一旦做出认捐就不能被更改。
+      itinerary: 行程细节/收据号码
+      travel_company: 交通公司名称
+      transport_type: 交通模式
+      description: 告诉我们为什么
       return_user_term: 我们已更新条规。欲继续使用此平台，请您勘察并接受此更新条款。若您拒绝或对于新条款无从回应，我们将把你的资料于我们的平台上删除。谢谢。
       term_and_condition1: PulangMengundi.com 在此取得您的许可，以收集，使用及共享您的个人资料。
       term_and_condition2: 在使用此网站或应用程序前，您务必了解我们所收集的个人资料类别。这些资料可以是必须性或可选性的。
       term_and_condition3: 目前，我们只收集您在此网页所填写的资料。我们将会使用这些资料来处理您的请求。在特定情况下，我们可能得将您的资料透露于我们的合作伙伴，以促成捐助和/或拼车的安排工作。
       term_and_condition4: Pulangmengundi.com将采取一切合理的措施来确保您所提供的个人资料获得保密。
       term_and_condition5: 如果您认为我们所保存的您的个人资料并不准确，不完整，误导或没有及时更新，请即可联系我们。
-      acknowledge: 
-      full_terms: 
+      acknowledge: 我承认并同意上述内容。
+      full_terms: 我也阅读了pulangmengundi.com/terms.html的完整条款。
     show:
       why_i_am: 为什么我需要捐助？
       mode_of_transport: 交通模式
       travel_company: 交通公司名称
       itinerary: 行程细节/收据号码
       total_ticket_amount: 总票价
-      manage_my_request: 
-      go_to_pledge: 
+      manage_my_request: 管理我的请求
+      go_to_pledge: 到认捐区
       proceed: 继续
-      share: 
-      help: 
-      tweet: 
-      reported: 
+      share: 分享
+      help: 帮助
+      tweet: 发帖子
+      reported: 已举报用户
       report_user: 举报用户
-      report: 
-      disputes: 
-      not_provider: 
-      info_hidden_for_completed_requests: 
-      connect_fb_acc: 
-      connect_tw_acc: 
-      no_supporting_document: 
-      search_on_facebook: 
+      report: 举报用户
+      disputes: 争议
+      not_provider: 没有提供
+      info_hidden_for_completed_requests: 隐藏已完成请求的信息
+      connect_fb_acc: 连接你的Facebook帐户
+      connect_tw_acc: 连接你的Twitter帐户
+      no_supporting_document: 没有提供
+      search_on_facebook: 在Facebook上搜索%{name}
     new:
-      reminder: 
-      missing_ic: 
-      not_eligible: 
+      reminder: 提醒：每个用户只可以创建一个请求
+      missing_ic: 没有IC或电邮资料。
+      not_eligible: 请联系客服。
   simple_form:
-    'yes': 
-    'no': 
+    'yes': 是
+    'no': 没有
     required:
-      text: 
-      mark: 
+      text: 必要
+      mark: "*"
     error_notification:
-      default_message: 
+      default_message: 请查看已下的问题：
   user_mailer:
     confirmation_email:
-      subject: 
-      confirm_your_email: 
-      to_confirm_your_email: 
-      hello: 
-      click_on_the_email: 
-      confirm: 
-      if_you_have_any: 
+      subject: 确认您的pulangmengundi.com电邮地址
+      confirm_your_email: 确认您的电子邮件加入
+      to_confirm_your_email: 要确认您的电子邮件，只需点击此网址：
+      hello: 你好
+      click_on_the_email: 点击下面的电子邮件确认您的电子邮件。
+      confirm: 确认
+      if_you_have_any: 如果您有任何问题，请回复此电邮。 我们很乐意为您提供帮助。
   notification:
     text:
-      pending_donor_transfer: 
-      can_be_expired: 
-      pending_received_confirmation: 
-      complete_profile_suggestion: 
+      pending_donor_transfer: 已经转移资金？
+      can_be_expired: 您已经等待转账超过2小时。
+      pending_received_confirmation: 捐赠者已经转移资金
+      complete_profile_suggestion: 完成你的个人资料，以获得更好的赞助机会
     button:
-      pending_donor_transfer: 
-      can_be_expired: 
-      pending_received_confirmation: 
-      complete_profile_suggestion: 
+      pending_donor_transfer: 上传收据
+      can_be_expired: 过期或确认认捐
+      pending_received_confirmation: 管理认捐
+      complete_profile_suggestion: 完成我的帐户
   pledge:
     humanize_status_for_donor:
-      waiting_for_transfer: 
-      donor_transferred: 
-      requester_received: 
-      requester_disputed: 
-      expired: 
+      waiting_for_transfer: 等待您的转账
+      donor_transferred: 等待选民确认
+      requester_received: 已完成
+      requester_disputed: 已展开争议
+      expired: 已过期
     humanize_status_for_requester:
-      waiting_for_transfer: 
-      donor_transferred: 
-      requester_received: 
-      requester_disputed: 
-      expired: 
+      waiting_for_transfer: 等待捐助者转移资金
+      donor_transferred: 等待您的确认
+      requester_received: 已完成
+      requester_disputed: 已展开争议
+      expired: 已过期
   sessions:
     new:
-      dedication: 
-      please_login: 
+      dedication: 我们将这个应用程序奉献给WKY。 没有它这些，这是不可能的。
+      please_login: 请登录
     create:
-      failed_to_link_account: 
-      flagged_account: 
+      failed_to_link_account: 无法链接帐户。 该帐户链接到另一个用户。
+      flagged_account: 帐户错误。 联系客户支持
     destroy:
-      logged_out: 
-    already_logged_in: 
+      logged_out: 已经登录
+    already_logged_in: 已经登录
   pledges:
     disputes:
       create:
-        disputed: 
+        disputed: 已展开争议
     requester_statuses:
       update:
-        success: 
+        success: 承诺已更新
     upload_receipts:
       create:
-        thank_you: 
-        missing_receipt: 
+        thank_you: 谢谢！
+        missing_receipt: 请上传收据以证明您已转移
     create:
-      success: 
+      success: 谢谢你的认捐。
     show:
       seat: 席位
       state: 州属
-      connect_fb_acc: 
-      connect_tw_acc: 
-      email: 
+      connect_fb_acc: 连接你的Facebook帐户
+      connect_tw_acc: 连接你的Twitter帐户
+      email: 电邮
       received: 已获得
       awaiting: 未认定
       balance: 还需要
-      bank_transfer_details: 
-      recipient_name: 
-      bank: 
-      account_number: 
-      request_link: 
-      pledge_amount: 
+      bank_transfer_details: 银行转账中资料
+      recipient_name: 收件人姓名
+      bank: 银行
+      account_number: 帐号号码
+      request_link: 请求网址
+      pledge_amount: 认捐总额
       step_1:
-        title: 
-        text: 
+        title: 步骤1
+        text: 与您的首选银行手动进行在线转账至选民/收件人
       step_2:
-        title: 
-        text: 
-      receipt: 
-      upload_receipt: 
-      choose_file: 
-      upload: 
-      delete: 
-      delete_confirm: 
+        title: 步骤2
+        text: 下载屏幕截图并在此处上传
+      receipt: 收据
+      upload_receipt: 上传收据
+      choose_file: 选择档案
+      upload: 上传
+      delete: 删除
+      delete_confirm: 你确定要删除这个文件吗？
     new:
       perform_checks_before_sponsoring: 在捐助前请进行以下检查
       talk_to_voter: 与选民交谈
-      click_fb_twitter_profile: 
-      add: 
-      them_to_chat_or_ping: 
-      ask_for_email_and_phone: 
-      tip: 
-      pro_tip: 
-      video_call: 
+      click_fb_twitter_profile: 点击FB / twitter个人资料网址
+      add: 加
+      them_to_chat_or_ping: 可以在WhatsApp上聊天或ping他们以了解他们。
+      ask_for_email_and_phone: 如果您需要联系他们寻求他们的电邮和电话号码
+      tip: 提示！
+      pro_tip: 提示！
+      video_call: 视频通话以确保他们没有诈骗
       verify_voting_info: 2.验证选民资料
       get_proof_of_voter: 获取选民行程证明
-      validate_voting_constituency: 
-      spr: 
+      validate_voting_constituency: 检查他们的NRIC来验证投票选区
+      spr: SPR
       perform_bank_transfer: 3.进行银行转账
       log_into_your_online_banking: 登录您的电子银行平台进行转账
-      try_to_sponsor_someone: 
+      try_to_sponsor_someone: 尝试赞助使用同一家银行的人来检查他们的Facebook / Twitter名称是否与他们的银行帐户名称相符
       finalize_your_transfer: 4.完成转账
       upload_transaction_receipt: 上载汇款收据，点击“我已转账”
       inform_the_voter: 通知选民您已转账
@@ -402,261 +414,267 @@ zh-Hans:
       balance: 还需要
       important_note: 重要提示：
       this_is_a_manual_platform: 这是个人工平台。
-      we_do_not_connect: 
-      to_prevent_fraud: 
-      i_read_and_understood: 
-      terms_and_conditions: 
-      i_know_that_i: 
-      pledge: 
+      we_do_not_connect: 我们不把认捐系统连接到银行支付系统。 请分别登录您的网上银行平台，以方便银行转账。
+      to_prevent_fraud: 为防止欺诈行为，我们强烈建议您将银行收款人姓名和Facebook / Twitter个人资料名称与投票人提供的信息进行匹配，以验证该投票人。
+      i_read_and_understood: 我已阅读并理解了
+      terms_and_conditions: 条款和条件。
+      i_know_that_i: 我知道我需要亲自验证选民。
+      pledge: 认捐
     index:
-      sponsorship_history: 
-      no_pledges_yet: 
-      view_voter_list: 
+      sponsorship_history: 赞助历史
+      no_pledges_yet: 没有认捐！
+      view_voter_list: 查看发言名单
   documents:
-    deleted: 
-    not_found: 
+    deleted: 已删除
+    not_found: 无法寻获文件
   email_confirmations:
     show:
-      email_confirmed: 
-      invalid_confirmation_link: 
+      email_confirmed: 您的电子邮件地址已成功确认。
+      invalid_confirmation_link: 无效的确认网址
   profiles:
     update:
-      check_email: 
-      invalid_email: 
-      success: 
+      check_email: 请检查您的电邮以验证您的电邮
+      invalid_email: 电邮错误
+      success: 资料已更新！
     edit:
-      connect_fb_acc: 
-      connect_tw_acc: 
-      email: 
-      resend_email: 
-      email_public_label: 
-      area: 
-      phone_number_optional: 
-      save: 
-      ic_number: 
-      check_email_to_confirm: 
-      include_dash_in_ic: 
+      connect_fb_acc: 点击此处连接您的Facebook帐户
+      connect_tw_acc: 点击此处连接您的Twitter帐户。
+      email: 电邮
+      resend_email: 重发电邮
+      email_public_label: 显示电邮给公众。 （如果您的社交媒体是私密的，它会帮助捐赠者与您联系）
+      area: 区
+      phone_number_optional: 电话号码（可选）
+      save: 保存
+      ic_number: IC号码
+      check_email_to_confirm: 检查您的电邮以确认%{unconfirmed_email}属于您的。
+      include_dash_in_ic: IC号码一旦保存就无法更新。 如需更改，请联系客户服务部门。
     ic_details:
-      update: 
-      ic_updated: 
+      update: 无法编辑IC。 请联系客户服务部门。
+      ic_updated: IC已更新
       edit:
-        ic_number: 
-        include_dash_in_ic: 
-        save: 
-        cannot_edit_ic: 
-        upload_ic_picture: 
-        choose_file: 
-        verifying_ic_will_help_you_get_donors: 
-        ic_updated: 
+        ic_number: IC号码
+        include_dash_in_ic: IC号码一旦保存就无法更新。 如需更改，请联系客户服务部门。
+        save: 保存
+        cannot_edit_ic: IC号码一旦保存就无法更新。 如需更改，请联系客户服务部门。
+        upload_ic_picture: 上传你的IC的图片进行验证
+        choose_file: 选择档案
+        verifying_ic_will_help_you_get_donors: 允许我们验证您的IC将有助于更多的捐助者与您联系
+        ic_updated: IC已更新
     phone_verifications:
       create:
-        verification_code_sent: 
+        verification_code_sent: 验证码已发送至您的电话号码。
       update:
-        phone_verified: 
-        verification_code_not_match: 
+        phone_verified: 您的电话号码已经过验证
+        verification_code_not_match: 您输入了错误的验证码
       show:
-        type_in_verification_code: 
-        submit: 
+        type_in_verification_code: 请输入%{phone}收到的验证码
+        submit: 提交
       new:
-        area: 
-        phone_number: 
-        save: 
+        area: 区
+        phone_number: 电话号码
+        save: 保存
     emails:
       edit:
-        email: 
-        resend_email: 
-        email_public_label: 
-        check_email_to_confirm: 
-        save: 
+        email: 电邮
+        resend_email: 重发电邮
+        email_public_label: 显示电邮给公众。 （如果您的社交媒体是私密的，它会帮助捐赠者与您联系）
+        check_email_to_confirm: 检查您的电邮以确认%{unconfirmed_email}属于您的。
+        save: 保存
     show:
-      connect_fb_acc: 
-      connect_tw_acc: 
-      email: 
-      edit_email: 
-      verify_phone: 
-      add_ic_and_pic: 
-      resend_email: 
-      email_public_label: 
-      area: 
-      save: 
-      ic_number: 
-      check_email_to_confirm: 
-      include_dash_in_ic: 
-      verifying_ic_will_help_you_get_donors: 
+      connect_fb_acc: 点击此处连接您的Facebook帐户
+      connect_tw_acc: 点击此处连接您的Twitter帐户
+      email: 电邮
+      edit_email: 修改电邮
+      verify_phone: 验证你的电话号码
+      add_ic_and_pic: 添加IC和图片
+      resend_email: 重发电邮
+      email_public_label: 显示电邮给公众。 （如果您的社交媒体是私密的，它会帮助捐赠者与您联系）
+      area: 区
+      save: 保存
+      ic_number: IC号码
+      check_email_to_confirm: 检查您的电邮以确认%{unconfirmed_email}属于您的。
+      include_dash_in_ic: IC号码一旦保存就无法更新。 如需更改，请联系客户服务部门。
+      verifying_ic_will_help_you_get_donors: 允许我们验证您的IC将有助于更多的捐助者与您联系
   static_pages:
     home:
-      submit_my_request: 
+      submit_my_request: 提交我的请求
       total_amount_pledged: 认捐总额
       no_of_voter_requests: 选民请求数量
-      need_a_sponsor: 
+      need_a_sponsor: 需要赞助
       sponsor_others: 捐助他人
-      manage_my_request: 
+      manage_my_request: 管理我的请求
     contact:
-      find_us_on_social_media: 
+      find_us_on_social_media: 在社交媒体寻找我们
     faq:
-      title: 
+      title: 常问问题
       q_1:
-        title: 
-        answer: 
-        name: 
-        profile_pic_url: 
-        profile_url: 
-        bank_account: 
+        title: 你保留我的资料吗？
+        answer: 我们的平台使用您的FB账号以验证您的身份。 经您的许可后，我们才获得这些资料。
+        name: 名字
+        profile_pic_url: 个人资料图片网址
+        profile_url: 个人资料网址
+        bank_account: 银行账户
       q_2:
-        title: 
-        answer: 
+        title: 2.我的资料是否会与其他人分享？
+        answer: 没有；也不会。
       q_3:
-        title: 
-        answer: 
+        title: 3. 程序有问题，我应该联系谁？
+        answer: 不需担心。请通过pulang.undi@gmail.com与我们联系
   completed_requests:
     index:
       total_amount_pledged: 认捐总额
-      no_of_completed_sponsorships: 
+      no_of_completed_sponsorships: 完成的赞助数量
       funded: 已受资助 %{percentage}%
   thank_you_screens:
     for_pledging:
-      thank_you_for: 
-      your_random_act: 
+      thank_you_for: 感谢您的赞助。
+      your_random_act: 你的好意帮助马来西亚人回家投票。 这是一个Fave和honestbee促销代码，感谢您的支持！
       sponsor_others: 捐助他人
-      fine_print_1: 
-      fine_print_2: 
-      fine_print_3: 
-      fine_print_4: 
-      promo_1_fine_print_1: 
-      promo_1_fine_print_2: 
-      promo_1_fine_print_3: 
-      promo_1_fine_print_4: 
-      unauth_access: 
-      promo_2_fine_print_1: 
-      promo_2_fine_print_2: 
-      promo_2_fine_print_3: 
-      promo_2_fine_print_4: 
-      promo_2_fine_print_5: 
-      promo_2_fine_print_6: 
-      promo_2_fine_print_7: 
+      fine_print_1: 可用于FavePay和FaveDeal
+      fine_print_2: 10％的现金返还促销，最高RM10的折扣。
+      fine_print_3: 一次性使用
+      fine_print_4: 2018年5月9日到期
+      promo_1_fine_print_1: 可用于FavePay和FaveDeal
+      promo_1_fine_print_2: 10％的现金返还促销，最高RM10的折扣。
+      promo_1_fine_print_3: 一次性使用
+      promo_1_fine_print_4: 2018年5月9日到期
+      unauth_access: Unauthorized Access!
+      promo_2_fine_print_1: 只限使用于honestbee.my或通过honestbee应用程序
+      promo_2_fine_print_2: RM10折扣，无最低消费额。
+      promo_2_fine_print_3: 一次性使用
+      promo_2_fine_print_4: 有效期至2018年5月13日
+      promo_2_fine_print_5: 仅适用于honestbee服务区域
+      promo_2_fine_print_6: Honestbee保留取消任何欺诈命令的权利
+      promo_2_fine_print_7: 除非另有说明，否则不适用于其他优惠券代码
     show:
-      thank_you_for: 
-      back_to_home: 
+      thank_you_for: '感谢您参加GE14 #pulangmengundi'
+      back_to_home: 回到主页
   manage_pledges:
     show:
-      pledge: 
-      donor_name: 
-      donor_facebook_url: 
-      donor_twitter_url: 
-      pledged_at: 
-      amount: 
-      status: 
-      pledge_status_confirm: 
-      i_have_received: 
-      i_did_not_receive: 
-      expire_pledge_confirm: 
-      expire: 
-      back_to_my_request: 
-      dispute: 
+      pledge: 认捐
+      donor_name: 捐助者的名字
+      donor_facebook_url: 捐助者的Facebook网址
+      donor_twitter_url: 捐助者twitter网址
+      pledged_at: 认捐在
+      amount: 总额
+      status: 状态
+      pledge_status_confirm: 你确定你要确认吗？ 点击确认之前，请先登录您的银行账户。然后确认金额是否确实已经获取。
+      i_have_received: 已获得
+      i_did_not_receive: '我没收到
+
+'
+      expire_pledge_confirm: 你确定要把这个认捐列为过期吗？ 如果您的捐赠者没有认捐，请点击确定。 这将允许您获得新的认捐着。
+      expire: 过期
+      back_to_my_request: 回到我的请求
+      dispute: 争议
     index:
-      manage_my_request: 
-      restore_request: 
-      restore_request_confirm: 
-      delete_request: 
-      delete_request_confirm: 
-      pledge: 
-      edit_request: 
+      manage_my_request: 管理我的请求
+      restore_request: 恢复请求
+      restore_request_confirm: 你确定要恢复请求吗？
+      delete_request: 删除请求
+      delete_request_confirm: 您确定要防止他人寻找您的请求吗？
+      pledge: 认捐
+      edit_request: 修改请求
   layouts:
     navbar:
-      carpool: 
-      subsidy: 
-      faq: 
-      contact: 
-      my_request: 
-      completed_sponsorships: 
-      my_sponsorships: 
-      profile: 
-      log_out: 
-      log_in: 
-      terms: 
-      privacy_policy: 
-      bus: 
-      thank_you_promo: 
+      carpool: 共车
+      subsidy: 津贴
+      faq: 常问问题
+      contact: 联系
+      my_request: 我的请求
+      completed_sponsorships: 完成赞助
+      my_sponsorships: 我的赞助
+      profile: 帐户
+      log_out: 登出
+      log_in: 登录
+      terms: 条款和条件
+      privacy_policy: 隐私政策
+      bus: 巴士
+      thank_you_promo: 赞助商奖励
   flash:
     actions:
       create:
-        notice: 
+        notice: "%{resource_name}已成功创建。"
       update:
-        notice: 
+        notice: "%{resource_name}已成功更新。"
       destroy:
-        notice: 
-        alert: 
+        notice: "%{resource_name}已成功销毁。"
+        alert: "%{resource_name}无法销毁。"
   devise:
     confirmations:
-      confirmed: 
-      send_instructions: 
-      send_paranoid_instructions: 
+      confirmed: 您的电子邮件地址已成功确认。
+      send_instructions: 您将收到一封电子邮件。电邮中包含有关如何确认您的电子邮件地址的说明。
+      send_paranoid_instructions: 如果您的电邮件地址已存在于我们的数据库中，您将收到一封电邮。电邮包含着如何确认你的电邮。
     failure:
-      already_authenticated: 
-      inactive: 
-      invalid: 
-      locked: 
-      last_attempt: 
-      not_found_in_database: 
-      timeout: 
-      unauthenticated: 
-      unconfirmed: 
+      already_authenticated: 您已经登录。
+      inactive: 您的帐户尚未激活。
+      invalid: "%{authentication_keys}或密码无效。"
+      locked: 您的帐户已封锁。
+      last_attempt: 您还有一次尝试。如果密码再有错误，您的帐户将会被封锁。
+      not_found_in_database: "%{authentication_keys}或密码无效。"
+      timeout: 请再次登录以继续。
+      unauthenticated: 您需要登录或注册。
+      unconfirmed: 您必须确认您的电邮地址。
     mailer:
       confirmation_instructions:
-        subject: 
+        subject: 确认说明
       reset_password_instructions:
-        subject: 
+        subject: 重置密码说明
       unlock_instructions:
-        subject: 
+        subject: 解锁说明
       email_changed:
-        subject: 
+        subject: 电邮已更改
       password_change:
-        subject: 
+        subject: 密码已更改
     omniauth_callbacks:
-      failure: 
-      success: 
+      failure: 无法通过%{kind}验证。原因：“%{reason}”。
+      success: 已成功进行用户验证：%{kind}
     passwords:
-      no_token: 
-      send_instructions: 
-      send_paranoid_instructions: 
-      updated: 
-      updated_not_active: 
+      no_token: 无法访问此页面。 如果您使用的网址是来自密码重置电邮，请确保您使用了提供的完整网址。
+      send_instructions: 您将收到一封电子邮件。电邮中包含有关如何确认您的电子邮件地址的说明。
+      send_paranoid_instructions: 如果您的电邮件地址已存在于我们的数据库中，您将收到一封电邮。电邮包含着如何确认你的电邮网址。
+      updated: 您的电子邮件地址已成功确认。
+      updated_not_active: 您的电子邮件地址已成功确认。
     registrations:
-      destroyed: 
-      signed_up: 
-      signed_up_but_inactive: 
-      signed_up_but_locked: 
-      signed_up_but_unconfirmed: 
-      update_needs_confirmation: 
-      updated: 
+      destroyed: '您的帐户已成功取消。再见！ '
+      signed_up: 欢迎！ 您已成功注册。
+      signed_up_but_inactive: 您已成功注册。您的帐户尚未激活所以无法登录。
+      signed_up_but_locked: 您已成功注册。您的帐户已被封锁所以无法登录。
+      signed_up_but_unconfirmed: 确认链接的邮件已发送至您的电子邮件地址。 请按照网址激活您的帐户。
+      update_needs_confirmation: 您已成功更新您的帐户，但我们需要验证您的新电子邮件地址。 请检查您的电子邮件并按照确认网址确认您的新电子邮件地址。
+      updated: 您已成功更新您的帐户。
     sessions:
-      signed_in: 
-      signed_out: 
-      already_signed_out: 
+      signed_in: 成功登陆
+      signed_out: 成功退出。
+      already_signed_out: 成功退出。
     unlocks:
-      send_instructions: 
-      send_paranoid_instructions: 
-      unlocked: 
+      send_instructions: 您将收到一封电子邮件。电邮中包含有关如何解锁你的账户。
+      send_paranoid_instructions: 如果您的电邮件地址已存在于我们的数据库中，您将收到一封电邮。电邮包含着如何解锁账户。
+      unlocked: 您的帐户已成功解锁。 请登录以继续。
   services:
     phone_verification:
-      message: 
+      message: 您的pulangmengundi.com验证码是%{verification_code}
     send_phone_verification_code_service:
-      your_verification_code_is: 
-      wait_five_minutes: 
-      limit_exceeded: 
+      your_verification_code_is: 您的PulangMengundi验证码是%{code}
+      wait_five_minutes: 请等五分钟后再申请短信。
+      limit_exceeded: 您请求过多验证码。 请联系客户支持。
   default:
     disclaimer:
-      reminder: 
-      text: 
+      reminder: 温馨提醒!
+      text: |-
+        我们是独立的平台，不支持或接受任何表示政党关联，合伙或偏袒的言论和行为；无论是以文字，图片或视频，贿赂或任何类似教唆的方式以影响某个人偏袒的行为。
+        如果您发现疑似违反条规或以上舞弊的行为，请马上将该用户举报至我们的管方邮件 (pulang.undi@gmail.com).方式以影响某个人偏袒的行为。
   buses:
     index:
-      to: 
-      from: 
-      available_seats: 
-      get_more_info: 
-      bus_route_from: 
-      more_info_available: 
-      all: 
-      city: 
-      none: 
-      filter_routes: 
+      to: 目的地
+      from: 出发地
+      available_seats: 座位
+      get_more_info: 更多详情
+      bus_route_from: UndiRabu.com 的巴士路线
+      more_info_available: |2-
+
+        更多有关巴士路线或预订的信息，请参阅该巴士网站。 如果您打算购买的路线已经卖光了，请再回来。 该路线的座位可能会被添加。
+      all: 全都
+      city: 城市
+      none: 无选项
+      filter_routes: 过滤路由

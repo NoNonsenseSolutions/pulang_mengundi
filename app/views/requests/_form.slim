@@ -59,10 +59,11 @@
         #current-documents.mt-5
           label = t('.uploaded_documents')
           - @request.supporting_documents.each do |sd|
-            p
-              = link_to sd.filename, rails_blob_path(sd, disposition: "inline"), target: :_blank
-              | |
-              = link_to t('.delete'), document_path(sd), method: :delete, data: { confirm: t('.delete_confirm') }
+            - if sd.persisted?
+              p
+                = link_to sd.filename, rails_blob_path(sd, disposition: "inline"), target: :_blank
+                | |
+                = link_to t('.delete'), document_path(sd), method: :delete, data: { confirm: t('.delete_confirm') }
 
       br
 

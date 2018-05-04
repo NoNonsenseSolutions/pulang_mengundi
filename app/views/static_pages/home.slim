@@ -17,25 +17,28 @@
       = link_to t('.need_a_sponsor'), home_path, class: "switch-items active"
 
     h3.mb-5.mt-5.text-center = t('.need_a_sponsor')
+    
+    - if true
+      = image_tag('subsidy_stopped.jpeg', class: 'img-responsive')
+    - else
+      = image_tag('need_a_sponsor_a.png', class: 'img-responsive')
+      hr
+      = image_tag('need_a_sponsor_b.png', class: 'img-responsive')
 
-    = image_tag('need_a_sponsor_a.png', class: 'img-responsive')
-    hr
-    = image_tag('need_a_sponsor_b.png', class: 'img-responsive')
-
-    div#need-a-sponsor
-      - if current_user
-        - if current_user.request
-          = link_to request_manage_pledges_path(current_user.request) do
-            = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-              strong = t('.manage_my_request')
+      div#need-a-sponsor
+        - if current_user
+          - if current_user.request
+            = link_to request_manage_pledges_path(current_user.request) do
+              = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+                strong = t('.manage_my_request')
+          - else
+            = link_to new_request_path do
+              = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
+                strong = t('.submit_my_request')
         - else
           = link_to new_request_path do
             = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
               strong = t('.submit_my_request')
-      - else
-        = link_to new_request_path do
-          = button_tag(class: 'btn btn-primary p-4 btn-responsive mt-3')
-            strong = t('.submit_my_request')
-        = link_to new_sessions_path do
-          = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
-            strong = t('.manage_my_request')
+          = link_to new_sessions_path do
+            = button_tag class: 'btn btn-primary p-4 btn-responsive mt-3' do
+              strong = t('.manage_my_request')

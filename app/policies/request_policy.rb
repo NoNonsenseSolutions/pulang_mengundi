@@ -22,10 +22,12 @@ class RequestPolicy
   end
 
   def new?
+    return false #disabled
     user.request.nil? || !user.request.persisted?
   end
 
   def create?
+    return false #disabled
     new?
   end
 

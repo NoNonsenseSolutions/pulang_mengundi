@@ -9,8 +9,8 @@ en:
   pundit:
     default: You cannot perform this action.
     request_policy:
-      new?: You can only create one request!
-      create?: You can only create one request!
+      new?: Cannot create requests anymore
+      create?: Cannot create requests anymore
     pledge_policy:
       new?: You cannot pledge to yourself
       create?: You cannot pledge to yourself
